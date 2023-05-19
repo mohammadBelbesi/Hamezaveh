@@ -18,6 +18,7 @@ const Home = () => {
         <BeforeMyProducts />
         <br></br>
         <Products />
+        <br></br>
     </div>
   )
 };
