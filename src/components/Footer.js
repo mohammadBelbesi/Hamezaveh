@@ -8,7 +8,7 @@ const Footer = () => {
         {/* Footer content */}
         <div className='flex flex-col gap-7'>
             <img className='footer-logo w-28 h-16 mr-2' src={logo} alt='logo' />
-            <p className='hamezaveh-footer text-black text-sm tracking-wide my-font '>@Hamezaveh</p>
+            <p className='hamezaveh-footer text-black text-sm tracking-wide my-font '>Hamezaveh@</p>
             <div className='inline-flex'>
                 <img className='footer-logo w-20 h-16 ' src={visa} alt='visa' />
                 <img className='footer-logo w-20 h-16 ' src={mastercard} alt='mastercard' />
@@ -20,7 +20,7 @@ const Footer = () => {
                 <p className='gap-4'>בעלים: שירה רוזנבאום</p>
                 <p className='gap-4'>טלפון: 02-9876565</p>
                 <p className='gap-4'>טלפון נייד: 054-9876540</p>
-                <p className='gap-4'>hamezaveh@gmail.com :אימייל</p>
+                <p className='gap-4'>אימייל: hamezaveh@gmail.com</p>
             </div>
         </div>
         <div className='my-font text-black text-center mb-6'>
