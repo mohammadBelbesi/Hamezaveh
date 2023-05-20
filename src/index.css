@@ -4,6 +4,9 @@
 
 body{
     overflow-x: hidden;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 .my-bg-color{
     background-color: rgb(87 121 91);
@@ -41,6 +44,9 @@ body{
     font-family: 'Noto Sans Hebrew', sans-serif;
     display: flex;
     color: #fbae8afc; /*f69494e6*/
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 .logo{
@@ -53,4 +59,65 @@ body{
 
 .hamezaveh-footer{
     padding-left: 4.5%;
+}
+
+.table-text{
+    text-align: center;
+}
+
+.bannerImages{
+    border-radius: 1cm;
+    border-color: green;
+    border-width: 1px;
+    display: flexbox;
+    display: flex;
+    width: 1250px;
+    height: 600px;
+    max-width: 1250px;
+    max-height: 650px;
+    min-height: 550px;
+    min-width: 1200px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.eventsTable{
+    width: 80%;
+    height: fit-content;
+    border-radius: 0.5cm;
+    border-color: green;
+    background-color: rgb(87 121 91);
+    border-collapse: collapse;
+    padding: 8px;
+    flex: auto;
+    margin-right: 10%;
+    display: flexbox;
+    text-align: center;
+    font-weight: bold;
+    font-size: xx-large;
+    font-family: 'Noto Sans Hebrew', sans-serif;
+}
+
+.tableBords{
+    border: 3px ridge black;
+    padding: 8px;
+    border-radius: 0.5cm;
+    text-align: center;
+}
+
+.event-logo{
+    max-width: 30px;
+    max-height: 30px;
+    text-align: center;
+    flex: auto; 
+    display: inline-block;
+}
+
+.productsCards{
+    width: 1500px; /* Set the desired width */
+    height: 1800px; /* Set the desired height */
+    object-fit: cover; /* Adjust the image aspect ratio */
+    flex: auto;
+    
 }
