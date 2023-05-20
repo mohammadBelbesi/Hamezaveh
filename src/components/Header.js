@@ -3,7 +3,7 @@ import { cart, loginBlack, loginPerson, logo } from "../assets/assetsindex";
 
 const Header = () => {
   return (
-    <div className="w-full h-36 border-b-[1px] border-b-gray-800">
+    <div dir="ltr" className="w-full h-36 border-b-[1px] border-b-gray-800 sticky top-0 z-50">
       <div className="max-w-screen-xl h-full mx-auto flex items-center justify-between">
         <div className="flex items-center gap-20">
           <div>
