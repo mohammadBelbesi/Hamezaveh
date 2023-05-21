@@ -21,7 +21,7 @@ const ClosestEvent = () => {
     <div className="rtl-container">
       <table className="eventsTable">
         <tbody>
-          <tr className="tableBords">
+          <tr className="tableBords firstLine">
             {eventData[0] && (
               <th className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
                 <div className="table-text">בתאריך: {eventData[0].date}</div>

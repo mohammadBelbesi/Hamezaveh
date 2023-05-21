@@ -27,7 +27,7 @@ const Events = () => {
       <tbody>
         <tr className="tableBords">
           {eventData.map((event, index) => (
-            <td className="tableBords" key={index} onClick={() => handleEventClick(event)}>
+            <td className="tableBords firstLine" key={index} onClick={() => handleEventClick(event)}>
               <th className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
                 <div className="table-text text-3xl">בתאריך: {event.date}</div>
                 <div className="table-text">בשעה: {event.time}</div>

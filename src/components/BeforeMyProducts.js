@@ -4,7 +4,7 @@ const BeforeMyProducts = () => {
   return (
     <div>
       <div className='beforeProducts flex flex-col items-center gap-4'>
-        <h1 className='hebrewTexts text-center bg-black text-white w-200 text-xs'>
+        <h1 className='hebrewTexts beforeProducts text-center bg-black text-white w-200 text-xs'>
           קצת מהמוצרים שמוכרים
         </h1>
         <span className='w-36 h-[4px] bg-black'></span>
