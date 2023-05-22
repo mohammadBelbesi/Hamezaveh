@@ -8,10 +8,10 @@ import BeforeMyProducts from "../components/BeforeMyProducts";
 const Home = () => {
   return (
     <div>
-        <h1 className="hebrewTexts text-center">!!הפתעה</h1>
+        <Banner />
+        <h1 className="hebrewTexts text-center">הפתעה!!</h1>
         <ClosestEvent/>
         <br></br>
-        <Banner />
         <h1 className="hebrewTexts text-center">עוד אירועים קרובים</h1>
         <Events />
         <br></br>

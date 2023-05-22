@@ -15,6 +15,7 @@ body{
 .hover\:bg-green-me:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(87 121 91 / var(--tw-bg-opacity));
+    box-shadow: 0 0 1cm rgba(0, 0, 0, 0.5); /* Add a 1cm shadow with a 50% opacity */
 }
 
 .hebrewTexts{
@@ -28,6 +29,7 @@ body{
 .my-font{
     font-weight: bold;
     font-family: 'Noto Sans Hebrew', sans-serif;
+    color: white;
 }
 
 .w-full{
@@ -55,14 +57,19 @@ body{
 
 .footer-logo{
     display: flex;
+    margin-right: 7%;
 }
 
 .hamezaveh-footer{
     padding-left: 4.5%;
+    margin-right: 7%;
+
 }
 
 .table-text{
     text-align: center;
+    color: white;
+
 }
 
 .bannerImages{
@@ -80,6 +87,8 @@ body{
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
+    box-shadow: 0 0 1cm rgba(0, 0, 0, 0.5); /* Add a 1cm shadow with a 50% opacity */
+
 }
 
 .eventsTable{
@@ -97,13 +106,32 @@ body{
     font-weight: bold;
     font-size: xx-large;
     font-family: 'Noto Sans Hebrew', sans-serif;
+    color: white;
+
 }
 
-.tableBords{
+/* .tableBords{
     border: 3px ridge black;
     padding: 8px;
     border-radius: 0.5cm;
     text-align: center;
+}
+
+.tableBords{
+    padding: 8px;
+    border-radius: 0.5cm;
+    text-align: center;
+    box-shadow: 0 0 1cm rgba(0, 0, 0, 0.5);}  /* Add a 1cm shadow with a 50% opacity */
+
+
+.tableBords{
+    padding: 8px;
+    border-radius: 0.5cm;
+    text-align: center;
+}
+
+.firstLine{
+    box-shadow: 0 0 1cm rgba(0, 0, 0, 0.5); /* Add a 1cm shadow with a 50% opacity */
 }
 
 .event-logo{
@@ -112,6 +140,11 @@ body{
     text-align: center;
     flex: auto; 
     display: inline-block;
+    box-shadow: 0 0 1cm rgba(0, 0, 0, 0.5); /* Add a 1cm shadow with a 50% opacity */
+}
+
+.beforeProducts{
+    padding: 0.5cm;
 }
 
 .productsCards{
@@ -119,5 +152,5 @@ body{
     height: 1800px; /* Set the desired height */
     object-fit: cover; /* Adjust the image aspect ratio */
     flex: auto;
-    
+    box-shadow: 0 0 1cm rgba(0, 0, 0, 0.5); /* Add a 1cm shadow with a 50% opacity */
 }
