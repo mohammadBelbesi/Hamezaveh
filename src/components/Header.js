@@ -1,5 +1,6 @@
 import React from "react";
 import { cart, loginBlack, loginPerson, logo } from "../assets/assetsindex";
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -16,6 +17,7 @@ const Header = () => {
               onMouseOut={(e) => { e.target.style.opacity = 1; e.target.style.boxShadow = 'none'; }}
             />
           </div>
+          <Link to="/cart">
           <div className="relative">
             <img
               className="logo w-18 h-16 mx-auto flex gap-20 rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500 shadow-md"
@@ -27,15 +29,18 @@ const Header = () => {
             />
             <span className="zero absolute w-12 h-10 mx-auto top-1 right-1 text-sm flex items-center justify-center font-serif">0</span>
           </div>
+          </Link>
           <ul className="flex items-center gap-20 ">
             <li className=" hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">אודות</li>
             <li className=" hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">חנות</li>
-            <li className=" hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">דף הבית</li>
+            <Link to="/home"><li className=" hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">דף הבית</li></Link>
           </ul>
         </div>
-        <div className="ml-auto">
-          <img className="logo w-auto h-36 mx-auto flex" src={logo} alt="logo" />
-        </div>
+        <Link to="/home">
+          <div className="ml-auto">
+            <img className="logo w-auto h-36 mx-auto flex" src={logo} alt="logo" />
+          </div>
+        </Link>
       </div>
     </div>
   );
