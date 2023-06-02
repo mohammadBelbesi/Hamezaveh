@@ -3,11 +3,12 @@ import { location } from "../assets/assetsindex";
 
 const ClosestEvent = () => {
   const [selectedEvent, setSelectedEvent] = useState(null); // State to track the selected event
-
+  
   // Retrieve event data from Firebase (use appropriate Firebase SDK methods)
 
   const eventData = [
     // Sample event data fetched from Firebase
+
     {
       date: "2023-05-20",
       time: "10:00 AM",
@@ -20,7 +21,7 @@ const ClosestEvent = () => {
   return (
     <div className="rtl-container">
       <table className="eventsTable">
-        <tbody>
+        <thead>
           <tr className="tableBords firstLine">
             {eventData[0] && (
               <th className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
@@ -29,7 +30,7 @@ const ClosestEvent = () => {
               </th>
             )}
           </tr>
-        </tbody>
+        </thead>
         <tbody>
           <tr className="tableBords">
             <td className="tableBords">

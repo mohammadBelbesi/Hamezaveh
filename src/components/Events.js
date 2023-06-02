@@ -18,34 +18,47 @@ const Events = () => {
     setSelectedEvent(event);
   };
 
-  useEffect(() => {
-    setSelectedEvent(eventData[0]); // Set the first event as the default selected event
+  useEffect(() => {  // Set the first event as the default selected event
+    setSelectedEvent(eventData[0]);
   }, []);
 
   return (
-    <table className="eventsTable">
-      <tbody>
-        <tr className="tableBords">
-          {eventData.map((event, index) => (
-            <td className="tableBords firstLine" key={index} onClick={() => handleEventClick(event)}>
-              <th className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
+    <div className="rtl-container">
+      <table className="eventsTable">
+        <thead>
+          <tr className="tableBords">
+            {eventData.map((event, index) => (
+              <th
+                key={index}
+                className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
+                onClick={() => handleEventClick(event)}
+              >
                 <div className="table-text text-3xl">בתאריך: {event.date}</div>
                 <div className="table-text">בשעה: {event.time}</div>
               </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="tableBords">
+            <td className="tableBords" colSpan={eventData.length}>
+              {selectedEvent && (
+                <div>
+                  <p>אל תבזבזו את האירוע ! אנחנו מחכים לכם (:</p>
+                  <p>
+                    {selectedEvent.place}
+                    {location && (
+                      <img src={location} alt="Event Logo" className="event-logo" />
+                    )}
+                  </p>
+                  <p>{selectedEvent.products.join(", ")}</p>
+                </div>
+              )}
             </td>
-          ))}
-        </tr>
-      </tbody>
-      <tbody>
-        <tr className="tableBords">
-          <td className="tableBords" colSpan={eventData.length}>
-            <p>{selectedEvent ? "אל תבזבזו את האירוע ! אנחנו מחכים לכם (:" : ""}</p>
-            <p>{selectedEvent ? selectedEvent.place : ""}{selectedEvent && location && <img src={location} alt="Event Logo" className="event-logo" />}</p>
-            <p>{selectedEvent ? selectedEvent.products.join(", ") : ""}</p>
-          </td>
-        </tr>
-      </tbody>
-    </table> 
+          </tr>
+        </tbody>
+      </table>
+    </div>
   );
 };
 
