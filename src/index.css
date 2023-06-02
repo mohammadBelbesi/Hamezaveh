@@ -154,3 +154,7 @@ body{
     flex: auto;
     box-shadow: 0 0 1cm rgba(0, 0, 0, 0.5); /* Add a 1cm shadow with a 50% opacity */
 }
+
+.h-cartPage{
+    height: 21.6rem;
+}

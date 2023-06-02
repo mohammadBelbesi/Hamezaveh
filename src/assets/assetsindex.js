@@ -5,6 +5,7 @@ import mastercard from "./mastercard.png";
 import loginBlack from "./loginBlack.png";
 import loginPerson from "./loginPerson.png";
 import location from "./location.png";
+import cartCover from "./cartCover.png";
 
 export{logo};
 export{cart};
@@ -13,3 +14,4 @@ export{mastercard};
 export{loginBlack};
 export{loginPerson};
 export{location};
+export{cartCover};
