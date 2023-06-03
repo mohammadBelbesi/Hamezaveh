@@ -14,7 +14,7 @@ const CartItem = () => {
   const dispatch = useDispatch();
   const productData = useSelector((state) => state.bazar.productData);
   return (
-    <div className="w-2/3 pr-10">
+    <div className="w-9/12 pr-10">
       <div className="w-full">
         <h2 className="hebrewTexts text-2xl">סל קניות</h2>
         <div>
@@ -29,7 +29,7 @@ const CartItem = () => {
                     onClick={() =>
                       dispatch(deleteItem(item.idProduct)) 
                     }
-                    className="text-xxl text-black hover:text-red-600 cursor-pointer duration-300"
+                    className="text-xxl text-white hover:text-red-600 cursor-pointer duration-300"
                   />
                   <img
                     className="w-32 h-32 object-cover"
@@ -39,7 +39,7 @@ const CartItem = () => {
                 </div>
                 <h2 className="w-40">{item.nameOfProduct}</h2>
                 <p className="w-10">₪{item.PriceProduct}</p>
-                <div className="w-52 flex items-center justify-between text-black gap-4 border p-3">
+                <div className="w-52 flex items-center justify-between text-white gap-4 border p-3">
                   <p className="text-sm ">כַּמוּת ב- גרמים</p>
                   <div className="flex items-center gap-4 text-sm font-semibold">
                     <span
