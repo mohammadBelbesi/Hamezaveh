@@ -9,7 +9,7 @@ const AddingToCart = () => {
     dispatch(addToCart(product));
   };
 
-  const products = [
+const products = [
     {
       idProduct: 'phyasdasd12312312sada',
       nameOfProduct: 'חומוס',
