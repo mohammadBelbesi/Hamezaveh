@@ -155,7 +155,7 @@ export function ShoppingPage(){
   <Dropdown events={eventDate.map( (obj) => { return{ 'date': obj.date.split('T')[0], 'id': obj.id } }  ) } setSelectedOption={selectEvent} selectedOption={selectedEvent} />
   <div className='ContainerOfCard'>
     {productsForSelectionEvent.map( (product , index)=>(
-      <Card id={product['id']} imageUrl={ func(product)  } title={product['name']} price={product['price']} howMuchToIncrease={100}  typeOfProduct='גרם' changeTheList={addToListOfProduct} />
+      <Card id={product['id']} key={product['id']} imageUrl={ func(product)  } title={product['name']} price={product['price']} howMuchToIncrease={100}  typeOfProduct='גרם' changeTheList={addToListOfProduct} />
     ) )}
   </div>
   <Footer getPrice={ isMember ? (totalPrice - (totalPrice*.3)) : totalPrice } />
