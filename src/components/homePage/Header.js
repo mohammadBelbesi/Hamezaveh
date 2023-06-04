@@ -1,5 +1,5 @@
 import React from "react";
-import { cart, loginBlack, loginPerson, logo } from "../assets/assetsindex";
+import { cart, loginBlack, loginPerson, logo } from "../../assets/assetsindex";
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
@@ -34,8 +34,12 @@ const Header = () => {
           </div>
           </Link>
           <ul className="flex items-center gap-20 ">
-            <li className=" hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">אודות</li>
-            <li className=" hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">חנות</li>
+            <Link to="/about">
+              <li className=" hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">אודות</li>
+            </Link>
+            <Link to="/shop">
+              <li className=" hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">חנות</li>
+            </Link>
             <Link to="/home"><li className=" hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">דף הבית</li></Link>
           </ul>
         </div>

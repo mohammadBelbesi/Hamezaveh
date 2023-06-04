@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { location } from "../assets/assetsindex";
+import { location } from "../../assets/assetsindex";
 // import firebase from "firebase"; // Import Firebase SDK
 
 const Events = () => {

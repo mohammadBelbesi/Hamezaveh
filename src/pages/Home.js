@@ -1,9 +1,9 @@
 import React from "react";
-import Banner from "../components/banner";
-import Events from "../components/Events";
-import ClosestEvent from "../components/ClosestEvent";
-import Products from "../components/Products";
-import BeforeMyProducts from "../components/BeforeMyProducts";
+import Banner from "../components/homePage/banner";
+import Events from "../components/homePage/Events";
+import ClosestEvent from "../components/homePage/ClosestEvent";
+import Products from "../components/homePage/Products";
+import BeforeMyProducts from "../components/homePage/BeforeMyProducts";
 
 const Home = () => {
   return (

@@ -1,14 +1,18 @@
 import React from "react";
 import Home from "./pages/Home";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Footer from "./components/homePage/Footer";
+import Header from "./components/homePage/Header";
 import Cart from "./pages/Cart";
+import AboutPage from "./pages/AboutUs";
+import {ShoppingPage} from "./pages/ShoopingPage/ShoppingPage";
+
 import {
   createBrowserRouter,
   Outlet,
   RouterProvider,
   ScrollRestoration,
 } from "react-router-dom";
+
 
 const Layout = () => {
   return (
@@ -37,6 +41,14 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/shop",
+        element: <ShoppingPage />,
+      },
+      {
+        path: "/about",
+        element: <AboutPage />,
       },
       
     ],

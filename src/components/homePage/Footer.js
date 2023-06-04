@@ -1,5 +1,5 @@
 import React from 'react';
-import { logo,visa, mastercard } from '../assets/assetsindex';
+import { logo,visa, mastercard } from '../../assets/assetsindex';
 
 const Footer = () => {
   return (

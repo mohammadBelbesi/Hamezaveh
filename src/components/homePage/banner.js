@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { pic1, pic2, pic3, pic4, pic5, pic6, pic7, legumes, organic } from "../bannerImages/bannerIndex";
+import { pic1, pic2, pic3, pic4, pic5, pic6, pic7, legumes, organic } from "../../bannerImages/bannerIndex";
 import { HiArrowRight, HiArrowLeft } from "react-icons/hi";
 
 const Banner = () => {

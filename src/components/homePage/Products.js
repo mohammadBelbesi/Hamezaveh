@@ -1,5 +1,5 @@
 import React from 'react';
-import { beans, dates, hummus, peas, nuts, rice, walnut, whiteBeans, kajo } from "../productsPics/ProductsIndex";
+import { beans, dates, hummus, peas, nuts, rice, walnut, whiteBeans, kajo } from "../../productsPics/ProductsIndex";
 
 const Products = () => {
   const products = [

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { location } from "../assets/assetsindex";
+import { location } from "../../assets/assetsindex";
 
 const ClosestEvent = () => {
   const [selectedEvent, setSelectedEvent] = useState(null); // State to track the selected event
