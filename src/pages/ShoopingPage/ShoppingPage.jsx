@@ -6,6 +6,8 @@ import {Dropdown} from '../../components/dropDownMenue/Dropdown'
 import {Card} from '../../components/card/card'
 import {Footer} from '../../components/footer/footer'
 import { useEffect, useState ,useRef } from 'react'
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../redux/bazarSlice';
 
 //import from Firebase
 import { db ,storage } from '../../components/firebasse-config'
@@ -15,6 +17,8 @@ import { ref , listAll ,getDownloadURL } from 'firebase/storage'
 
 //export the component
 export function ShoppingPage(){
+  const dispatch = useDispatch();
+
 
   const dataFetchedRef = useRef(false);
 
@@ -28,6 +32,10 @@ export function ShoppingPage(){
   const [selectedEvent, setSelectedEvent] = useState({});
   const [listOfImg, setListOfImg] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(listOfProduct));
+  };
 
   //collection reference 
   const eventsCollectionRef = collection(db , "events")
@@ -159,6 +167,7 @@ export function ShoppingPage(){
     ) )}
   </div>
   <Footer getPrice={ isMember ? (totalPrice - (totalPrice*.3)) : totalPrice } />
+  <button className="btn-footer" onClick={() => handleAddToCart()} >לסיום</button>
 
   </>
 }
