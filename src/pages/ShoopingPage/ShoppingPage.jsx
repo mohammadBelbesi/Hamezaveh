@@ -52,7 +52,7 @@ export function ShoppingPage(){
         products.forEach(function(elem){
 
           // element == elem['id'] ? ourProducts = [...ourProducts , elem] : ''
-          if(element == elem['id']){
+          if(element === elem['id']){
             ourProducts = [...ourProducts , elem]
           }
         })
@@ -143,7 +143,7 @@ export function ShoppingPage(){
 
   const func = ( product ) => {
     for(let i = 0 ; i < listOfImg.length ; i++){
-      if ( ( 'productImages/' + product['id'] ) == listOfImg[i]['path'] ){
+      if ( ( 'productImages/' + product['id'] ) === listOfImg[i]['path'] ){
         return listOfImg[i]['img']
       }
     }
