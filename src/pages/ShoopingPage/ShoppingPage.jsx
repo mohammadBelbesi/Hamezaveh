@@ -8,10 +8,11 @@ import {Footer} from '../../components/footer/footer'
 import { useEffect, useState ,useRef } from 'react'
 
 //import from Firebase
-import { db ,storage } from '../../components/firebasse-config'
+import { database ,storage } from '../../firebase'
 import { getDoc ,getDocs, collection  } from 'firebase/firestore'
 import { async } from '@firebase/util'
 import { ref , listAll ,getDownloadURL } from 'firebase/storage'
+
 
 //export the component
 export function ShoppingPage(){
@@ -30,8 +31,8 @@ export function ShoppingPage(){
   const [isLoading, setIsLoading] = useState(false);
 
   //collection reference 
-  const eventsCollectionRef = collection(db , "events")
-  const productsCollectionRef = collection(db , "products")
+  const eventsCollectionRef = collection(database , "events")
+  const productsCollectionRef = collection(database , "products")
   const imgRefrence = ref(storage , "productImages/")
 
   //function to put the product of selected item 

@@ -9,8 +9,10 @@ const Header = () => {
   return (
     <div dir="ltr" className="w-full h-36 border-b-[1px] border-b-gray-800 sticky top-0 z-50">
       <div className="max-w-screen-xl h-full mx-auto flex items-center justify-between">
+      
         <div className="flex items-center gap-20">
-          <div>
+          <Link to="/login">
+          <div className="relative">
             <img
               className="h-16 w-16 mx-auto flex items-center gap-20 rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500 shadow-md"
               src={loginPerson}
@@ -20,6 +22,7 @@ const Header = () => {
               onMouseOut={(e) => { e.target.style.opacity = 1; e.target.style.boxShadow = 'none'; }}
             />
           </div>
+          </Link>
           <Link to="/cart">
           <div className="relative">
             <img
