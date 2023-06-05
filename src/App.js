@@ -1,25 +1,5 @@
 import React from "react";
-<<<<<<< HEAD
-=======
-import Home from "./pages/Home";
-import Footer from "./components/homePage/Footer";
-import Header from "./components/homePage/Header";
-import Cart from "./pages/Cart";
-import AboutPage from "./pages/AboutUs";
-// import LoginPage from "./pages/LoginPage";
-import {ShoppingPage} from "./pages/ShoopingPage/ShoppingPage";
-
->>>>>>> 94029e0968b54c0f80493f7ecda82179fecdac7c
-import {
-  createBrowserRouter,
-  Outlet,
-  RouterProvider,
-  ScrollRestoration,
-  Routes,
-  Route,
-} from "react-router-dom";
- import SignupPage from "./pages/SignupPage";
-// import Forggot from "./components/ForggotP";
+import SignupPage from "./pages/SignupPage";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
 import Home from "./pages/Home";
 import Footer from "./components/homePage/Footer";
@@ -29,6 +9,15 @@ import AboutPage from "./pages/AboutUs";
 import ForggotPage from "./pages/ForggotPage";
 import LoginPage from "./pages/LoginPage";
 import { ShoppingPage } from "./pages/ShoopingPage/ShoppingPage";
+import {
+  createBrowserRouter,
+  Outlet,
+  RouterProvider,
+  ScrollRestoration,
+  Routes,
+  Route,
+} from "react-router-dom";
+
 
 const Layout = () => {
   return (
@@ -68,7 +57,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/forggotpassword",
+        path: "/forgotpassword",
         element: (
                 <UserAuthContextProvider>
                   <Routes>
@@ -130,10 +119,6 @@ const router = createBrowserRouter([
         path: "/about",
         element: <AboutPage />,
       },
-      // {
-      //   path: "/login",
-      //   element: <LoginPage />,
-      // },
     ],
   },
 ]);
