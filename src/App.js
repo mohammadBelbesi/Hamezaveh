@@ -1,4 +1,15 @@
 import React from "react";
+<<<<<<< HEAD
+=======
+import Home from "./pages/Home";
+import Footer from "./components/homePage/Footer";
+import Header from "./components/homePage/Header";
+import Cart from "./pages/Cart";
+import AboutPage from "./pages/AboutUs";
+// import LoginPage from "./pages/LoginPage";
+import {ShoppingPage} from "./pages/ShoopingPage/ShoppingPage";
+
+>>>>>>> 94029e0968b54c0f80493f7ecda82179fecdac7c
 import {
   createBrowserRouter,
   Outlet,
@@ -119,16 +130,21 @@ const router = createBrowserRouter([
         path: "/about",
         element: <AboutPage />,
       },
-      
+      // {
+      //   path: "/login",
+      //   element: <LoginPage />,
+      // },
     ],
   },
 ]);
 
 function App() {
   return (
+    
     <div className="font-bodyFont">
       <RouterProvider router={router} />
     </div>
+    
   );
 }
 

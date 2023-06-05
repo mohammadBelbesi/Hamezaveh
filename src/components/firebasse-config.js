@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 // import { initializeApp } from "firebase/app";
 // import { getFirestore } from "firebase/firestore";
 // import { getStorage } from 'firebase/storage'
+=======
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from 'firebase/storage'
+>>>>>>> 94029e0968b54c0f80493f7ecda82179fecdac7c
 
 // const firebaseConfig = {
 //   apiKey: "AIzaSyCCXVqWjM_ApwPTFK-n6W2q3NKpe0TwR90",
@@ -11,6 +18,13 @@
 //   appId: "1:616331334951:web:e022b5bd90521a0e614502"
 // };
 
+<<<<<<< HEAD
 // const app = initializeApp(firebaseConfig);
 // export const db = getFirestore(app)
 // export const storage = getStorage(app)
+=======
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app)
+export const storage = getStorage(app)
+>>>>>>> 94029e0968b54c0f80493f7ecda82179fecdac7c
