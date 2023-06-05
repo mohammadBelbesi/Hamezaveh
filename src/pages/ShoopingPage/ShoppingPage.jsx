@@ -2,9 +2,9 @@
 import './ShoopingPage.css'
 
 //import function 
-import {Dropdown} from '../../components/dropDownMenue/Dropdown'
-import {Card} from '../../components/card/card'
-import {Footer} from '../../components/footer/footer'
+import {Dropdown} from '../../components/shopPage/dropDownMenue/Dropdown'
+import {Card} from '../../components/shopPage/card/card'
+import {Footer} from '../../components/shopPage/footer/footer'
 import { useEffect, useState ,useRef } from 'react'
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/bazarSlice';
