@@ -1,5 +1,5 @@
 import React from "react";
-import SignP from "../components/Signup";
+import SignP from "../components/userInfo/Signup";
 import "../loginAboutUs.css"
 
 export default function Signu() {

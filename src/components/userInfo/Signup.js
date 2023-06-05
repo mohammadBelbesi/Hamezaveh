@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import { useUserAuth } from "../context/UserAuthContext";
-import { database } from "../firebase";
+import { useUserAuth } from "../../context/UserAuthContext";
+import { database } from "../../firebase";
 import { collection, addDoc } from "firebase/firestore";
-import "../loginAboutUs.css"
+import "../../loginAboutUs.css"
 
 const Signup = () => {
   const [email, setEmail] = useState("");

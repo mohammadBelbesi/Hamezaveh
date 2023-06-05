@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import { useUserAuth } from "../context/UserAuthContext";
-import { database } from "../firebase";
+import { useUserAuth } from "../../context/UserAuthContext";
+import { database } from "../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import "../loginAboutUs.css"
+import "../../loginAboutUs.css"
 
 
 const Login = () => {
@@ -77,7 +77,7 @@ const { logIn } = useUserAuth();
         <hr />
         <div >
           אין לך חשבון ?<Link to="/signup" style={{ color: "black" }}>הרשמה</Link> או{" "}
-          <Link to="/forggotpassword" style={{ color: "black" }}>שכחתי סיסמה</Link>
+          <Link to="/forgotpassword" style={{ color: "black" }}>שכחתי סיסמה</Link>
         </div>
       </div>
     </>

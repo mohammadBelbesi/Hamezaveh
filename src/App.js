@@ -6,7 +6,7 @@ import Footer from "./components/homePage/Footer";
 import Header from "./components/homePage/Header";
 import Cart from "./pages/Cart";
 import AboutPage from "./pages/AboutUs";
-import ForggotPage from "./pages/ForggotPage";
+import ForgotPage from "./pages/ForgotPage";
 import LoginPage from "./pages/LoginPage";
 import { ShoppingPage } from "./pages/ShoopingPage/ShoppingPage";
 import {
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
                       path="/"
                       element={
                        
-                          <ForggotPage />
+                          <ForgotPage />
                      
                       }
                     />

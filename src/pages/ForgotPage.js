@@ -1,9 +1,9 @@
 import React from "react";
-import ForggotPas from "../components/FotggotP";
+import ForgotPas from "../components/userInfo/ForgotP";
 import "../loginAboutUs.css"
 
 export default function Forgotpas() {
   return (
-    <ForggotPas />
+    <ForgotPas />
   );
 }
