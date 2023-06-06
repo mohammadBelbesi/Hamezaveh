@@ -6,12 +6,15 @@ import { useUserAuth } from "../../context/UserAuthContext";
 import { database } from "../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import "../../loginAboutUs.css"
+import { useDispatch } from 'react-redux';
+import { setMember , setLogin } from '../../redux/bazarSlice';
 
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-const { logIn } = useUserAuth();
+  const { logIn } = useUserAuth();
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
@@ -22,6 +25,17 @@ const { logIn } = useUserAuth();
     try {
       
      await logIn(email, password);
+
+     const a = collection(database, "users"); // checking if inut email is an Admin 
+      const b = query(a, where("email", "==", email));
+      const c = await getDocs(b);
+      if (c.size > 0) {
+        const userDoc = c.docs[0];
+        const userData = userDoc.data();
+        console.log()
+        dispatch(setMember(userData.isMember))
+      }
+
       const usersCollectionRef = collection(database, "users"); // checking if inut email is an Admin 
       const q = query(usersCollectionRef, where("email", "==", email));
       const querySnapshot = await getDocs(q);
@@ -34,6 +48,7 @@ const { logIn } = useUserAuth();
           navigate("/cart");
         } else {
           navigate("/about");
+          dispatch(setLogin(true))
           console.log(email);
         }
       }

@@ -4,6 +4,7 @@ const initialState ={
     productData: [],
     total: 0,
     isMember: false,
+    isLogin: false,
     selectEvent: [],
     userInfo: null,
 };
@@ -49,7 +50,6 @@ export const bazarSlice = createSlice({
             }
           },
           
-          
           deleteItem: (state, action) => {
             state.productData = state.productData.filter(
               (item) => item.idProduct !== action.payload
@@ -58,6 +58,12 @@ export const bazarSlice = createSlice({
           resetCart: (state) => {
             state.productData = [];
           },
+          setMember:(state , action)=>{
+            state.isMember = action.payload
+          },
+          setLogin:(state , action) => {
+            state.isLogin = action.payload
+          }
     },
   });
 
@@ -67,10 +73,14 @@ export const bazarSlice = createSlice({
     resetCart,
     increamentQuantity,
     decrementQuantity,
+    setMember,
+    setLogin,
     //addUser,
     //removeUser,
   } = bazarSlice.actions;
   
-  export default bazarSlice.reducer;
+  export default bazarSlice.reducer ;
 // export const {addToCart} = bazarSlice.actions;
 // export default bazarSlice.reducer;
+
+
