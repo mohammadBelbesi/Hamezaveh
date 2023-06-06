@@ -28,15 +28,14 @@ useEffect(() => {//when the selectProduct is changed we are here
 useEffect(() => {//when the is clicked changed we are here
 
       if(isClicked){
-
         let NewSelectProduct ={
           idProduct: id ,
           nameOfProduct:title , 
-          quntatyOfProduct:quntaty ,
-          priceProduct:price, 
-          totalPrice: (quntaty*price)
+          QuantityOfProduct:(quntaty * 100) ,
+          PriceProduct:price, 
+          totalPrice: (quntaty*price),
+          imagePath:imageUrl
         }
-
         setSelectProduct(NewSelectProduct)
       }else{
         setSelectProduct({})

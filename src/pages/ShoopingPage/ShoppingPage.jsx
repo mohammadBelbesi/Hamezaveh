@@ -6,8 +6,8 @@ import {Dropdown} from '../../components/shopPage/dropDownMenue/Dropdown'
 import {Card} from '../../components/shopPage/card/card'
 import {Footer} from '../../components/shopPage/footer/footer'
 import { useEffect, useState ,useRef } from 'react'
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../redux/bazarSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart , deleteItem , increamentQuantity , decrementQuantity } from '../../redux/bazarSlice';
 
 //import from Firebase
 import { database ,storage } from '../../firebase'
@@ -33,10 +33,6 @@ export function ShoppingPage(){
   const [selectedEvent, setSelectedEvent] = useState({});
   const [listOfImg, setListOfImg] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleAddToCart = () => {
-    dispatch(addToCart(listOfProduct));
-  };
 
   //collection reference 
   const eventsCollectionRef = collection(database , "events")
@@ -66,6 +62,8 @@ export function ShoppingPage(){
   useEffect( () => {
     getTheProduct()
   },[selectedEvent])
+
+  let x = useSelector((state) => state.bazar.isMember)
 
   //get the data from the firestore
   useEffect( () => {
@@ -99,6 +97,8 @@ export function ShoppingPage(){
             })
           })
         })
+
+
         
       }catch(err){
         console.error(err)
@@ -108,12 +108,10 @@ export function ShoppingPage(){
 
     if (dataFetchedRef.current) return
     dataFetchedRef.current = true
-
+    
+    setIsMember(x)
     getEventList()
   } ,[])
-
-
-
 
   //function to add to the list the product that we choise and update the totalPrice
   const addToListOfProduct = (selectProduct , addProduct) => {
@@ -121,9 +119,13 @@ export function ShoppingPage(){
     //if the situation is to add 
     if(addProduct){
       setTotalPrice( totalPrice + selectProduct.totalPrice)
+
       setListOfProduct( (addListOfProduct) => {
         return [...addListOfProduct , selectProduct]
       } )
+
+      dispatch(addToCart(selectProduct))
+
 
     }else{//the situation is to unselect the product 
       let index = listOfProduct.findIndex( (element)=> element.idProduct === selectProduct )
@@ -135,8 +137,9 @@ export function ShoppingPage(){
           return addListOfProduct.filter( obj => obj.idProduct !== selectProduct)
         } )
 
+        dispatch(deleteItem(selectProduct))
+
       }
-      
     }
     
   }
@@ -148,7 +151,6 @@ export function ShoppingPage(){
       }
     }
   }
-
 
   //Choice The enent
   const selectEvent = (event) =>{
@@ -168,7 +170,5 @@ export function ShoppingPage(){
     ) )}
   </div>
   <Footer getPrice={ isMember ? (totalPrice - (totalPrice*.3)) : totalPrice } />
-  <button className="btn-footer" onClick={() => handleAddToCart()} >לסיום</button>
-
   </>
 }
