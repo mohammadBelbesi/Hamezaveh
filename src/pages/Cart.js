@@ -10,7 +10,7 @@ const Cart = () => {
   useEffect(() => {
     let totalPrice = 0;
     productData.forEach((item) => {
-      totalPrice += (item.totalPrice * item.QuantityOfProduct)/100;
+      totalPrice += (item.PriceProduct * item.QuantityOfProduct)/100;
     });
     setTotalAmt(totalPrice);
   }, [productData]);

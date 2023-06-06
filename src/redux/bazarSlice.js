@@ -5,7 +5,7 @@ const initialState ={
     total: 0,
     isMember: false,
     isLogin: false,
-    selectEvent: [],
+    selectEvent: {},
     userInfo: null,
 };
 
