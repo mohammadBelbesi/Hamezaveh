@@ -48,7 +48,7 @@ export function ShoppingPage(){
 
     if(eventDate.length > 0){
       let ourProducts = []
-      eventDate[selectedEvent['index']]['product'].forEach(function(element){
+      eventDate[selectedEvent['index']]['products'].forEach(function(element){
         products.forEach(function(elem){
 
           // element == elem['id'] ? ourProducts = [...ourProducts , elem] : ''

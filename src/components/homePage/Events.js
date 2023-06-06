@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { location } from "../../assets/assetsindex";
+import useEvents from "../../hooks/useEvents";
 // import firebase from "firebase"; // Import Firebase SDK
 
 const Events = () => {
+
+  let {events, loading} = useEvents();
+
+
   const [selectedEvent, setSelectedEvent] = useState(null); // State to track the selected event
 
   // Retrieve event data from Firebase (use appropriate Firebase SDK methods)
+
 
   const eventData = [
     { date: "2023-05-20", time: "10:00 AM", place: "רחוב בן מימון 46, ירושלים", products: ["אגוזים", "פיסטוק"] },
@@ -22,44 +28,79 @@ const Events = () => {
     setSelectedEvent(eventData[0]);
   }, []);
 
-  return (
-    <div className="rtl-container">
-      <table className="eventsTable">
-        <thead>
-          <tr className="tableBords">
-            {eventData.map((event, index) => (
-              <th
-                key={index}
-                className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
-                onClick={() => handleEventClick(event)}
-              >
-                <div className="table-text text-3xl">בתאריך: {event.date}</div>
-                <div className="table-text">בשעה: {event.time}</div>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="tableBords">
-            <td className="tableBords" colSpan={eventData.length}>
-              {selectedEvent && (
-                <div>
-                  <p>אל תבזבזו את האירוע ! אנחנו מחכים לכם (:</p>
-                  <p>
-                    {selectedEvent.place}
-                    {location && (
-                      <img src={location} alt="Event Logo" className="event-logo" />
-                    )}
-                  </p>
-                  <p>{selectedEvent.products.join(", ")}</p>
-                </div>
-              )}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
+
+  if(!loading) {
+
+    events = events.map(event => {
+
+      const date = event.date.split('T')[0];
+
+      const time = event.date.split('T')[1];
+
+      const place = event.location;
+
+      const products = event.products;
+
+
+      return ({date, time, place, products});
+
+    }
+  )
+
+
+    return (
+      <div className="rtl-container">
+        <table className="eventsTable">
+          <thead>
+            <tr className="tableBords">
+            {events.map((event, index) => (
+                <th
+                  key={index}
+                  className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
+                  onClick={() => handleEventClick(event)}
+                >
+                  <div className="table-text text-3xl">בתאריך: {event.date}</div>
+                  <div className="table-text">בשעה: {event.time}</div>
+                </th>
+              ))}
+              {/* {eventData.map((event, index) => (
+                <th
+                  key={index}
+                  className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
+                  onClick={() => handleEventClick(event)}
+                >
+                  <div className="table-text text-3xl">בתאריך: {event.date}</div>
+                  <div className="table-text">בשעה: {event.time}</div>
+                </th>
+              ))} */}
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="tableBords">
+              <td className="tableBords" colSpan={eventData.length}>
+                {selectedEvent && (
+                  <div>
+                    <p>אל תבזבזו את האירוע ! אנחנו מחכים לכם (:</p>
+                    <p>
+                      {selectedEvent.place}
+                      {location && (
+                        <img src={location} alt="Event Logo" className="event-logo" />
+                      )}
+                    </p>
+                    <p>{selectedEvent.products.join(", ")}</p>
+                  </div>
+                )}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+  else {
+    <div>loading!</div>
+  }
+  
 };
 
 export default Events;

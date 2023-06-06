@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { location } from "../../assets/assetsindex";
+import useEvents from "../../hooks/useEvents";
 
 const ClosestEvent = () => {
+
+
   const [selectedEvent, setSelectedEvent] = useState(null); // State to track the selected event
   
   // Retrieve event data from Firebase (use appropriate Firebase SDK methods)
@@ -18,7 +21,11 @@ const ClosestEvent = () => {
     // Add more event objects as needed
   ];
 
+
+
   return (
+
+
     <div className="rtl-container">
       <table className="eventsTable">
         <thead>
