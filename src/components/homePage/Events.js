@@ -102,7 +102,9 @@ const Events = () => {
       </div>
     );
   } else {
-    return <div>Loading...</div>;
+    return <div className='loadingPage' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '50px', fontWeight: 'bold' }}>
+    טוען את הנתונים...
+  </div>;  
   }
 };
 
