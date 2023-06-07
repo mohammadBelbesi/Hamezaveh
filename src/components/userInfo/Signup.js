@@ -30,7 +30,7 @@ const Signup = () => {
         lastname:lastname, // Get the user's name from the input field
         email: email,
         phone: phoneNumber,
-        isMember : "NO", // Get the user's phone from the input field
+        isMember : false, // Get the user's phone from the input field
         isAdmin: false
       };
       await addDoc(collection(database, "users"), user); // Add user to the "users" collection
