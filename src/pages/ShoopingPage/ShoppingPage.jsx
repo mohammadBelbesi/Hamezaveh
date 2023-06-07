@@ -9,6 +9,7 @@ import { useEffect, useState ,useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart , deleteItem , resetCart } from '../../redux/bazarSlice';
 import Header from "../../components/homePage/Header";
+import HomeFooter from "../../components/homePage/Footer";
 
 //import from Firebase
 import { database ,storage } from '../../firebase'
@@ -20,8 +21,7 @@ import { ref , listAll ,getDownloadURL } from 'firebase/storage'
 //export the component
 export function ShoppingPage(){
   const dispatch = useDispatch();
-
-
+  const isLogin = useSelector((state) => state.bazar.isLogin); // Access isLogin from the bazar slice
   const dataFetchedRef = useRef(false);
 
   let bazarProduct = useSelector((state) => state.bazar.productData)
@@ -168,46 +168,58 @@ export function ShoppingPage(){
     setTotalPrice((prev) => prev +mainPrice )
   }
   
-  return<>
-
-  {/* <div className='loadingPage'>
-      <img src="../../shopPage/components/_images/loadingPage.gif" alt="GIF Image" />
-  </div> */}
-  <Header className={myStyle.pageContainer} />
-  <Dropdown events={eventDate.map( (obj) => { return{ 'date': obj.date.split('T')[0], 'id': obj.id } }  ) } setSelectedOption={selectEvent} selectedOption={selectedEvent} />
-  <div className='ContainerOfCard'>
-    {productsForSelectionEvent.map((product, index) => {
-      let isTrue = false
-      let quantity = 0
-      if(bazarProduct.length > 0){
-        let check =  bazarProduct.findIndex(
-          (item) => item.idProduct === product['id']
-        );
-
-        if(check !== (-1)){
-          isTrue = true
-          quantity = (bazarProduct[check]['QuantityOfProduct']/100)
-          // selectFromTheMain (bazarProduct[check] , ( quantity * product['price'] ))
-        }
-
-      }
-      return (
-        <Card
-          id={product['id']}
-          key={product['id']}
-          imageUrl={func(product)}
-          title={product['name']}
-          price={product['price']}
-          howMuchToIncrease={100}
-          typeOfProduct="גרם"
-          changeTheList={addToListOfProduct}
-          isClickMain={isTrue}
-          quntatyMain={quantity}
-        />
-      );
-    })
-    }
-  </div>
-  <Footer getPrice={totalPrice} />
-  </>
-}
+  return (
+    <>
+      {/* <div className='loadingPage'>
+        <img src="../../shopPage/components/_images/loadingPage.gif" alt="GIF Image" />
+      </div> */}
+      <Header className={myStyle.pageContainer} />
+      {isLogin ? (
+        <>
+          <Dropdown
+            events={eventDate.map((obj) => {
+              return { date: obj.date.split('T')[0], id: obj.id };
+            })}
+            setSelectedOption={selectEvent}
+            selectedOption={selectedEvent}
+          />
+          <div className='ContainerOfCard'>
+            {productsForSelectionEvent.map((product, index) => {
+              let isTrue = false;
+              let quantity = 0;
+              if (bazarProduct.length > 0) {
+                let check = bazarProduct.findIndex((item) => item.idProduct === product['id']);
+                if (check !== -1) {
+                  isTrue = true;
+                  quantity = bazarProduct[check]['QuantityOfProduct'] / 100;
+                  // selectFromTheMain (bazarProduct[check] , ( quantity * product['price'] ))
+                }
+              }
+              return (
+                <Card
+                  id={product['id']}
+                  key={product['id']}
+                  imageUrl={func(product)}
+                  title={product['name']}
+                  price={product['price']}
+                  howMuchToIncrease={100}
+                  typeOfProduct='גרם'
+                  changeTheList={addToListOfProduct}
+                  isClickMain={isTrue}
+                  quntatyMain={quantity}
+                />
+              );
+            })}
+          </div>
+          <Footer getPrice={totalPrice} />
+        </>
+      ) : (
+        <>
+        <div className='flex flex-col items-center mx-auto' style={{ border: 'none', outline: 'none', width: '100%', minHeight: '200px', marginBottom: '141px' }}>
+          <p className='text-3xl mt-4 font-medium text-red-900'>אתה צריך להיכנס לחשבונך</p>
+        </div>
+        <HomeFooter />
+        </>
+      )}
+    </>
+  );}  

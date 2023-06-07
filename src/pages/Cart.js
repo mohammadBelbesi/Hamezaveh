@@ -164,7 +164,7 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className='flex flex-col items-center mx-auto'>
+        <div className='flex flex-col items-center mx-auto' style={{ border: 'none', outline: 'none', width: '100%', minHeight: '200px', marginBottom: '141px' }}>
           <p className='text-3xl mt-4 font-medium text-red-900'>אתה צריך להיכנס לחשבונך</p>
         </div>
       )}
