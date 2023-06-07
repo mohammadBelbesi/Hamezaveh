@@ -169,6 +169,6 @@ export function ShoppingPage(){
       <Card id={product['id']} key={product['id']} imageUrl={ func(product)  } title={product['name']} price={product['price']} howMuchToIncrease={100}  typeOfProduct='גרם' changeTheList={addToListOfProduct} />
     ) )}
   </div>
-  <Footer getPrice={ isMember ? (totalPrice - (totalPrice*.3)) : totalPrice } />
+  <Footer getPrice={totalPrice} />
   </>
 }

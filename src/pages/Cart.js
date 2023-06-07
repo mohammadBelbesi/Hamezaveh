@@ -6,14 +6,24 @@ import CartItem from '../components/CartItem';
 const Cart = () => {
   const productData = useSelector((state) => state.bazar.productData);
   const [totalAmt, setTotalAmt] = useState(0);
+  const [isMember , setIsMember] = useState(false)
 
-  useEffect(() => {
+  let member = useSelector((state) => state.bazar.isMember)
+
+  useEffect (() => {
     let totalPrice = 0;
     productData.forEach((item) => {
       totalPrice += (item.PriceProduct * item.QuantityOfProduct)/100;
     });
     setTotalAmt(totalPrice);
+    
   }, [productData]);
+
+  useEffect(() => {
+    setIsMember(member);
+    // console.log(member);
+    // console.log(isMember);
+  }, [member]);
 
   return (
     <div>
@@ -32,7 +42,7 @@ const Cart = () => {
           </div>
           <p className='font-titleFont font-semibold flex justify-between mt-6'>
             הסכום הסופי
-            <span className='text-xl font-bold'>{totalAmt} ₪</span>
+            <span className='text-xl font-bold'>{ isMember ? (totalAmt - (totalAmt*.3)) : totalAmt } ₪</span>
           </p>
           <button onClick={() => pay(totalAmt)} className='text-base bg-black text-white w-full py-3 mt-6 hover:bg-gray-800 duration-300'>
             עבור לתשלום
