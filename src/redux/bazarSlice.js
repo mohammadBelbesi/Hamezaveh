@@ -49,7 +49,6 @@ export const bazarSlice = createSlice({
               }
             }
           },
-          
           deleteItem: (state, action) => {
             state.productData = state.productData.filter(
               (item) => item.idProduct !== action.payload
@@ -63,6 +62,9 @@ export const bazarSlice = createSlice({
           },
           setLogin:(state , action) => {
             state.isLogin = action.payload
+          },
+          setSelectEvent:(state , action)=>{
+            state.selectEvent = action.payload
           }
     },
   });
@@ -75,6 +77,7 @@ export const bazarSlice = createSlice({
     decrementQuantity,
     setMember,
     setLogin,
+    setSelectEvent,
     //addUser,
     //removeUser,
   } = bazarSlice.actions;
