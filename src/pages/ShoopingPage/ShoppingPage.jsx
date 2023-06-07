@@ -1,5 +1,5 @@
 //css import
-import './ShoopingPage.css'
+import myStyle from './ShoopingPage.css'
 
 //import function 
 import {Dropdown} from '../../components/shopPage/dropDownMenue/Dropdown'
@@ -7,7 +7,8 @@ import {Card} from '../../components/shopPage/card/card'
 import {Footer} from '../../components/shopPage/footer/footer'
 import { useEffect, useState ,useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart , deleteItem , increamentQuantity , decrementQuantity } from '../../redux/bazarSlice';
+import { addToCart , deleteItem , resetCart } from '../../redux/bazarSlice';
+import Header from "../../components/homePage/Header";
 
 //import from Firebase
 import { database ,storage } from '../../firebase'
@@ -23,8 +24,10 @@ export function ShoppingPage(){
 
   const dataFetchedRef = useRef(false);
 
+  let bazarProduct = useSelector((state) => state.bazar.productData)
+
   //init useState 
-  const [totalPrice , setTotalPrice ] = useState(0.0)
+  const [totalPrice , setTotalPrice ] = useState(0)
   const [isMember , setIsMember] = useState(false)
   const [listOfProduct , setListOfProduct] = useState([])
   const [products , setProducts] = useState([])
@@ -63,7 +66,8 @@ export function ShoppingPage(){
     getTheProduct()
   },[selectedEvent])
 
-  let x = useSelector((state) => state.bazar.isMember)
+  let bazarIsMember = useSelector((state) => state.bazar.isMember)
+
 
   //get the data from the firestore
   useEffect( () => {
@@ -109,7 +113,7 @@ export function ShoppingPage(){
     if (dataFetchedRef.current) return
     dataFetchedRef.current = true
     
-    setIsMember(x)
+    setIsMember(bazarIsMember)
     getEventList()
   } ,[])
 
@@ -155,19 +159,54 @@ export function ShoppingPage(){
   //Choice The enent
   const selectEvent = (event) =>{
     setSelectedEvent(event)
+    dispatch(resetCart())
+  }
+
+  const selectFromTheMain = (mainProduct , mainPrice) => {
+    setListOfProduct((prev) => [ ...prev , mainProduct])
+
+    setTotalPrice((prev) => prev +mainPrice )
   }
   
   return<>
 
   {/* <div className='loadingPage'>
-      <img src="./_images/loadingPage.gif" alt="GIF Image" />
+      <img src="../../shopPage/components/_images/loadingPage.gif" alt="GIF Image" />
   </div> */}
-
+  <Header className={myStyle.pageContainer} />
   <Dropdown events={eventDate.map( (obj) => { return{ 'date': obj.date.split('T')[0], 'id': obj.id } }  ) } setSelectedOption={selectEvent} selectedOption={selectedEvent} />
   <div className='ContainerOfCard'>
-    {productsForSelectionEvent.map( (product , index)=>(
-      <Card id={product['id']} key={product['id']} imageUrl={ func(product)  } title={product['name']} price={product['price']} howMuchToIncrease={100}  typeOfProduct='גרם' changeTheList={addToListOfProduct} />
-    ) )}
+    {productsForSelectionEvent.map((product, index) => {
+      let isTrue = false
+      let quantity = 0
+      if(bazarProduct.length > 0){
+        let check =  bazarProduct.findIndex(
+          (item) => item.idProduct === product['id']
+        );
+
+        if(check !== (-1)){
+          isTrue = true
+          quantity = (bazarProduct[check]['QuantityOfProduct']/100)
+          // selectFromTheMain (bazarProduct[check] , ( quantity * product['price'] ))
+        }
+
+      }
+      return (
+        <Card
+          id={product['id']}
+          key={product['id']}
+          imageUrl={func(product)}
+          title={product['name']}
+          price={product['price']}
+          howMuchToIncrease={100}
+          typeOfProduct="גרם"
+          changeTheList={addToListOfProduct}
+          isClickMain={isTrue}
+          quntatyMain={quantity}
+        />
+      );
+    })
+    }
   </div>
   <Footer getPrice={totalPrice} />
   </>
