@@ -11,6 +11,9 @@ body{
 .my-bg-color{
     background-color: rgb(87 121 91);
 }
+.my-pink-color{
+    background-color:  #fbae8afc;
+}
 
 .hover\:bg-green-me:hover {
     --tw-bg-opacity: 1;

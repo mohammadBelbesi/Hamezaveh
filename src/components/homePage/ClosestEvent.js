@@ -1,66 +1,116 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { location } from "../../assets/assetsindex";
-import useEvents from "../../hooks/useEvents";
+import useEvents from "../../hooks/events";
+import { collection, doc, getDoc } from "firebase/firestore"; // Import necessary Firestore functions
+import { database } from "../../firebase";
 
-const ClosestEvent = () => {
+const Events = () => {
+  const { events, loading } = useEvents();
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [eventProducts, setEventProducts] = useState([]);
 
+  const handleEventClick = (event) => {
+    setSelectedEvent(event);
+  };
 
-  const [selectedEvent, setSelectedEvent] = useState(null); // State to track the selected event
-  
-  // Retrieve event data from Firebase (use appropriate Firebase SDK methods)
+  useEffect(() => {
+    if (events.length > 0) {
+      const currentDate = new Date();
+      const nearestEvent = events.reduce((nearest, event) => {
+        const eventDate = new Date(event.date);
+        const timeDifference = eventDate - currentDate;
+        const nearestTimeDifference = nearest ? nearest.timeDifference : Infinity;
+        if (timeDifference > 0 && timeDifference < nearestTimeDifference) {
+          return {
+            event,
+            timeDifference
+          };
+        }
+        return nearest;
+      }, null);
 
-  const eventData = [
-    // Sample event data fetched from Firebase
+      setSelectedEvent(nearestEvent ? nearestEvent.event : null);
+    }
+  }, [events]);
 
-    {
-      date: "2023-05-20",
-      time: "10:00 AM",
-      place: "רחוב בן מימון 46, ירושלים",
-      products: ["אגוזים", "פיסטוק"],
-    },
-    // Add more event objects as needed
-  ];
+  useEffect(() => {
+    const fetchEventProducts = async () => {
+      if (selectedEvent) {
+        const eventProductIds = selectedEvent.products;
+        const productsCollectionRef = collection(database, "products"); // Define the reference to the 'products' collection
 
+        const productPromises = eventProductIds.map((productId) =>
+          getDoc(doc(productsCollectionRef, productId))
+        );
 
+        const productSnapshots = await Promise.all(productPromises);
 
-  return (
+        const eventProductsData = productSnapshots.map((snapshot) => {
+          const productData = snapshot.data();
+          return productData.name;
+        });
 
+        setEventProducts(eventProductsData);
+      }
+    };
 
-    <div className="rtl-container">
-      <table className="eventsTable">
-        <thead>
-          <tr className="tableBords firstLine">
-            {eventData[0] && (
-              <th className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
-                <div className="table-text">בתאריך: {eventData[0].date}</div>
-                <div className="table-text">בשעה: {eventData[0].time}</div>
-              </th>
-            )}
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="tableBords">
-            <td className="tableBords">
-              <div>
-                <p> אל תבזבזו את האירוע ! אנחנו מחכים לכם (:</p>
-                <p>
-                  {eventData[0] ? eventData[0].place : ""}
-                  {eventData[0] && location && (
-                    <img
-                      src={location}
-                      alt="Event Logo"
-                      className="event-logo"
-                    />
-                  )}
-                </p>
-                <p>{eventData[0] ? eventData[0].products.join(", ") : ""}</p>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
+    fetchEventProducts();
+  }, [selectedEvent]);
+
+  if (!loading) {
+    const nearestEvent = selectedEvent ? {
+      date: selectedEvent.date.split("T")[0],
+      time: selectedEvent.date.split("T")[1],
+      place: selectedEvent.location,
+      products: selectedEvent.products
+    } : null;
+
+    return (
+      <div className="rtl-container">
+        <table className="eventsTable">
+          <thead>
+            <tr className="tableBords">
+              {nearestEvent && (
+                <th
+                  className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300 border border-gray-300 px-4 py-2"
+                >
+                  <div className="table-text text-3xl">בתאריך: {nearestEvent.date}</div>
+                  <div className="table-text">בשעה: {nearestEvent.time}</div>
+                </th>
+              )}
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="tableBords">
+              <td className="tableBords" colSpan={nearestEvent ? 1 : 0}></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr className="tableBords">
+              <td className="tableBords" colSpan={nearestEvent ? 1 : 0}>
+                {nearestEvent && (
+                  <div>
+                    <p>אל תבזבזו את האירוע! אנחנו מחכים לכם (:</p>
+                    <p>
+                      {nearestEvent.place}
+                      {location && (
+                        <img src={location} alt="Event Logo" className="event-logo" />
+                      )}
+                    </p>
+                    {eventProducts.length > 0 && (
+                      <p>{eventProducts.join(", ")}</p>
+                    )}
+                  </div>
+                )}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    );
+  } else {
+    return <div>Loading...</div>;
+  }
 };
 
-export default ClosestEvent;
+export default Events;

@@ -1,93 +1,98 @@
 import React, { useState, useEffect } from "react";
 import { location } from "../../assets/assetsindex";
-import useEvents from "../../hooks/useEvents";
-// import firebase from "firebase"; // Import Firebase SDK
+import useEvents from "../../hooks/events";
+import { getDocs, collection, doc, getDoc } from "firebase/firestore";
+import { database } from "../../firebase";
 
 const Events = () => {
+  const { events, loading } = useEvents();
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [eventProducts, setEventProducts] = useState([]);
+  const [selectedDateIndex, setSelectedDateIndex] = useState(0); // Track the selected date index
 
-  let {events, loading} = useEvents();
-
-
-  const [selectedEvent, setSelectedEvent] = useState(null); // State to track the selected event
-
-  // Retrieve event data from Firebase (use appropriate Firebase SDK methods)
-
-
-  const eventData = [
-    { date: "2023-05-20", time: "10:00 AM", place: "רחוב בן מימון 46, ירושלים", products: ["אגוזים", "פיסטוק"] },
-    { date: "2023-05-21", time: "2:00 PM", place: "רחוב בן גוריון 56, תל אביב", products: ["בנאנות", "תפוחים"] },
-    { date: "2023-05-27", time: "4:00 PM", place: "רחוב בן מדריד 4, חיפה", products: ["ענבים", "תמרים"] },
-    { date: "2023-05-30", time: "6:00 PM", place: "רחוב בן מימון 6, אילת", products: ["חלב", "תה"] },
-  ];
-
-  const handleEventClick = (event) => {
+  const handleEventClick = (event, index) => {
     setSelectedEvent(event);
+    setSelectedDateIndex(index); // Update the selected date index
   };
 
-  useEffect(() => {  // Set the first event as the default selected event
-    setSelectedEvent(eventData[0]);
-  }, []);
+  useEffect(() => {
+    setSelectedEvent(events[0]);
+  }, [events]);
 
+  useEffect(() => {
+    const fetchEventProducts = async () => {
+      if (selectedEvent) {
+        const eventProductIds = selectedEvent.products;
+        const productsCollectionRef = collection(database, "products");
 
-  if(!loading) {
+        const productPromises = eventProductIds.map((productId) =>
+          getDoc(doc(productsCollectionRef, productId))
+        );
 
-    events = events.map(event => {
+        const productSnapshots = await Promise.all(productPromises);
 
-      const date = event.date.split('T')[0];
+        const eventProductsData = productSnapshots.map((snapshot) => {
+          const productData = snapshot.data();
+          return productData.name;
+        });
 
-      const time = event.date.split('T')[1];
+        setEventProducts(eventProductsData);
+        console.log("Location:", selectedEvent.location); // Print the location in the console
+      }
+    };
 
-      const place = event.location;
+    fetchEventProducts();
+  }, [selectedEvent]);
 
+  if (!loading) {
+    const formattedEvents = events.map((event) => {
+      const date = event.date.split("T")[0];
+      const time = event.date.split("T")[1];
+      const location = event.location;
       const products = event.products;
 
-
-      return ({date, time, place, products});
-
-    }
-  )
-
+      return { date, time, location, products };
+    });
 
     return (
       <div className="rtl-container">
         <table className="eventsTable">
           <thead>
             <tr className="tableBords">
-            {events.map((event, index) => (
+              {formattedEvents.map((event, index) => (
                 <th
                   key={index}
-                  className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
-                  onClick={() => handleEventClick(event)}
+                  className={`hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300 border border-gray-300 px-4 py-2 ${
+                    selectedDateIndex === index ? "my-pink-color" : ""}`
+                  }
+                  onClick={() => handleEventClick(events[index], index)}
                 >
-                  <div className="table-text text-3xl">בתאריך: {event.date}</div>
-                  <div className="table-text">בשעה: {event.time}</div>
+                  <div className="table-text text-2xl">בתאריך: {event.date}</div>
+                  <div className="table-text text-2xl">בשעה: {event.time}</div>
                 </th>
               ))}
-              {/* {eventData.map((event, index) => (
-                <th
-                  key={index}
-                  className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
-                  onClick={() => handleEventClick(event)}
-                >
-                  <div className="table-text text-3xl">בתאריך: {event.date}</div>
-                  <div className="table-text">בשעה: {event.time}</div>
-                </th>
-              ))} */}
             </tr>
           </thead>
           <tbody>
             <tr className="tableBords">
-              <td className="tableBords" colSpan={eventData.length}>
+              <td className="tableBords" colSpan={formattedEvents.length}></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr className="tableBords">
+              <td className="tableBords" colSpan={formattedEvents.length}>
                 {selectedEvent && (
                   <div>
-                    <p>אל תבזבזו את האירוע ! אנחנו מחכים לכם (:</p>
+                    <p>אל תבזבזו את האירוע! אנחנו מחכים לכם (:</p>
                     <p>
-                      {selectedEvent.place}
+                      {selectedEvent.location}
                       {location && (
                         <img src={location} alt="Event Logo" className="event-logo" />
                       )}
                     </p>
-                    <p>{selectedEvent.products.join(", ")}</p>
+                    {eventProducts.length > 0 && (
+                      <p>{eventProducts.join(", ")}</p>
+                    )}
                   </div>
                 )}
               </td>
@@ -96,11 +101,9 @@ const Events = () => {
         </table>
       </div>
     );
+  } else {
+    return <div>Loading...</div>;
   }
-  else {
-    <div>loading!</div>
-  }
-  
 };
 
 export default Events;
