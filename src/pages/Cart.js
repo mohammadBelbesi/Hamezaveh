@@ -145,8 +145,9 @@ const Cart = () => {
               <>
                 <div className='flex flex-col items-center mx-auto'>
                   <div className='w-full text-center'>
-                    <p className='text-3xl mt-4 font-medium text-red-900'>העגלה שלך ריקה</p>
-                    <p className='text-3xl mt-4 font-medium text-red-900'>ניתן להוסיף מוצרים מהחנות לעגלה ולהמשיך לתהליך הרכישה.</p>
+                  <p className='text-3xl mt-4 font-medium text-white' >העגלה שלך ריקה!!</p>
+                  <p className='text-3xl mt-4 font-medium text-white' style={{ padding: '15px' }}>ניתן להוסיף מוצרים מהחנות לעגלה ולהמשיך לתהליך הרכישה.</p>
+
                   </div>
                   <div>
                     <Link to="/shop">

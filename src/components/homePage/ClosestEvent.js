@@ -92,13 +92,13 @@ const Events = () => {
                   <div>
                     <p>אל תבזבזו את האירוע! אנחנו מחכים לכם (:</p>
                     <p>
-                      {nearestEvent.place}
+                    מיקום: {nearestEvent.place}
                       {location && (
                         <img src={location} alt="Event Logo" className="event-logo" />
                       )}
                     </p>
                     {eventProducts.length > 0 && (
-                      <p>{eventProducts.join(", ")}</p>
+                      <p>קצת מהמוצרים שמוכרים באירוע: {eventProducts.join(", ")}</p>
                     )}
                   </div>
                 )}
