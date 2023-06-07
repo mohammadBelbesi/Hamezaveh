@@ -7,7 +7,7 @@ import {Card} from '../../components/shopPage/card/card'
 import {Footer} from '../../components/shopPage/footer/footer'
 import { useEffect, useState ,useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart , deleteItem , resetCart } from '../../redux/bazarSlice';
+import { addToCart , deleteItem , resetCart , setSelectEvent } from '../../redux/bazarSlice';
 import Header from "../../components/homePage/Header";
 
 //import from Firebase
@@ -67,6 +67,7 @@ export function ShoppingPage(){
   },[selectedEvent])
 
   let bazarIsMember = useSelector((state) => state.bazar.isMember)
+  let bazarSelectEvent = useSelector((state) => state.bazar.selectEvent)
 
 
   //get the data from the firestore
@@ -90,7 +91,16 @@ export function ShoppingPage(){
         
         //send to the componant dropDown the Events
         let listOfEvents = filterEvents.map( (obj) => { return{ 'date': obj.date.split('T')[0], 'id': obj.id } }  )
-        setSelectedEvent({ 'date' :listOfEvents[0]['date'] , 'id':listOfEvents[0]['id'] ,'index':0})
+
+        if (Object.keys(bazarSelectEvent).length === 0) {
+          setSelectedEvent({ 'date' :listOfEvents[0]['date'] , 'id':listOfEvents[0]['id'] ,'index':0})
+          dispatch(setSelectEvent({ 'date' :listOfEvents[0]['date'] , 'id':listOfEvents[0]['id'] ,'index':0}))
+        } else {
+          setSelectedEvent(bazarSelectEvent)
+
+        }
+
+
         setEventDate(filterEvents)
 
         //get the images from the dataBase
@@ -142,7 +152,6 @@ export function ShoppingPage(){
         } )
 
         dispatch(deleteItem(selectProduct))
-
       }
     }
     
@@ -160,6 +169,7 @@ export function ShoppingPage(){
   const selectEvent = (event) =>{
     setSelectedEvent(event)
     dispatch(resetCart())
+    dispatch(setSelectEvent(event))
   }
 
   const selectFromTheMain = (mainProduct , mainPrice) => {
