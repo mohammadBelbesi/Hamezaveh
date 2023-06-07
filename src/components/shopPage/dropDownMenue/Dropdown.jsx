@@ -1,6 +1,7 @@
 import './dropDownMenue.css'
 
 import React, { useEffect, useState } from 'react';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 export const Dropdown = ({events , setSelectedOption  ,selectedOption }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,7 @@ export const Dropdown = ({events , setSelectedOption  ,selectedOption }) => {
   return (
     <div className="dropdown">
       <button className="dropdown-toggle" onClick={toggleDropdown}>
-        {selectedOption['date']}
+       <ChevronLeftIcon className='icon' /> {selectedOption['date']}
       </button>
       {isOpen && (
         <ul className="dropdown-menu">
