@@ -17,10 +17,10 @@ const Footer = () => {
         <div className='my-font text-black text-center mb-6'>
         <h2 className='my-font text-2xl text-black mb-4 text-right gap-4'>לאתר אותנו</h2>
             <div className='my-font text-right text-base flex flex-col gap-4'>
-                <p className='gap-4'>בעלים: שירה רוזנבאום</p>
-                <p className='gap-4'>טלפון: 02-9876565</p>
-                <p className='gap-4'>טלפון נייד: 054-9876540</p>
-                <p className='gap-4'>אימייל: hamezaveh@gmail.com</p>
+                <p className='gap-4'>שם העמותה: המזווה הירושלמי</p>
+                <p className='gap-4'>שם איש קשר: אליס אשר</p>
+                <p className='gap-4'>טלפון נייד: 054-244-6780</p>
+                <p className='gap-4'>אימייל: coop.hamezave@gmail.com</p>
             </div>
         </div>
         <div className='my-font text-black text-center mb-6'>
