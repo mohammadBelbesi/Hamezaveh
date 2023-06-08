@@ -1,4 +1,3 @@
-
 import React from "react";
 // import { Button } from "react-bootstrap";
 // import { useNavigate } from "react-router";
@@ -17,12 +16,15 @@ const About = () => {
   return (
     <>
      <div className="">
-      <div className="con">
+      <div className="con"  >
         <p>
-          המזווה נועד לייצר אלטרנטיבה צרכנית ירושלמית - מאפשר צרכנות שלוקחת בחשבון שיקולים סביבתיים, חברתיים וכלכליים, תוך יצירת קולקטיב קהילתי ושותפויות
+          "המזווה נועד לייצר אלטרנטיבה צרכנית ירושלמית - מאפשר צרכנות שלוקחת בחשבון שיקולים סביבתיים, חברתיים וכלכליים, תוך יצירת קולקטיב קהילתי ושותפויות"
         </p>
         <img src={myPhoto} alt="" className="profile-picture" />
-        <p className="intro">
+        </div>
+        <p className="intro" >
+
+          
          <strong> ברוכים/ות הבאות/ים למזווה! </strong>
           <br />
           <br />
@@ -46,7 +48,7 @@ const About = () => {
           פעילות המזווה מבוססת על מתנדבים ומתנדבות שביחד מפעילות את הקולטקטיב.
           מוזמנים/ות להיות חלק: לקנות יבשים / לתנדב באירועים / להיות חלק מהקהילה 💜
         </p>
-      </div>
+      
       </div>
       <br/>
       {/* <div className="button-container">
@@ -62,3 +64,4 @@ const About = () => {
 };
 
 export default About;
+

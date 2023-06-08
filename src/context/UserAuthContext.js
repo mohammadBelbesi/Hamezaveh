@@ -36,8 +36,8 @@ export function UserAuthContextProvider({ children }) {
       unsubscribe();
     };
   }, []);
-
   return (
+    
     <userAuthContext.Provider
       value={{ user, logIn, signUp, logOut , ForggotPass }}
     >

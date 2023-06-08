@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
@@ -17,7 +18,7 @@ const Login = () => {
   const { logIn } = useUserAuth();
   const navigate = useNavigate();
   const [error, setError] = useState("");
-
+  let login = useSelector((state) => state.bazar.isLogin)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -25,6 +26,7 @@ const Login = () => {
     try {
       
      await logIn(email, password);
+     console.log("login"+login)
 
      const a = collection(database, "users"); // checking if inut email is an Admin 
       const b = query(a, where("email", "==", email));
@@ -32,7 +34,6 @@ const Login = () => {
       if (c.size > 0) {
         const userDoc = c.docs[0];
         const userData = userDoc.data();
-        console.log()
         dispatch(setMember(userData.isMember))
       }
 
@@ -49,12 +50,15 @@ const Login = () => {
         } else {
           navigate("/about");
           dispatch(setLogin(true))
+          
           console.log(email);
         }
       }
+
       else{
       setError("Error logging in. Please try again.");
       }
+
   }
       catch (err) {
       setError("נא לוודא שהמייל וסיסמה תקינים  !");
@@ -63,6 +67,7 @@ const Login = () => {
 
   return (
     <>
+
       <div className="p-4 box">
         <h2 className="mb-3">כניסה למערכת</h2>
         <Form onSubmit={handleSubmit}>
@@ -71,6 +76,7 @@ const Login = () => {
             <Form.Control
               type="text"
               placeholder="מייל"
+              required
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
@@ -79,6 +85,7 @@ const Login = () => {
             <Form.Control
               type="password"
               placeholder="סיסמה"
+              required
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>

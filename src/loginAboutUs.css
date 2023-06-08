@@ -108,13 +108,14 @@ body {
   
   
   .con {
-    
+    display: flex;
+
+    flex-direction: row;
+    align-Items: center; 
     border-radius: 10px;
     box-shadow: 1px 10px 3px rgba(0, 0, 0, 0.2);
-
     text-align: center;
     font-size: 18px;
-
     margin-right: 24%;
     line-height: 1.6;
     background-color: #f9f3f3;
@@ -125,17 +126,23 @@ body {
   }
   
   .intro {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    width: 700px;
+    height:max-content;
+    padding: 2%;
     font-size: 20px;
-    margin-bottom: 20px;
-    line-height: 1.5;
+    margin-top: 20px;
+    margin-right: 350px;
   }
  
   
   .profile-picture {
+    border-radius: 10px;
     display: block;
-    margin: 20px auto;
-    width: 500px;
-    height: auto;
+    margin: 20px;
+    width: 300px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
   
@@ -217,5 +224,3 @@ body {
   background-color: #f9f9f9;
   cursor: not-allowed;
 }
-
-
