@@ -41,7 +41,7 @@ function Admin() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/events" element={<EventPage />} />
           <Route path="/products" element={<ProductPage />} />
-          <Route
+          {/* <Route
             path="/orders"
             element={
               <AdminPage
@@ -54,7 +54,7 @@ function Admin() {
                 // updateObject={() => {}}
               />
             }
-          />
+          /> */}
           <Route
             path="/users"
             element={

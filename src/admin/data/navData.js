@@ -21,12 +21,12 @@ export const navData = [
     text: "Products",
     link: "Products",
   },
-  {
-    id: 2,
-    icon: <LocalMallIcon />,
-    text: "Orders",
-    link: "statistics",
-  },
+  // {
+  //   id: 2,
+  //   icon: <LocalMallIcon />,
+  //   text: "Orders",
+  //   link: "statistics",
+  // },
   {
     id: 3,
     icon: <PeopleIcon />,

@@ -4,10 +4,10 @@ export const eventsColumns = [
 ];
 
 export const usersColumns = [
-  { header: "First Name", accessor: "firstName", type: "text" },
-  { header: "Last Name", accessor: "lastName", type: "text" },
+  { header: "First Name", accessor: "firstname", type: "text" },
+  { header: "Last Name", accessor: "lastname", type: "text" },
   { header: "Email", accessor: "email", type: "text" },
-  { header: "Phone Number", accessor: "phoneNumber", type: "text" },
+  { header: "Phone Number", accessor: "phone", type: "text" },
   { header: "Membership", accessor: "isMember", type: "checkBox" },
 ];
 

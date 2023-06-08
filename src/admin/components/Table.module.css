@@ -9,7 +9,8 @@
 }
 
 .styledTable thead th {
-  background-color: #255893;
+  /* background-color: #255893; */
+  background-color: rgb(87, 121, 91, 0.959);
   color: #ffffff;
   text-align: left;
 }
@@ -24,7 +25,8 @@
 }
 
 .styledTable tbody tr:last-of-type {
-  border-bottom: 2px solid #255893;
+  /* border-bottom: 2px solid #255893; */
+  border-bottom: 2px solid rgb(87, 121, 91, 0.959);
 }
 .styledTable tbody tr.active-row {
   font-weight: bold;
