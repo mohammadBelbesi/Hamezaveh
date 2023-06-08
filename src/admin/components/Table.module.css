@@ -1,0 +1,40 @@
+.styledTable {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 16px;
+  font-family: "Poppins";
+  /* min-width: 400px; */
+  width: 1200px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styledTable thead th {
+  background-color: #255893;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styledTable th,
+.styledTable td {
+  padding: 12px 15px;
+}
+
+.styledTable tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styledTable tbody tr:last-of-type {
+  border-bottom: 2px solid #255893;
+}
+.styledTable tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+.green {
+  background-color: #b9dfc7;
+}
+
+.big {
+  scale: 1.5;
+}

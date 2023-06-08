@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+.sidenav {
+  width: 250px;
+  background-color: rgb(20, 48, 79);
+  font-family: "Poppins";
+  display: flex;
+  flex-direction: column;
+  padding-top: 64px;
+}
+
+.sidenav-item {
+  padding-inline: 32px;
+  padding-block: 16px;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  gap: 16px;
+  transition: 0.2s ease-in-out;
+  user-select: none;
+  position: sticky;
+}
+.selected {
+  background-color: rgb(10, 25, 41);
+}
+
+.sidenav-item:hover {
+  /* background-color: rgb(10, 25, 41); */
+  cursor: pointer;
+  padding-left: 48px;
+}

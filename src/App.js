@@ -9,6 +9,8 @@ import AboutPage from "./pages/AboutUs";
 import ForgotPage from "./pages/ForgotPage";
 import LoginPage from "./pages/LoginPage";
 import { ShoppingPage } from "./pages/ShoopingPage/ShoppingPage";
+import Admin from "./admin/Admin";
+
 import {
   createBrowserRouter,
   Outlet,
@@ -17,7 +19,6 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-
 
 const Layout = () => {
   return (
@@ -36,70 +37,46 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: (
-                <UserAuthContextProvider>
-                  <Routes>
-                    <Route
-                      path="/"
-                      element={
-                       
-                          <LoginPage />
-                     
-                      }
-                    />
-                    {/* <Route path="/forggot password" element={<Forggot />} /> */}
-                    {/* <Route path="/signup" element={<Signup />} /> */}
-                  </Routes>
-                </UserAuthContextProvider>
-             
+          <UserAuthContextProvider>
+            <Routes>
+              <Route path="/" element={<LoginPage />} />
+              {/* <Route path="/forggot password" element={<Forggot />} /> */}
+              {/* <Route path="/signup" element={<Signup />} /> */}
+            </Routes>
+          </UserAuthContextProvider>
         ),
       },
 
       {
         path: "/forgotpassword",
         element: (
-                <UserAuthContextProvider>
-                  <Routes>
-                    <Route
-                      path="/"
-                      element={
-                       
-                          <ForgotPage />
-                     
-                      }
-                    />
-                    {/* <Route path="/forggot password" element={<Forggot />} /> */}
-                    {/* <Route path="/signup" element={<Signup />} /> */}
-                  </Routes>
-                </UserAuthContextProvider>
-             
+          <UserAuthContextProvider>
+            <Routes>
+              <Route path="/" element={<ForgotPage />} />
+              {/* <Route path="/forggot password" element={<Forggot />} /> */}
+              {/* <Route path="/signup" element={<Signup />} /> */}
+            </Routes>
+          </UserAuthContextProvider>
         ),
       },
-
 
       {
         path: "/signup",
         element: (
-                <UserAuthContextProvider>
-                  <Routes>
-                    <Route
-                      path="/"
-                      element={
-                       
-                          <SignupPage />
-                      }
-                    />
-                    {/* <Route path="/forggot password" element={<Forggot />} /> */}
-                    {/* <Route path="/signup" element={<Signup />} /> */}
-                  </Routes>
-                </UserAuthContextProvider>
-             
+          <UserAuthContextProvider>
+            <Routes>
+              <Route path="/" element={<SignupPage />} />
+              {/* <Route path="/forggot password" element={<Forggot />} /> */}
+              {/* <Route path="/signup" element={<Signup />} /> */}
+            </Routes>
+          </UserAuthContextProvider>
         ),
       },
       {
         path: "/home",
         element: <Home />,
       },
-    
+
       {
         path: "/",
         element: <Home />,
@@ -108,7 +85,7 @@ const router = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
       },
-      
+
       {
         path: "/shop",
         element: <ShoppingPage />,
@@ -117,17 +94,19 @@ const router = createBrowserRouter([
         path: "/about",
         element: <AboutPage />,
       },
+      {
+        path: "/admin/*",
+        element: <Admin />,
+      },
     ],
   },
 ]);
 
 function App() {
   return (
-    
     <div className="font-bodyFont">
       <RouterProvider router={router} />
     </div>
-    
   );
 }
 
