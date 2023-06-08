@@ -14,33 +14,24 @@ export const navData = [
     icon: <CelebrationIcon />,
     text: "אירועים",
     value: "events",
-    link: "/",
   },
   {
     id: 1,
     icon: <CategoryIcon />,
     text: "מוצרים",
     value: "products",
-    link: "Products",
   },
-  // {
-  //   id: 2,
-  //   icon: <LocalMallIcon />,
-  //   text: "Orders",
-  //   link: "statistics",
-  // },
+
   {
     id: 3,
     icon: <PeopleIcon />,
     text: "לקוחות",
     value: "users",
-    link: "settings",
   },
   {
-    id: 4,
-    icon: <DashboardIcon />,
+    id: 2,
+    icon: <LocalMallIcon />,
+    text: "הזמנות",
     value: "dashboard",
-    text: "פרפר",
-    link: "settings",
   },
 ];

@@ -29,7 +29,7 @@ export default function Dashboard() {
 
   return (
     <div className={styles.container}>
-      <h1>פרפר</h1>
+      <h1>הזמנות</h1>
       {!loading && (
         <DropDown
           labels={orders.map((order) => order.id)}
