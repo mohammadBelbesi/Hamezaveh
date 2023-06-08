@@ -1,18 +1,19 @@
 .styledTable {
   border-collapse: collapse;
-  margin: 25px 0;
+  margin: 16px 0;
   font-size: 16px;
   font-family: "Poppins";
   /* min-width: 400px; */
   width: 1200px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  direction: rtl;
 }
 
 .styledTable thead th {
   /* background-color: #255893; */
   background-color: rgb(87, 121, 91, 0.959);
   color: #ffffff;
-  text-align: left;
+  text-align: right;
 }
 
 .styledTable th,

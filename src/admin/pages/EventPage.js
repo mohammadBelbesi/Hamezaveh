@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./AdminPage.module.css";
+import styles from "./ProductPage.module.css";
 import Table from "../components/Table";
 import { eventsColumns } from "../data/tableData";
 import { getEvents, updateEvent } from "../services/firebase";
@@ -12,6 +12,7 @@ function EventPage() {
     const activateGetObjects = async () => {
       const recievedObjects = await getEvents();
       setObjects(recievedObjects);
+      console.log(recievedObjects);
     };
     activateGetObjects();
   }, []);

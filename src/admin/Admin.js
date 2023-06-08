@@ -60,7 +60,7 @@ function Admin() {
             element={
               <AdminPage
                 key={3}
-                pageName={"Users"}
+                pageName={"לקוחות"}
                 // getObjects={getDummyUsers}
                 getObjects={getUsers}
                 objectsColumns={usersColumns}

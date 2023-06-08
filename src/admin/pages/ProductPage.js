@@ -71,7 +71,7 @@ function ProductPage() {
         }
       >
         <option className={styles.optionclass} value={"NONE"}>
-          ---
+          תבחר אירוע
         </option>
         {events.map((event) => (
           <option className={styles.optionclass} value={event.id}>

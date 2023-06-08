@@ -36,7 +36,7 @@ function NewEventBanner({ notifyNewEvent }) {
   return (
     <div className={styles.Content}>
       <div className={styles.Header}>
-        <div className={styles.Layer}>Events</div>
+        <div className={styles.Layer}>אירועים</div>
       </div>
       <div className={styles.Body}>
         <div className={styles.AddEvent}>
@@ -62,7 +62,7 @@ function NewEventBanner({ notifyNewEvent }) {
               type="submit"
               variant="contained"
             >
-              Add Event
+              הוספת אירוע
             </button>
           </form>
         </div>

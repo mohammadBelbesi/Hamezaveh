@@ -12,13 +12,15 @@ export const navData = [
   {
     id: 0,
     icon: <CelebrationIcon />,
-    text: "Events",
+    text: "אירועים",
+    value: "events",
     link: "/",
   },
   {
     id: 1,
     icon: <CategoryIcon />,
-    text: "Products",
+    text: "מוצרים",
+    value: "products",
     link: "Products",
   },
   // {
@@ -30,13 +32,15 @@ export const navData = [
   {
     id: 3,
     icon: <PeopleIcon />,
-    text: "Users",
+    text: "לקוחות",
+    value: "users",
     link: "settings",
   },
   {
     id: 4,
     icon: <DashboardIcon />,
-    text: "Dashboard",
+    value: "dashboard",
+    text: "פרפר",
     link: "settings",
   },
 ];

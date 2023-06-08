@@ -29,7 +29,7 @@ export default function Dashboard() {
 
   return (
     <div className={styles.container}>
-      <h1>Dashboard</h1>
+      <h1>פרפר</h1>
       {!loading && (
         <DropDown
           labels={orders.map((order) => order.id)}
@@ -52,7 +52,7 @@ export default function Dashboard() {
                 setOrder({ ...order, isCompleted });
               }}
             ></input>
-            <label for="completed">Completed</label>
+            <label for="completed">קיבל</label>
           </div>
           <Table
             data={order.products}

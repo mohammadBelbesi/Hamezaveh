@@ -34,7 +34,7 @@ function NewProductBanner({ notifyNewEvent }) {
   return (
     <div className={styles.Content}>
       <div className={styles.Header}>
-        <div className={styles.Layer}>Products</div>
+        <div className={styles.Layer}>מוצרים</div>
       </div>
       <div className={styles.Body}>
         <div className={styles.AddEvent}>
@@ -44,7 +44,7 @@ function NewProductBanner({ notifyNewEvent }) {
               value={name}
               type="text"
               onChange={(e) => setName(e.target.value)}
-              placeholder="Name"
+              placeholder="שם מוצר"
             />
 
             <input
@@ -52,7 +52,7 @@ function NewProductBanner({ notifyNewEvent }) {
               value={price}
               type="number"
               onChange={(e) => setPrice(e.target.value)}
-              placeholder="Price"
+              placeholder="מחיר מוצר"
             />
 
             <button
@@ -60,7 +60,7 @@ function NewProductBanner({ notifyNewEvent }) {
               type="submit"
               variant="contained"
             >
-              Add Product
+              הוספת מוצר
             </button>
           </form>
         </div>

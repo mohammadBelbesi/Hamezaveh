@@ -72,8 +72,10 @@
 .addButton {
   /* margin-left: auto; */
   width: 164px;
+  background-color: rgb(87, 121, 91, 0.959);
+  color: white;
+  font-weight: bold;
 }
-
 .Content > .Body > .AddEvent form {
   width: 100%;
   display: flex;
