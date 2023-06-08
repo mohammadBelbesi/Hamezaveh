@@ -68,7 +68,7 @@ const Cart = () => {
       ],
       "VATIncluded": true,
       "DocumentType": null,
-      "RedirectURL": "https://www.google.com",
+      "RedirectURL": "http://localhost:3000/home",
       "CancelRedirectURL": null,
       "ExternalIdentifier": null,
       "MaximumPayments": null,
