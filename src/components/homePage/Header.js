@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../../context/UserAuthContext";
-import { setLogin } from '../../redux/bazarSlice';
+import { resetCart, setLogin } from '../../redux/bazarSlice';
 import { signOut } from "firebase/auth";
 import { auth, database } from '../../firebase';
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -20,16 +20,17 @@ const Header = () => {
   const userEmail = useSelector((state) => state.bazar.email);
 
   const handleButtonClick = () => {
-    signOut(auth)
-      .then(() => {
-        navigate("/home");
-        dispatch(setLogin(false));
-        console.log("logout successfully");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  signOut(auth)
+    .then(() => {
+      navigate("/home");
+      dispatch(resetCart()); // Clear the productData state
+      dispatch(setLogin(false)); // Set isLogin to false
+      console.log("logout successfully");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
   useEffect(() => {
     setIsLogin(login);

@@ -1,28 +1,33 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { Form } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { useUserAuth } from "../../context/UserAuthContext";
 import { database } from "../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import "../../loginAboutUs.css";
-import { useDispatch } from "react-redux";
-import { setEmailf, setMember, setLogin } from "../../redux/bazarSlice";
+import { setEmailf, setMember, setLogin, resetCart } from "../../redux/bazarSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { logIn } = useUserAuth();
+  const { logIn, logOut } = useUserAuth();
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  let login = useSelector((state) => state.bazar.isLogin);
+  const isLogin = useSelector((state) => state.bazar.isLogin);
 
   const handleEmailChange = (e) => {
     const email = e.target.value;
-    setEmail(email)
+    setEmail(email);
     dispatch(setEmailf(email));
+  };
+
+  const handleLogout = () => {
+    // Reset the relevant states and log out
+    dispatch(setLogin(false));
+    dispatch(resetCart()); // Assuming you have a resetCart action in bazarSlice.js
+    logOut();
   };
 
   const handleSubmit = async (e) => {
@@ -31,7 +36,7 @@ const Login = () => {
 
     try {
       await logIn(email, password);
-      console.log("login" + login);
+      console.log("login" + isLogin);
 
       const a = collection(database, "users"); // checking if input email is an Admin
       const b = query(a, where("email", "==", email));
@@ -48,14 +53,12 @@ const Login = () => {
       if (querySnapshot.size > 0) {
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
-        if (userData.isAdmin  )  { 
+        if (userData.isAdmin) {
           console.log(email);
-        // here is the checking if user or admin to route it
           navigate("/admin");
         } else {
           navigate("/home");
           dispatch(setLogin(true));
-
           console.log(email);
         }
       } else {
@@ -65,8 +68,6 @@ const Login = () => {
       setError("נא לוודא שהמייל וסיסמה תקינים  !");
     }
   };
-
-
 
   return (
     <>
@@ -101,6 +102,13 @@ const Login = () => {
             </Button>
           </div>
         </Form>
+        {isLogin && (
+          <div className="mt-3">
+            <Button variant="secondary" onClick={handleLogout}>
+              התנתק
+            </Button>
+          </div>
+        )}
         <hr />
         <div>
           אין לך חשבון ?<Link to="/signup" style={{ color: "black" }}>
