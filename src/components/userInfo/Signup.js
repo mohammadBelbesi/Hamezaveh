@@ -37,7 +37,7 @@ const Signup = () => {
       navigate("/login");
       
     } catch (err) {
-      setError(" נא לוודא שכל הסדות ממולאות ותקינות! ");
+      setError(" נא לוודא שכל השדות תקינות! ");
       return;
     }
   };
@@ -56,6 +56,7 @@ const Signup = () => {
           <Form.Group className="mb-3" >
             <Form.Control
               type="text"
+              required
               placeholder="שם משתמש"
               onChange={(e) => setFirstName(e.target.value)}
              
@@ -65,6 +66,7 @@ const Signup = () => {
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Control
               type="text"
+              required
               placeholder="שם משפחה"
               onChange={(e) => setLastName(e.target.value)}
             />
@@ -73,6 +75,7 @@ const Signup = () => {
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Control
               type="password"
+              required
               placeholder="סיסמה"
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -81,7 +84,8 @@ const Signup = () => {
           
           <Form.Group className="mb-3" >
             <Form.Control
-              type="text"
+              type="tel"
+              required
               placeholder="מס טלפון"
               onChange={(e) => setPhoneNumber(e.target.value)} // Updated to set phone number
             />
@@ -90,6 +94,7 @@ const Signup = () => {
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
               type="Email"
+              required
               placeholder="מייל"
               onChange={(e) => setEmail(e.target.value)}
             />

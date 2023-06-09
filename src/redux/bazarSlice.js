@@ -4,6 +4,7 @@ const initialState ={
     productData: [],
     total: 0,
     isMember: false,
+    email: "", // Add the email state
     isLogin: false,
     selectEvent: {},
     userInfo: null,
@@ -65,7 +66,10 @@ export const bazarSlice = createSlice({
           },
           setSelectEvent:(state , action)=>{
             state.selectEvent = action.payload
-          }
+          },
+          setEmailf: (state, action) => { // Add the setEmail reducer
+            state.email = action.payload;
+        }
     },
   });
 
@@ -76,6 +80,7 @@ export const bazarSlice = createSlice({
     increamentQuantity,
     decrementQuantity,
     setMember,
+    setEmailf,
     setLogin,
     setSelectEvent,
     //addUser,
