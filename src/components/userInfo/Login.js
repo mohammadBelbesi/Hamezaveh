@@ -46,7 +46,7 @@ const Login = () => {
         if (userData.isAdmin) { 
           console.log(email);
            // here is the checking if user or admin to rote it 
-          navigate("/cart");
+          navigate("/admin");
         } else {
           navigate("/about");
           dispatch(setLogin(true))
