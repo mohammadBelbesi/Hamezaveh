@@ -50,7 +50,7 @@ const Login = () => {
         const userData = userDoc.data();
         if (userData.isAdmin  )  { 
           console.log(email);
-          // here is the checking if user or admin to route it
+        // here is the checking if user or admin to route it
           navigate("/admin");
         } else {
           navigate("/home");
