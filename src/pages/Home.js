@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Banner from "../components/homePage/banner";
 import Events from "../components/homePage/Events";
 import ClosestEvent from "../components/homePage/ClosestEvent";
@@ -8,22 +9,42 @@ import Header from "../components/homePage/Header";
 import Footer from "../components/homePage/Footer";
 
 const Home = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleScrollToSurpriseSection = () => {
+    const surpriseSection = document.getElementById("surpriseSection");
+    if (surpriseSection) {
+      const sectionTopOffset = surpriseSection.offsetTop;
+      window.scrollTo({ top: sectionTopOffset, behavior: "smooth" });
+    }
+  };
+
   return (
     <div>
-        <Header />
-        <Banner />
-        <h1 className="hebrewTexts text-center">הפתעה!!</h1>
-        <ClosestEvent/>
+      <Header onEventsClick={handleScrollToSurpriseSection} />
+      <Banner />
+      <div id="surpriseSection">
         <br></br>
+        <br></br>
+        <h1 className="hebrewTexts text-center">הפתעה!!</h1>
+      </div>
+      <ClosestEvent />
+      <br></br>
+      <div id="moreEventsSection">
         <h1 className="hebrewTexts text-center">עוד אירועים קרובים</h1>
         <Events />
-        <br></br>
+      </div>
+      <br></br>
+      <br></br>
+      <div id="productsPics">
         <BeforeMyProducts />
-        <br></br>
-        <Products />
-        <Footer />
+      </div>
+      <br></br>
+      <Products />
+      <Footer />
     </div>
-  )
+  );
 };
 
 export default Home;

@@ -62,7 +62,7 @@ const Events = () => {
               {formattedEvents.map((event, index) => (
                 <th
                   key={index}
-                  className={`hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300 border border-gray-300 px-4 py-2 ${
+                  className={`hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-1000 border border-gray-300 px-4 py-2 ${
                     selectedDateIndex === index ? "my-pink-color" : ""}`
                   }
                   onClick={() => handleEventClick(events[index], index)}

@@ -1,8 +1,8 @@
 import { cart, loginBlack, loginPerson, logo } from "../../assets/assetsindex";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useUserAuth } from "../../context/UserAuthContext";
 import { resetCart, setLogin } from '../../redux/bazarSlice';
 import { signOut } from "firebase/auth";
@@ -13,24 +13,54 @@ import { BiLogOut } from "react-icons/bi";
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation(); // Add useLocation hook
   const [isLogin, setIsLogin] = useState();
   const [userName, setUserName] = useState("");
   let login = useSelector((state) => state.bazar.isLogin);
   const productData = useSelector((state) => state.bazar.productData);
   const userEmail = useSelector((state) => state.bazar.email);
+  const eventsRef = useRef(null); // Add a ref to the events section
+
+  const handleEventsClick1 = () => {
+    const surpriseSection = document.getElementById("surpriseSection");
+    const moreEventsSection = document.getElementById("moreEventsSection");
+    const productsPics = document.getElementById("productsPics");
+
+    if (location.pathname !== "/home") {
+      navigate("/home");
+      return; // Exit the function
+    }
+
+    if (surpriseSection && moreEventsSection) {
+      surpriseSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleEventsClick2 = () => {
+    const productsPics = document.getElementById("productsPics");
+
+    if (location.pathname !== "/home") {
+      navigate("/home");
+      return; // Exit the function
+    }
+
+    if (productsPics) {
+      productsPics.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const handleButtonClick = () => {
-  signOut(auth)
-    .then(() => {
-      navigate("/home");
-      dispatch(resetCart()); // Clear the productData state
-      dispatch(setLogin(false)); // Set isLogin to false
-      console.log("logout successfully");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
+    signOut(auth)
+      .then(() => {
+        navigate("/home");
+        dispatch(resetCart()); // Clear the productData state
+        dispatch(setLogin(false)); // Set isLogin to false
+        console.log("logout successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     setIsLogin(login);
@@ -54,39 +84,34 @@ const Header = () => {
   }, [login, userEmail]);
 
   return (
-    <div dir="ltr" className="w-full h-36 border-b-[1px] border-b-gray-800 sticky top-0 z-50">
-      <div className="max-w-screen-xl h-full mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-20">
+    <div dir="ltr" className="w-full h-36 border-b-[1px] border-b-gray-800 sticky top-0 z-50 flex">
+      <div className="max-w-screen-l h-full mx-auto flex items-center justify-between">
+        <div className="ml-auto flex items-center gap-14"> {/* Added ml-auto to align to the right */}
           {login && (
-            <div>
-
+            <div className="text-xl flex-col">
+              יציאה
               <BiLogOut
-                className="logo w-18 h-16 mx-auto flex gap-20 rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500 shadow-md"
+                className="logo w-28 h-16 mx-auto flex gap-20 rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500 shadow-md"
                 onClick={handleButtonClick}
                 onMouseOver={(e) => { e.target.style.opacity = 0.8; e.target.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.2)'; }}
                 onMouseOut={(e) => { e.target.style.opacity = 1; e.target.style.boxShadow = 'none'; }}
               />
-              <span className="ml-2  text-2xl font-light text-white ">Wellcom {userName}</span>
-
+              <span className="ml-2  text-2xl font-light text-white ">Welcome {userName}</span>
             </div>
-
-              
-          )
-          }
+          )}
 
           <Link to="/login">
-           
-          {!login && (
-            <div className="relative">
-              <img
-                className="h-16 w-16 mx-auto flex items-center gap-20 rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500 shadow-md"
-                src={loginPerson}
-                alt="userLogo"
-                style={{ transition: 'all 0.3s' }}
-                onMouseOver={(e) => { e.target.style.opacity = 0.8; e.target.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.2)'; }}
-                onMouseOut={(e) => { e.target.style.opacity = 1; e.target.style.boxShadow = 'none'; }}
-              />
-            </div>)}
+            {!login && (
+              <div className="relative">
+                <img
+                  className="h-16 w-16 mx-auto flex items-center gap-20 rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500 shadow-md"
+                  src={loginPerson}
+                  alt="userLogo"
+                  style={{ transition: 'all 0.3s' }}
+                  onMouseOver={(e) => { e.target.style.opacity = 0.8; e.target.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.2)'; }}
+                  onMouseOut={(e) => { e.target.style.opacity = 1; e.target.style.boxShadow = 'none'; }}
+                />
+              </div>)}
           </Link>
           <Link to="/cart">
             <div className="relative">
@@ -102,16 +127,28 @@ const Header = () => {
               <span className="zero absolute w-12 h-10 mx-auto top-1 right-1 text-sm flex items-center justify-center font-serif">{productData.length}</span>
             </div>
           </Link>
-         
-          <ul className="flex items-center gap-20 ">
+
+          <ul className="flex items-center gap-14"> {/* Added gap-4 for equal spacing */}
+            <li
+              className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
+              onClick={handleEventsClick1} // Add onClick event handler
+            >
+              אירועים
+            </li>
+            <li
+              className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
+              onClick={handleEventsClick2} // Add onClick event handler
+            >
+              מוצרים
+            </li>
             <Link to="/about">
-              <li className=" hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">אודות</li>
+              <li className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">אודות</li>
             </Link>
             <Link to="/shop">
-              <li className=" hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">חנות</li>
+              <li className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">חנות</li>
             </Link>
             <Link to="/home">
-              <li className=" hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">דף הבית</li>
+              <li className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">דף הבית</li>
             </Link>
           </ul>
         </div>
