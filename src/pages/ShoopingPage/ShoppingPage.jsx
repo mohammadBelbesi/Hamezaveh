@@ -234,7 +234,6 @@ export function ShoppingPage(){
             })}
           </div>
           <Footer getPrice={totalPrice} />
-
         </>
       ) : (
         <>
