@@ -88,7 +88,8 @@ const Header = () => {
       <div className="max-w-screen-l h-full mx-auto flex items-center justify-between">
         <div className="ml-auto flex items-center gap-14"> {/* Added ml-auto to align to the right */}
           {login && (
-            <div className="text-xl flex-col">
+            
+            <div className="text-xl flex-col flex items-center"> {/* Added flex-col and flex items-center */}
               יציאה
               <BiLogOut
                 className="logo w-28 h-16 mx-auto flex gap-20 rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500 shadow-md"
@@ -96,7 +97,7 @@ const Header = () => {
                 onMouseOver={(e) => { e.target.style.opacity = 0.8; e.target.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.2)'; }}
                 onMouseOut={(e) => { e.target.style.opacity = 1; e.target.style.boxShadow = 'none'; }}
               />
-              <span className="ml-2  text-2xl font-light text-white ">Welcome {userName}</span>
+              <span className="ml-2  text-2xl font-light text-white "> {userName} שלום </span>
             </div>
           )}
 
