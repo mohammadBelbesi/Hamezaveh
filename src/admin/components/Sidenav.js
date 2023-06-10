@@ -14,7 +14,7 @@ function Sidenav() {
         <div
           onClick={() => {
             setSelectedItem(item.text);
-            navigate(`/admin/${item.value.toLowerCase()}`);
+            navigate(`/admin/qowiuepr%&$qwej82309148zcmxv-nczxvnjkla&d%&$as&djkd-naosd879-23nmNFJ-AKSDL-FNFND-JASLFN%&$ALNF-U983$24732-47%&$67NKA-NSM%&$$ASFD-ASDFAD%&$$F883-283877KK$KLMV%&$NDG$HYKE9/${item.value.toLowerCase()}`);
           }}
           className={
             item.text === selectedItem

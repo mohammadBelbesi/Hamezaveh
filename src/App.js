@@ -95,7 +95,7 @@ const router = createBrowserRouter([
         element: <AboutPage />,
       },
       {
-        path: "/admin/*",
+        path: "/admin/qowiuepr%&$qwej82309148zcmxv-nczxvnjkla&d%&$as&djkd-naosd879-23nmNFJ-AKSDL-FNFND-JASLFN%&$ALNF-U983$24732-47%&$67NKA-NSM%&$$ASFD-ASDFAD%&$$F883-283877KK$KLMV%&$NDG$HYKE9/*",
         element: <Admin />,
       },
     ],

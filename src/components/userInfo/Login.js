@@ -55,7 +55,7 @@ const Login = () => {
         const userData = userDoc.data();
         if (userData.isAdmin) {
           console.log(email);
-          navigate("/admin/");
+          navigate("/admin/qowiuepr%&$qwej82309148zcmxv-nczxvnjkla&d%&$as&djkd-naosd879-23nmNFJ-AKSDL-FNFND-JASLFN%&$ALNF-U983$24732-47%&$67NKA-NSM%&$$ASFD-ASDFAD%&$$F883-283877KK$KLMV%&$NDG$HYKE9/");
         } else {
           navigate("/home");
           dispatch(setLogin(true));
