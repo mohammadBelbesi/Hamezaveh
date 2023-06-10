@@ -34,4 +34,10 @@ export const navData = [
     text: "הזמנות",
     value: "dashboard",
   },
+  {
+    id: 4,
+    icon: <LocalMallIcon />,
+    text: "סטטיסטיקה",
+    value: "stats",
+  },
 ];

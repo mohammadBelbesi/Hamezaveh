@@ -30,6 +30,7 @@ import {
 } from "./services/dummyFirebase";
 import EventPage from "./pages/EventPage";
 import Dashboard from "./pages/Dashboard";
+import { Static } from "./pages/static/static";
 
 function Admin() {
   return (
@@ -70,6 +71,7 @@ function Admin() {
               />
             }
           />
+          <Route path="/stats" element={<Static />} />
         </Routes>
       </div>
     </div>
