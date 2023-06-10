@@ -38,9 +38,10 @@ function Admin() {
       <Sidenav />
       <div className="content">
         <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/events" element={<EventPage />} />
+          <Route path="/" element={<EventPage />} />
+          <Route path="/events/" element={<EventPage />} />
           <Route path="/products" element={<ProductPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           {/* <Route
             path="/orders"
             element={
