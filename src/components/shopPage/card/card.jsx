@@ -32,8 +32,6 @@ useEffect(() => {//when the selectProduct is changed we are here
 },[selectProduct])
 
 useEffect(() => {//when the is clicked changed we are here
-  console.log('isTrue')
-  console.log(isTrue)
 
   if( isTrue == false ){
 

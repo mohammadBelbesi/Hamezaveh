@@ -1,5 +1,5 @@
 //css import
-import myStyle from './ShoopingPage.css'
+import './ShoopingPage.css'
 
 //import function 
 import {Dropdown} from '../../components/shopPage/dropDownMenue/Dropdown'
@@ -70,6 +70,28 @@ export function ShoppingPage(){
   let bazarSelectEvent = useSelector((state) => state.bazar.selectEvent)
 
 
+  //function to check if the date valid or not :)
+  const isDateInPresent = (date) => {
+    const currentDate = new Date();
+    const inputDate = new Date(date);
+  
+    // Set hours, minutes, seconds, and milliseconds to 0 for both dates
+    currentDate.setHours(0, 0, 0, 0);
+    inputDate.setHours(0, 0, 0, 0);
+  
+    // Compare the dates
+    if (inputDate < currentDate) {
+      // The input date has passed
+      return false;
+    } else if (inputDate > currentDate) {
+      // The input date is in the future
+      return true;
+    } else {
+      // The input date is the same as the current date
+      return true;
+    }
+  }
+
   //get the data from the firestore
   useEffect( () => {
     //get from the firbase the relevent data only on the first rendering the page
@@ -78,14 +100,13 @@ export function ShoppingPage(){
       try{
         //get the events from the firebase
         const events = await getDocs(eventsCollectionRef)
-        const filterEvents = events.docs.map( (doc) => ( {...doc.data() ,id: doc.id} ))
-
+        const filterEvents = events.docs.map( (doc) =>  { if(isDateInPresent(doc.data()['date'])){return {...doc.data() ,id: doc.id}}} ).filter((obj) => obj !== undefined);
         //sort the events
         filterEvents.sort( (a , b) =>  new Date(a['date'].split('T')[0]) - new Date(b['date'].split('T')[0])  )
 
         //get the products from the firebase
         const products = await getDocs(productsCollectionRef)
-        const filterProducts = products.docs.map( (doc) => ( {...doc.data() ,id: doc.id} ))
+        const filterProducts = products.docs.map( (doc) => { return ({...doc.data() ,id: doc.id}  )} )
         
         setProducts(filterProducts)
         
@@ -97,7 +118,6 @@ export function ShoppingPage(){
           dispatch(setSelectEvent({ 'date' :listOfEvents[0]['date'] , 'id':listOfEvents[0]['id'] ,'index':0}))
         } else {
           setSelectedEvent(bazarSelectEvent)
-
         }
 
 
@@ -125,6 +145,7 @@ export function ShoppingPage(){
     
     setIsMember(bazarIsMember)
     getEventList()
+    setIsLoading(true)
   } ,[])
 
   //function to add to the list the product that we choise and update the totalPrice
@@ -172,18 +193,10 @@ export function ShoppingPage(){
     dispatch(setSelectEvent(event))
   }
 
-  const selectFromTheMain = (mainProduct , mainPrice) => {
-    setListOfProduct((prev) => [ ...prev , mainProduct])
-
-    setTotalPrice((prev) => prev +mainPrice )
-  }
   
   return (
     <>
-      {/* <div className='loadingPage'>
-        <img src="../../shopPage/components/_images/loadingPage.gif" alt="GIF Image" />
-      </div> */}
-      <Header className={myStyle.pageContainer} />
+      <Header />
       {isLogin ? (
         <>
           <Dropdown
@@ -202,7 +215,6 @@ export function ShoppingPage(){
                 if (check !== -1) {
                   isTrue = true;
                   quantity = bazarProduct[check]['QuantityOfProduct'] / 100;
-                  // selectFromTheMain (bazarProduct[check] , ( quantity * product['price'] ))
                 }
               }
               return (
@@ -222,6 +234,7 @@ export function ShoppingPage(){
             })}
           </div>
           <Footer getPrice={totalPrice} />
+
         </>
       ) : (
         <>
