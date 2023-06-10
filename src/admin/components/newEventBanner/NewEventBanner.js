@@ -16,13 +16,14 @@ function NewEventBanner({ notifyNewEvent }) {
   const [date, setDate] = useState("");
 
   async function addEvent(e) {
+    e.preventDefault();
+
     if (date === "" || location === "") {
       return;
     }
 
     setIsCreateLoading(true);
 
-    e.preventDefault();
     const newEvent = { location, date, products: [] };
     await createEvent(newEvent);
     setLocation("");

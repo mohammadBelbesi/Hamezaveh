@@ -2,18 +2,28 @@ import { useEffect, useState } from "react";
 import { productsColumns } from "../data/tableData";
 import SelectableTable from "../components/SelectableTable";
 import Table from "../components/Table";
-import { updateEvent, updateProduct } from "../services/firebase";
+import { getProducts, updateEvent, updateProduct } from "../services/firebase";
 import styles from "./ProductPage.module.css";
 import useProducts from "../hooks/useProducts";
 import useEvents from "../hooks/useEvents";
 import NewProductBanner from "../components/newProductBanner/NewProductBanner";
 
 function ProductPage() {
-  const {
+  const [objects, setObjects] = useState(null);
+  let {
     products,
     loading: productsLoading,
     error: productsError,
   } = useProducts();
+
+  useEffect(() => {
+    setObjects(products);
+  }, [productsLoading]);
+
+  function newProduct(prod) {
+    setObjects([...objects, prod]);
+  }
+
   const { events, loading: eventsLoading, error: eventsError } = useEvents();
   const [selectedEvent, setSelectedEvent] = useState(null);
 
@@ -58,8 +68,9 @@ function ProductPage() {
 
   return (
     <div className={styles.container}>
+      manasrah
       <div className={styles.header}>
-        <NewProductBanner notifyNewEvent={() => {}} />
+        <NewProductBanner notifyNewProduct={newProduct} />
         {/* <h1>Products</h1> */}
         {/* {!eventsLoading && (
           
@@ -82,7 +93,7 @@ function ProductPage() {
       {!productsLoading && !selectedEvent && (
         <>
           <Table
-            data={products}
+            data={objects}
             columns={productsColumns}
             update={updateProduct}
           />
@@ -90,8 +101,8 @@ function ProductPage() {
       )}
       {!productsLoading && selectedEvent && (
         <SelectableTable
-          data={products}
-          selectedData={products.filter((product) =>
+          data={objects}
+          selectedData={objects.filter((product) =>
             selectedEvent.products.includes(product.id)
           )}
           columns={productsColumns}

@@ -7,20 +7,20 @@ import LoadingDropDown from "../LoadingDropDown";
 import { createLocation, createProduct } from "../../services/firebase";
 import { createEvent } from "../../services/firebase";
 
-function NewProductBanner({ notifyNewEvent }) {
+function NewProductBanner({ notifyNewProduct }) {
   const [isCreateLoading, setIsCreateLoading] = useState(false);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState(null);
 
   async function addProduct(e) {
+    e.preventDefault();
     if (name === "" || !price) {
       return;
     }
 
     setIsCreateLoading(true);
 
-    e.preventDefault();
     const newProduct = { name, price };
     await createProduct(newProduct);
     setName("");
@@ -28,7 +28,7 @@ function NewProductBanner({ notifyNewEvent }) {
 
     setIsCreateLoading(false);
 
-    notifyNewEvent(newProduct);
+    notifyNewProduct(newProduct);
   }
 
   return (
