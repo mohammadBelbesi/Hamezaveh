@@ -29,17 +29,22 @@
 .bodyStatic .productStatic{
     margin-top: 25px;
     /* padding-left: 0px; */
-    width: 96%;
+    width: 97.5%;
+    margin-bottom: 50px;
 }
 
 
 .bodyStatic .containerMain .mainStatic h2 , .bodyStatic .containerMain .eventStatic h2 , .bodyStatic .productStatic h2{
     margin: 0;
     color: rgba(87, 121, 91, 0.959);
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .bodyStatic .containerMain .mainStatic h3 , .bodyStatic .containerMain .eventStatic h3 , .bodyStatic .productStatic h3{
     margin: 8px 0px;
+    font-size: 18.72px;
+    font-weight: bold;
 }
 
 .bodyStatic .containerMain .eventStatic{

@@ -33,11 +33,14 @@
 .container h1{
     text-align: center;
     margin-top: 0px ;
+    font-size:32px;
+    font-weight: bold;
 }
 
 .container .choseDate{
     display: flex;
     justify-content: center;
+    margin-top: 25px;
 }
 
 .container .choseDate .dateChose , .container .choseDate .space{
