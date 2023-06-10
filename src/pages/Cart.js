@@ -6,6 +6,7 @@ import Footer from "../components/homePage/Footer";
 import CartItem from '../components/CartItem';
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { resetCart } from '../redux/bazarSlice';
 
 const Cart = () => {
   const productData = useSelector((state) => state.bazar.productData);
@@ -104,6 +105,7 @@ const Cart = () => {
         const redirectUrl = data.Data.RedirectURL;
         console.log(redirectUrl);
         window.open(redirectUrl, "_blank");
+        dispatch(resetCart()); // Dispatch resetCart action
       })
       .catch(error => {
         console.error('Error:', error);
