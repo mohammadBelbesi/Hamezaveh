@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { useUserAuth } from "../../context/UserAuthContext";
 import { Button } from "react-bootstrap";
@@ -33,7 +33,7 @@ const ForggotP = () => {
   };
 
   return (
-    <div className="p-4 box">
+    <div className="p-4 box forgetP">
       <h2 className="mb-3" >  שחזור סיסמה </h2>
 
       {message && <div>{message}</div>}
@@ -52,6 +52,13 @@ const ForggotP = () => {
         <Button variant="primary" className = "button" type="Submit">
           אישור
         </Button>
+        <div className="flex gap-2">
+         נזכרת ? <Link to="/login" className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500" >
+                    <div className="text-red-600">
+                      כניסה למערכת
+                    </div>
+                  </Link>
+        </div>
       </Form>
     </div>
   );

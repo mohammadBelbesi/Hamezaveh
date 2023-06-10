@@ -55,7 +55,7 @@ const Login = () => {
         const userData = userDoc.data();
         if (userData.isAdmin) {
           console.log(email);
-          navigate("/admin");
+          navigate("/admin-qowiueprqwej82309148zcmxv-nczxvnjkla&das&djkd-naosd879-23nmNFJ-AKSDL-FNFND-JASLFNALNF-U983$24732-4767NKA-NSM$ASFD-ASDFAD$F883-283877KK$KLMVNDG$HYKE9");
         } else {
           navigate("/home");
           dispatch(setLogin(true));
@@ -71,7 +71,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="p-4 box">
+      <div className="p-4 box logIn">
         <h2 className="mb-3">כניסה למערכת</h2>
         <Form onSubmit={handleSubmit}>
           <div className={error ? "error-message" : "normal-message"}>
@@ -110,13 +110,18 @@ const Login = () => {
           </div>
         )}
         <hr />
-        <div>
-          אין לך חשבון ?<Link to="/signup" style={{ color: "black" }}>
-            הרשמה
+        <div className="flex gap-2">
+          אין לך חשבון ?<Link to="/signup" style={{ color: "black" }} className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500">
+            <div className="text-red-600">
+              הרשמה 
+            </div>
+            
           </Link>{" "}
           או{" "}
-          <Link to="/forgotpassword" style={{ color: "black" }}>
-            שכחתי סיסמה
+          <Link to="/forgotpassword" style={{ color: "black" }} className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500" >
+            <div className="text-red-600">
+              שכחתי סיסמה
+            </div>
           </Link>
         </div>
       </div>

@@ -49,11 +49,11 @@ const Signup = () => {
     <>
       <div className="p-4 box">
         
-        <h2 className="mb-3">הרשמה</h2>
+        <h2 className="mb-2.5">הרשמה</h2>
         
         <div className={error ? "error-message" : "normal-message"}>{error}</div>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" >
+          <Form.Group className="mb-2.5" >
             <Form.Control
               type="text"
               required
@@ -63,7 +63,7 @@ const Signup = () => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group className="mb-2.5" controlId="formBasicPassword">
             <Form.Control
               type="text"
               required
@@ -72,7 +72,7 @@ const Signup = () => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group className="mb-2.5" controlId="formBasicPassword">
             <Form.Control
               type="password"
               required
@@ -82,7 +82,7 @@ const Signup = () => {
           </Form.Group>
 
           
-          <Form.Group className="mb-3" >
+          <Form.Group className="mb-2.5" >
             <Form.Control
               type="tel"
               required
@@ -91,7 +91,7 @@ const Signup = () => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-2.5" controlId="formBasicEmail">
             <Form.Control
               type="Email"
               required
@@ -110,8 +110,14 @@ const Signup = () => {
           </div>
         </Form>
         <br/>
-        <div>
-          יש לך כבר חשבון ?<Link to="/login" className="link-text" >כניסה למערכת</Link>
+        <div className="flex gap-2">
+          יש לך כבר חשבון ?<Link to="/login" className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500">
+                              <div className="text-red-600">
+                                כניסה למערכת  
+                              </div>
+                              <br></br>
+                              <br></br>
+                            </Link>
       </div>
       </div>
       
