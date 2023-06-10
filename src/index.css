@@ -76,21 +76,26 @@ body{
 }
 
 .bannerImages{
-    border-radius: 1cm;
+    /* border-radius: 1cm; */
     border-color: green;
     border-width: 1px;
-    display: flexbox;
+    /* display: flexbox; */
     display: flex;
-    width: 1250px;
+    /* width: 1250px; */
     height: 600px;
-    max-width: 1250px;
+    max-width: 88%;
     max-height: 650px;
     min-height: 550px;
     min-width: 1200px;
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
-    box-shadow: 0 0 1cm rgba(0, 0, 0, 0.5); /* Add a 1cm shadow with a 50% opacity */
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.4); /* Add a 1cm shadow with a 50% opacity */
+    /* margin-top: 50px; */
+    /* margin-right: 0px; */
+    /* justify-content: center; */
+    justify-content: center;
+    align-items: center;
 
 }
 

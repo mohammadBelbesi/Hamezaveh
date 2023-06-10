@@ -57,6 +57,7 @@ export const bazarSlice = createSlice({
           },
           resetCart: (state) => {
             state.productData = [];
+            state.total = 0
           },
           setMember:(state , action)=>{
             state.isMember = action.payload
@@ -69,7 +70,13 @@ export const bazarSlice = createSlice({
           },
           setEmailf: (state, action) => { // Add the setEmail reducer
             state.email = action.payload;
-        }
+          },
+          setPrice:(state, action) => {
+            state.total = action.payload
+          },
+          decrementTotal:(state, action) => {
+            state.total -= action.payload
+          }
     },
   });
 
@@ -83,6 +90,8 @@ export const bazarSlice = createSlice({
     setEmailf,
     setLogin,
     setSelectEvent,
+    setPrice,
+    decrementTotal,
     //addUser,
     //removeUser,
   } = bazarSlice.actions;

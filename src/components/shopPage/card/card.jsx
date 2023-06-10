@@ -4,7 +4,7 @@ import './card.css'
 import { useState, useEffect} from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import {  deleteItem } from '../../../redux/bazarSlice';
+import {  deleteItem , decrementTotal } from '../../../redux/bazarSlice';
 
 //maine componant to export
 export const Card = ( { id,imageUrl, title, price ,howMuchToIncrease , typeOfProduct ,changeTheList , isClickMain ,quntatyMain}) => {
@@ -51,7 +51,6 @@ useEffect(() => {//when the is clicked changed we are here
 
   }
       
-  
 },[isClicked])
 
   function handleClick(){
@@ -60,6 +59,7 @@ useEffect(() => {//when the is clicked changed we are here
       if(isTrue){
         setIsTrue(false)
         dispatch(deleteItem(id)) 
+        dispatch(decrementTotal( quntaty * price )) 
       }else{
         setIsClicked(!isClicked)
       }

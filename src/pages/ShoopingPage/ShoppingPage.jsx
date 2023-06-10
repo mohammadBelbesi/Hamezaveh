@@ -7,7 +7,7 @@ import {Card} from '../../components/shopPage/card/card'
 import {Footer} from '../../components/shopPage/footer/footer'
 import { useEffect, useState ,useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart , deleteItem , resetCart , setSelectEvent } from '../../redux/bazarSlice';
+import { addToCart , deleteItem , resetCart , setSelectEvent , setPrice } from '../../redux/bazarSlice';
 import Header from "../../components/homePage/Header";
 import HomeFooter from "../../components/homePage/Footer";
 
@@ -25,17 +25,16 @@ export function ShoppingPage(){
   const dataFetchedRef = useRef(false);
 
   let bazarProduct = useSelector((state) => state.bazar.productData)
+  let bazarTotal = useSelector((state) => state.bazar.total)
 
   //init useState 
   const [totalPrice , setTotalPrice ] = useState(0)
-  const [isMember , setIsMember] = useState(false)
   const [listOfProduct , setListOfProduct] = useState([])
   const [products , setProducts] = useState([])
   const [productsForSelectionEvent , setProductsForSelectionEvent] = useState([])
   const [eventDate , setEventDate] = useState([])
   const [selectedEvent, setSelectedEvent] = useState({});
   const [listOfImg, setListOfImg] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   //collection reference 
   const eventsCollectionRef = collection(database , "events")
@@ -58,7 +57,6 @@ export function ShoppingPage(){
       })
       setProductsForSelectionEvent(ourProducts)
     }
-
   }  
 
   //update the product when the eventDateChange
@@ -66,9 +64,8 @@ export function ShoppingPage(){
     getTheProduct()
   },[selectedEvent])
 
-  let bazarIsMember = useSelector((state) => state.bazar.isMember)
-  let bazarSelectEvent = useSelector((state) => state.bazar.selectEvent)
 
+  let bazarSelectEvent = useSelector((state) => state.bazar.selectEvent)
 
   //function to check if the date valid or not :)
   const isDateInPresent = (date) => {
@@ -78,7 +75,6 @@ export function ShoppingPage(){
     // Set hours, minutes, seconds, and milliseconds to 0 for both dates
     currentDate.setHours(0, 0, 0, 0);
     inputDate.setHours(0, 0, 0, 0);
-  
     // Compare the dates
     if (inputDate < currentDate) {
       // The input date has passed
@@ -120,7 +116,6 @@ export function ShoppingPage(){
           setSelectedEvent(bazarSelectEvent)
         }
 
-
         setEventDate(filterEvents)
 
         //get the images from the dataBase
@@ -132,7 +127,12 @@ export function ShoppingPage(){
           })
         })
 
-
+        //check if the total is zero or not 
+        console.log(bazarTotal)
+        if(bazarTotal != 0){
+          console.log('if(bazarTotal != 0){')
+          setTotalPrice(bazarTotal)
+        }
         
       }catch(err){
         console.error(err)
@@ -142,10 +142,7 @@ export function ShoppingPage(){
 
     if (dataFetchedRef.current) return
     dataFetchedRef.current = true
-    
-    setIsMember(bazarIsMember)
     getEventList()
-    setIsLoading(true)
   } ,[])
 
   //function to add to the list the product that we choise and update the totalPrice
@@ -154,6 +151,7 @@ export function ShoppingPage(){
     //if the situation is to add 
     if(addProduct){
       setTotalPrice( totalPrice + selectProduct.totalPrice)
+      dispatch(setPrice(totalPrice + selectProduct.totalPrice))
 
       setListOfProduct( (addListOfProduct) => {
         return [...addListOfProduct , selectProduct]
@@ -161,13 +159,14 @@ export function ShoppingPage(){
 
       dispatch(addToCart(selectProduct))
 
-
     }else{//the situation is to unselect the product 
       let index = listOfProduct.findIndex( (element)=> element.idProduct === selectProduct )
 
       if(index !== -1){//if the id in the listOfProduct then remove it 
 
         setTotalPrice( totalPrice - listOfProduct[index].totalPrice)
+        dispatch(setPrice(totalPrice - listOfProduct[index].totalPrice))
+
         setListOfProduct( (addListOfProduct) => {
           return addListOfProduct.filter( obj => obj.idProduct !== selectProduct)
         } )
@@ -175,7 +174,7 @@ export function ShoppingPage(){
         dispatch(deleteItem(selectProduct))
       }
     }
-    
+
   }
 
   const func = ( product ) => {
@@ -210,9 +209,9 @@ export function ShoppingPage(){
             {productsForSelectionEvent.map((product, index) => {
               let isTrue = false;
               let quantity = 0;
-              if (bazarProduct.length > 0) {
+              if (bazarProduct.length > 0){
                 let check = bazarProduct.findIndex((item) => item.idProduct === product['id']);
-                if (check !== -1) {
+                if (check !== -1){
                   isTrue = true;
                   quantity = bazarProduct[check]['QuantityOfProduct'] / 100;
                 }
