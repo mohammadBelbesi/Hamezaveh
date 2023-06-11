@@ -133,6 +133,13 @@ const Cart = () => {
                     </p>
                   </div>
                   <p className='font-titleFont font-semibold flex justify-between mt-6'>
+                    {isMember && 
+                      <span className='text-lg'>
+                        הנחת חבר מעודון 30%
+                      </span>
+                    }
+                  </p>
+                  <p className='font-titleFont font-semibold flex justify-between mt-6'>
                     הסכום הסופי{' '}
                     <span className='text-xl font-bold'>
                       {isMember ? (totalAmt - totalAmt * 0.3).toFixed(2) : totalAmt.toFixed(2)} ₪
