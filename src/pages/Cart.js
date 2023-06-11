@@ -6,16 +6,67 @@ import Footer from "../components/homePage/Footer";
 import CartItem from '../components/CartItem';
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import { resetCart } from '../redux/bazarSlice';
+import { resetCart ,setLogin} from '../redux/bazarSlice';
+import { auth, database } from '../firebase';
+import { collection, query, where, getDocs } from "firebase/firestore";
+
+
+
 
 const Cart = () => {
   const productData = useSelector((state) => state.bazar.productData);
   const [totalAmt, setTotalAmt] = useState(0);
   const [isMember, setIsMember] = useState(false);
   const isCartEmpty = productData.length === 0;
+  const [userName, setUserName] = useState("");
+  const [Phone, setPhone] = useState("");
+  const userEmail = useSelector((state) => state.bazar.email);
+  let login = useSelector((state) => state.bazar.isLogin);
   let member = useSelector((state) => state.bazar.isMember);
   const isLogin = useSelector((state) => state.bazar.isLogin); // Access isLogin from the bazar slice
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setLogin(login);
+    //console.log(login);
+
+    if (login && userEmail) {
+      const fetchUserName = async () => {
+        const usersCollectionRef = collection(database, "users");
+        const q = query(usersCollectionRef, where("email", "==", userEmail));
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.size > 0) {
+          const userDoc = querySnapshot.docs[0];
+          const userData = userDoc.data();
+          //console.log(userData.name)
+          setUserName(userData.firstname);
+        }
+      };
+
+      fetchUserName();
+    }
+  }, [login, userEmail]);
+
+  useEffect(() => {
+    setLogin(login);
+    //console.log(login);
+  
+    if (login && userEmail) {
+      const fetchUserName = async () => {
+        const usersCollectionRef = collection(database, "users");
+        const q = query(usersCollectionRef, where("email", "==", userEmail));
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.size > 0) {
+          const userDoc = querySnapshot.docs[0];
+          const userData = userDoc.data();
+          //console.log(userData.name)
+          setPhone(userData.phone);
+        }
+      };
+  
+      fetchUserName();
+    }
+  }, [login, userEmail]);
 
   useEffect(() => {
     let totalPrice = 0;
@@ -28,7 +79,8 @@ const Cart = () => {
   useEffect(() => {
     setIsMember(member);
   }, [member]);
-
+  // console.log(userName)
+  // console.log({userName})
   function pay(a) {
     const finalTotalAmt = isMember ? totalAmt - totalAmt * 0.3 : totalAmt;
     const url = "https://app.sumit.co.il/billing/payments/beginredirect/";
@@ -37,9 +89,9 @@ const Cart = () => {
         "ExternalIdentifier": null,
         "NoVAT": null,
         "SearchMode": 0,
-        "Name": "Danny Dean",
-        "Phone": null,
-        "EmailAddress": null,
+        "Name": userName,
+        "Phone": Phone,
+        "EmailAddress": userEmail,
         "City": null,
         "Address": null,
         "ZipCode": null,
@@ -69,7 +121,7 @@ const Cart = () => {
       ],
       "VATIncluded": true,
       "DocumentType": null,
-      "RedirectURL": "https://www.google.com",
+      "RedirectURL": "http://localhost:3000/home",
       "CancelRedirectURL": null,
       "ExternalIdentifier": null,
       "MaximumPayments": null,
@@ -104,7 +156,7 @@ const Cart = () => {
         // console.log(data);
         const redirectUrl = data.Data.RedirectURL;
         //console.log(redirectUrl);
-        window.open(redirectUrl, "_blank");
+        window.open(redirectUrl, "http://localhost:3000/home");
         dispatch(resetCart()); // Dispatch resetCart action
       })
       .catch(error => {
