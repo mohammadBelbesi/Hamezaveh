@@ -34,7 +34,7 @@ const Banner = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 4000); // Automatically change slide every 4 seconds
+    const interval = setInterval(nextSlide, 6000); // Automatically change slide every 4 seconds
     return () => clearInterval(interval);
   }, []);
 
