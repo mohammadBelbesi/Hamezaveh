@@ -84,8 +84,9 @@ const Header = () => {
   }, [login, userEmail]);
 
   return (
-    <div dir="ltr" className="w-full h-36 border-b-[1px] border-b-gray-800 sticky top-0 z-50 flex">
-      <div className="max-w-screen-l h-full mx-auto flex items-center justify-between">
+    
+    <div dir="ltr" className="navbar w-full h-36 border-b-[1px] border-b-gray-800 sticky top-0 z-50 flex flex-row-reverse">
+    <div className="max-w-screen-l h-full mx-auto flex items-center justify-between">
         <div className="ml-auto flex items-center gap-14"> {/* Added ml-auto to align to the right */}
           {login && (
             
