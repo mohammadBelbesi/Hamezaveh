@@ -192,16 +192,16 @@ body{
     width: 24px; /* Adjust the width as per your preference */
     height: 24px; /* Adjust the height as per your preference */
     text-align: center;
-    background-color: #fbae8afc; /* Add background-color */
+    background-color: #fbae8afc; 
     color: white; /* Add color */
     border-radius: 50%; /* Add border-radius to create a circular shape */
     position: absolute;
     top: 0;
     right: 0;
     transform: translate(50%, -50%);
-    display: flex; /* Add display: flex */
-    justify-content: center; /* Add justify-content: center */
-    align-items: center; /* Add align-items: center */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
   }
   
 
@@ -245,8 +245,8 @@ body{
   
       /* Responsive styles for image and number inside cart */
   .navbar img.logo {
-    width: 46px; /* Adjust the width as per your requirement */
-    height: 32px; /* Adjust the height as per your requirement */
+    width: 46px; 
+    height: 32px; 
     margin: auto;
     display: block;
   }
@@ -257,15 +257,15 @@ body{
     bottom: unset;
     left: unset;
     transform: translate(50%, -50%);
-    font-size: 16px; /* Adjust the font size as per your requirement */
-    width: 46px; /* Adjust the width as per your requirement */
-    height: 46px; /* Adjust the height as per your requirement */
+    font-size: 16px;
+    width: 46px; 
+    height: 46px; 
   }
 
   /* Responsive styles for login emoji */
   .navbar img.h-16.w-16.mx-auto {
-    width: 46px; /* Adjust the width as per your requirement */
-    height: 46px; /* Adjust the height as per your requirement */
+    width: 46px; 
+    height: 46px; 
     margin: auto;
     display: block;
   }
