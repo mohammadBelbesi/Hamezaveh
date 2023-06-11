@@ -97,7 +97,7 @@ const Header = () => {
                 onMouseOver={(e) => { e.target.style.opacity = 0.8; e.target.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.2)'; }}
                 onMouseOut={(e) => { e.target.style.opacity = 1; e.target.style.boxShadow = 'none'; }}
               />
-              <span className="ml-2  text-2xl font-light text-white "> {userName} שלום </span>
+              <span className="ml-2  text-2xl font-light text-white ">שלום {userName} </span>
             </div>
           )}
 
@@ -130,24 +130,24 @@ const Header = () => {
           </Link>
 
           <ul className="flex items-center gap-14"> {/* Added gap-4 for equal spacing */}
-            <li
-              className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
-              onClick={handleEventsClick1} // Add onClick event handler
-            >
-              אירועים
-            </li>
+            <Link to="/shop">
+              <li className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">חנות</li>
+            </Link>
+            <Link to="/about">
+              <li className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">אודות</li>
+            </Link>
             <li
               className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
               onClick={handleEventsClick2} // Add onClick event handler
             >
               מוצרים
             </li>
-            <Link to="/about">
-              <li className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">אודות</li>
-            </Link>
-            <Link to="/shop">
-              <li className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">חנות</li>
-            </Link>
+            <li
+              className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
+              onClick={handleEventsClick1} // Add onClick event handler
+            >
+              אירועים
+            </li>
             <Link to="/home">
               <li className="hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">דף הבית</li>
             </Link>
