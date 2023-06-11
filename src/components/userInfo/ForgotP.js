@@ -27,7 +27,7 @@ const ForggotP = () => {
       }, 2000); // Delay navigation for 2 seconds
     } catch (error) {
       setMessage("!נא לבדוק שהמייל תקין");
-      console.log("Error:", error)
+      //console.log("Error:", error)
 
     } 
   };

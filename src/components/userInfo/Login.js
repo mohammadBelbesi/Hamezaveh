@@ -36,7 +36,7 @@ const Login = () => {
 
     try {
       await logIn(email, password);
-      console.log("login" + isLogin);
+      //console.log("login" + isLogin);
 
       const a = collection(database, "users"); // checking if input email is an Admin
       const b = query(a, where("email", "==", email));
@@ -54,12 +54,12 @@ const Login = () => {
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
         if (userData.isAdmin) {
-          console.log(email);
+          //console.log(email);
           navigate("/admin/qowiuepr%&$qwej82309148zcmxv-nczxvnjkla&d%&$as&djkd-naosd879-23nmNFJ-AKSDL-FNFND-JASLFN%&$ALNF-U983$24732-47%&$67NKA-NSM%&$$ASFD-ASDFAD%&$$F883-283877KK$KLMV%&$NDG$HYKE9/");
         } else {
           navigate("/home");
           dispatch(setLogin(true));
-          console.log(email);
+          //console.log(email);
         }
       } else {
         setError("Error logging in. Please try again.");

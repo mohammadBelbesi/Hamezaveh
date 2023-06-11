@@ -128,9 +128,9 @@ export function ShoppingPage(){
         })
 
         //check if the total is zero or not 
-        console.log(bazarTotal)
+        //console.log(bazarTotal)
         if(bazarTotal != 0){
-          console.log('if(bazarTotal != 0){')
+          //console.log('if(bazarTotal != 0){')
           setTotalPrice(bazarTotal)
         }
         

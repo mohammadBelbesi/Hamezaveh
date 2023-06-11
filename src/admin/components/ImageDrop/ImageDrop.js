@@ -15,7 +15,7 @@ function DragAndDrop({ imageStartUrl, imageID, update }) {
   }
 
   function handleDrop(event) {
-    console.log(update);
+    //console.log(update);
 
     event.preventDefault();
     const file = event.dataTransfer.files[0];

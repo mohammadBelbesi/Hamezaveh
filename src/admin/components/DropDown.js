@@ -7,7 +7,7 @@ export default function DropDown({
   createLabel,
   onChange,
 }) {
-  console.log(initialValue);
+  //console.log(initialValue);
 
   const initialOptions = labels.map((label) => ({
     label,

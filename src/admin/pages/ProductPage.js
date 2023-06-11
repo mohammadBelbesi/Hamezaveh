@@ -31,7 +31,7 @@ function ProductPage() {
     // console.log(`select ${productID} for ${selectedEvent.id}`);
 
     const newProductsList = [...selectedEvent.products, productID_toSelect];
-    console.log(newProductsList);
+    //console.log(newProductsList);
 
     setSelectedEvent({
       ...selectedEvent,
@@ -54,7 +54,7 @@ function ProductPage() {
     const newProductsList = selectedEvent.products.filter((productID) => {
       return productID_toUnselect !== productID;
     });
-    console.log(newProductsList);
+    //console.log(newProductsList);
 
     setSelectedEvent({
       ...selectedEvent,

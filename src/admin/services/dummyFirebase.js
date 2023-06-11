@@ -93,17 +93,17 @@ export const getDummyOrders = async () => {
 };
 
 export async function updateEvent(id, update) {
-  console.log(updateEvent, update);
+  //console.log(updateEvent, update);
 }
 
 export async function updateUser(id, update) {
-  console.log(updateUser, update);
+  //console.log(updateUser, update);
 }
 
 export async function updateOrder(id, update) {
-  console.log(updateOrder, update);
+  //console.log(updateOrder, update);
 }
 
 export async function updateProduct(id, update) {
-  console.log(updateProduct, update);
+  //console.log(updateProduct, update);
 }

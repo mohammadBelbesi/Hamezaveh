@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { pic1, pic2, pic3, pic4, pic5, pic6, pic7, legumes, organic } from "../../bannerImages/bannerIndex";
-import { HiArrowRight, HiArrowLeft } from "react-icons/hi";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const Banner = () => {
   const data = [
@@ -11,8 +11,6 @@ const Banner = () => {
     [
       { src: pic3, alt: 'pic3' },
       { src: pic1, alt: 'pic1' },
-
-      
     ],
     [
       { src: pic5, alt: 'pic5' },
@@ -22,7 +20,6 @@ const Banner = () => {
       { src: pic7, alt: 'pic7' },
       { src: pic4, alt: 'pic4' },
       { src: organic, alt: 'organic' },
-      
     ]
   ];
 
@@ -36,30 +33,37 @@ const Banner = () => {
     setCurrentSlide((prev) => (prev === data.length - 1 ? 0 : prev + 1));
   };
 
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 4000); // Automatically change slide every 4 seconds
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div>
+    <div className="flex justify-center">
       <div className="w-screen relative h-[650px]">
         <div className="bannerImages object-cover flex flex-shrink-0 mx-auto overflow-x-hidden">
-        {/* transition-transform duration-1000 */}
+          {/* transition-transform duration-1000 */}
           {data[currentSlide].map((item, index) => (
             <img key={index} 
-            src={item.src} 
-            alt={item.alt} 
-            loading="priority" />
+              src={item.src} 
+              alt={item.alt} 
+              loading="priority" 
+            />
           ))}
         </div>
-        <div className="absolute w-fit left-0 right-0 mx-auto flex gap-10 bottom-44">
+        <div className="absolute left-4 right-4 top-1/2 transform -translate-y-1/2 flex justify-between">
+          
           <div
             onClick={nextSlide}
-            className="w-14 h-12 border-[3px] border-black flex items-center justify-center hover:cursor-pointer hover:bg-green-me hover:text-white"
+            className="w-14 h-14 rounded-full hover:cursor-pointer bg-white bg-opacity-50 flex items-center justify-center hover:bg-opacity-100 my-bg-color hover:text-white"
           >
-            <HiArrowRight />
+            <FaChevronRight className="text-3xl" />
           </div>
           <div
             onClick={prevSlide}
-            className="w-14 h-12 border-[3px] border-black flex items-center justify-center hover:cursor-pointer hover:bg-green-me hover:text-white"
+            className="w-14 h-14 rounded-full hover:cursor-pointer bg-white bg-opacity-50 flex items-center justify-center hover:bg-opacity-100  my-bg-color hover:text-white"
           >
-            <HiArrowLeft />
+            <FaChevronLeft className="text-3xl" />
           </div>
         </div>
       </div>

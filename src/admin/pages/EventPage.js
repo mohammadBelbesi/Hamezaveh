@@ -12,7 +12,7 @@ function EventPage() {
     const activateGetObjects = async () => {
       const recievedObjects = await getEvents();
       setObjects(recievedObjects);
-      console.log(recievedObjects);
+      //console.log(recievedObjects);
     };
     activateGetObjects();
   }, []);

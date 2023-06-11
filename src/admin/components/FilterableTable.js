@@ -8,7 +8,7 @@ function FilterableTable({ columns, data, filters, update }) {
 
   useEffect(() => {
     setFilteredData(tableData.filter(selectedFilter.filterFunction));
-    console.log("useEffect");
+    //console.log("useEffect");
   }, [selectedFilter]);
 
   return (

@@ -55,16 +55,16 @@ const Header = () => {
         navigate("/home");
         dispatch(resetCart()); // Clear the productData state
         dispatch(setLogin(false)); // Set isLogin to false
-        console.log("logout successfully");
+        //console.log("logout successfully");
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
       });
   };
 
   useEffect(() => {
     setIsLogin(login);
-    console.log(login);
+    //console.log(login);
 
     if (login && userEmail) {
       const fetchUserName = async () => {
@@ -74,7 +74,7 @@ const Header = () => {
         if (querySnapshot.size > 0) {
           const userDoc = querySnapshot.docs[0];
           const userData = userDoc.data();
-          console.log(userData.name)
+          //console.log(userData.name)
           setUserName(userData.firstname);
         }
       };

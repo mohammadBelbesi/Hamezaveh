@@ -37,7 +37,7 @@ const Events = () => {
         });
 
         setEventProducts(eventProductsData);
-        console.log("Location:", selectedEvent.location); // Print the location in the console
+        //console.log("Location:", selectedEvent.location); // Print the location in the console
       }
     };
 

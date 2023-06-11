@@ -101,9 +101,9 @@ const Cart = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         const redirectUrl = data.Data.RedirectURL;
-        console.log(redirectUrl);
+        //console.log(redirectUrl);
         window.open(redirectUrl, "_blank");
         dispatch(resetCart()); // Dispatch resetCart action
       })
@@ -118,7 +118,7 @@ const Cart = () => {
       {isLogin ? (
         <div>
           <img className='w-screen h-cartPage object-cover' src={cartCover} alt='cartCover' />
-          <div className='max-w-screen-xl mx-auto py-20 flex'>
+          <div className='max-w-screen-xl mx-auto py-10 flex'>
             {!isCartEmpty ? (
               <>
                 <CartItem />
