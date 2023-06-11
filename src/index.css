@@ -170,3 +170,108 @@ body{
 .w-screen-banner{
     width: 98.9
 }
+.navbar {
+    width: 100%;
+    z-index: 999;
+    padding: 30px 0;
+    transition: all 0.3s ease;
+    display: flex; /* Add display: flex */
+    justify-content: space-between; /* Add justify-content: space-between */
+    align-items: center; /* Add align-items: center */
+    background-color: rgb(87 121 91); /* Add background-color */
+    color: #fbae8afc; /* Add color */
+  }
+
+  .navbar ul {
+    display: flex; /* Add display: flex */
+    list-style: none; /* Add list-style: none */
+  }
+  
+.navbar .zero {
+    font-size: 14px; /* Adjust the font size as per your preference */
+    width: 24px; /* Adjust the width as per your preference */
+    height: 24px; /* Adjust the height as per your preference */
+    text-align: center;
+    background-color: #fbae8afc; 
+    color: white; /* Add color */
+    border-radius: 50%; /* Add border-radius to create a circular shape */
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+  }
+  
+
+@media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      height: auto;
+      position: static;
+    }
+  
+    .navbar .max-w-screen-l {
+      padding: 1rem;
+    }
+  
+    .navbar .ml-auto {
+      margin-top: 1rem;
+      justify-content: center;
+    }
+  
+    .navbar ul {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  
+    .navbar li {
+      margin: 0.5rem 0;
+    }
+  
+    .navbar .logo {
+      width: 100%;
+    }
+  
+    .navbar .zero {
+      top: auto;
+      right: auto;
+      bottom: -10px;
+      left: -10px;
+      transform: none;
+    }
+  
+      /* Responsive styles for image and number inside cart */
+  .navbar img.logo {
+    width: 46px; 
+    height: 32px; 
+    margin: auto;
+    display: block;
+  }
+
+  .navbar .zero {
+    top: 50%;
+    right: 50%;
+    bottom: unset;
+    left: unset;
+    transform: translate(50%, -50%);
+    font-size: 16px;
+    width: 46px; 
+    height: 46px; 
+  }
+
+  /* Responsive styles for login emoji */
+  .navbar img.h-16.w-16.mx-auto {
+    width: 46px; 
+    height: 46px; 
+    margin: auto;
+    display: block;
+  }
+}
+  
+
+  
+
+
