@@ -83,7 +83,7 @@ const Events = () => {
               <td className="tableBords" colSpan={formattedEvents.length}>
                 {selectedEvent && (
                   <div>
-                    <p>אל תבזבזו את האירוע! אנחנו מחכים לכם (:</p>
+                    <p>אל תבזבזו את האירוע! אנחנו מחכים לכם &#128521;</p>
                     <p>
                     מיקום: {selectedEvent.location}
                       {location && (
