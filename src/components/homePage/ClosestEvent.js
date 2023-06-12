@@ -88,7 +88,7 @@ const ClosestEvent = () => {
                 <td className="tableBords" colSpan={nearestEvent ? 1 : 0}>
                   {nearestEvent && (
                     <div>
-                      <p>אל תבזבזו את האירוע! אנחנו מחכים לכם (:</p>
+                      <p>אל תבזבזו את האירוע! אנחנו מחכים לכם &#128521;</p>
                       <p>
                       מיקום: {nearestEvent.place}
                         {location && (

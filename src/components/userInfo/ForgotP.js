@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { useUserAuth } from "../../context/UserAuthContext";
 import { Button } from "react-bootstrap";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 
 const ForggotP = () => {
@@ -21,7 +23,10 @@ const ForggotP = () => {
 
     try {
       await ForggotPass(email);
-      setMessage("המייל לשחזור סיסמה נשלח לך בהצלחה ");// Send the password reset email using Firebase
+      toast.success(<span>המייל נשלח בהצלחה &#128516;</span>);
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
       setTimeout(() => {
         navigate("/login");
       }, 2000); // Delay navigation for 2 seconds
@@ -60,6 +65,10 @@ const ForggotP = () => {
                   </Link>
         </div>
       </Form>
+      <ToastContainer position="top-right" autoClose={3500}
+      closeButton={false}
+      toastClassName="custom-toast"
+      bodyClassName="custom-toast-body" />
     </div>
   );
 };
