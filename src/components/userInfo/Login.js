@@ -112,14 +112,14 @@ const Login = () => {
         <hr />
         <div className="flex gap-2">
           אין לך חשבון ?<Link to="/signup" style={{ color: "black" }} className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500">
-            <div className="text-red-600">
+            <div className="text-red-500">
               הרשמה 
             </div>
             
           </Link>{" "}
           או{" "}
           <Link to="/forgotpassword" style={{ color: "black" }} className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500" >
-            <div className="text-red-600">
+            <div className="text-red-500">
               שכחתי סיסמה
             </div>
           </Link>

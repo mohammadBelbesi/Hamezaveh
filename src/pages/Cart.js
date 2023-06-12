@@ -197,6 +197,7 @@ const Cart = () => {
                       {isMember ? (totalAmt - totalAmt * 0.3).toFixed(2) : totalAmt.toFixed(2)} ₪
                     </span>
                   </p>
+                  <p className='font-titleFont font-semibold flex justify-between mt-6 text-red-500'>הערה: בלחיצה על עבור לתשלום , אתם מועברים לאתר חיצוני שהתשלום באחריותם.</p>
                   <button onClick={() => pay(totalAmt)} className='text-base bg-red-500 text-white w-full py-3 mt-6 hover:bg-red-800 duration-300'>
                     עבור לתשלום
                   </button>
@@ -226,8 +227,8 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className='flex flex-col items-center mx-auto' style={{ border: 'none', outline: 'none', width: '100%', minHeight: '200px', marginBottom: '141px' }}>
-          <p className='text-3xl mt-4 font-medium text-red-900'>אתה צריך להיכנס לחשבונך כדי לראות את סל הקניות</p>
+        <div className='flex flex-col items-center mx-auto' style={{ border: 'none', outline: 'none', width: '100%', minHeight: '200px', marginBottom: '145px' }}>
+          <p className='text-3xl mt-4 font-medium text-red-500'>אתה צריך להיכנס לחשבונך כדי לראות את סל הקניות</p>
         </div>
       )}
       <Footer />

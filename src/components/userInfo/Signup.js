@@ -112,7 +112,7 @@ const Signup = () => {
         <br/>
         <div className="flex gap-2">
           יש לך כבר חשבון ?<Link to="/login" className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500">
-                              <div className="text-red-600">
+                              <div className="text-red-500">
                                 כניסה למערכת  
                               </div>
                               <br></br>

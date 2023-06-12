@@ -54,7 +54,7 @@ const ForggotP = () => {
         </Button>
         <div className="flex gap-2">
          נזכרת ? <Link to="/login" className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500" >
-                    <div className="text-red-600">
+                    <div className="text-red-500">
                       כניסה למערכת
                     </div>
                   </Link>
