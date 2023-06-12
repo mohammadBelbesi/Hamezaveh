@@ -132,15 +132,6 @@ const Signup = () => {
         </Form>
         <br />
         <div className="flex gap-2">
-<<<<<<< HEAD
-          יש לך כבר חשבון ?<Link to="/login" className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500">
-                              <div className="text-red-500">
-                                כניסה למערכת  
-                              </div>
-                              <br></br>
-                              <br></br>
-                            </Link>
-=======
           יש לך כבר חשבון ?
           <Link
             to="/login"
@@ -151,7 +142,6 @@ const Signup = () => {
             <br></br>
           </Link>
         </div>
->>>>>>> cbcad303c84be2fd23d9fb5fd23662259ac5b408
       </div>
       <ToastContainer position="top-right" autoClose={3500}
       closeButton={false}
