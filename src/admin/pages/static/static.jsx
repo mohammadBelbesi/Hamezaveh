@@ -8,7 +8,7 @@ import { ViewStaticEvent } from "./componants/static/viewStatic/viewStaticEvent"
 
 //import from Firebase
 import { database as db } from "../../../firebase";
-import { getDoc, getDocs, collection } from "firebase/firestore";
+import { getDocs, collection } from "firebase/firestore";
 
 //import make page to pdf
 import html2canvas from "html2canvas";
@@ -177,7 +177,7 @@ export const Static = () => {
   };
 
   const generatePDF = () => {
-    const element = document.body; // Capture the entire page by selecting the body element
+    const element = document.getElementById('pdf-content'); // Capture the entire page by selecting the body element
 
     html2canvas(element).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
