@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {  deleteItem , decrementTotal } from '../../../redux/bazarSlice';
 
 //maine componant to export
-export const Card = ( { id,imageUrl, title, price ,howMuchToIncrease , typeOfProduct ,changeTheList , isClickMain ,quntatyMain}) => {
+export const Card = ( { id,imageUrl, title, price ,howMuchToIncrease , typeOfProduct ,changeTheList , isClickMain ,quntatyMain , funcToRemovePrice}) => {
   const dispatch = useDispatch();
 
 //init varaible 
@@ -20,7 +20,7 @@ export const Card = ( { id,imageUrl, title, price ,howMuchToIncrease , typeOfPro
 
 useEffect(() => {//when the selectProduct is changed we are here
 
-  if(isTrue == false){
+  if(isTrue === false){
     if(isClicked){
       changeTheList(selectProduct , isClicked)
     }else{
@@ -33,7 +33,7 @@ useEffect(() => {//when the selectProduct is changed we are here
 
 useEffect(() => {//when the is clicked changed we are here
 
-  if( isTrue == false ){
+  if( isTrue === false ){
 
     if(isClicked){
       let NewSelectProduct ={
@@ -59,7 +59,8 @@ useEffect(() => {//when the is clicked changed we are here
       if(isTrue){
         setIsTrue(false)
         dispatch(deleteItem(id)) 
-        dispatch(decrementTotal( quntaty * price )) 
+        dispatch(decrementTotal( quntaty * price ))
+        funcToRemovePrice(quntaty * price) 
       }else{
         setIsClicked(!isClicked)
       }

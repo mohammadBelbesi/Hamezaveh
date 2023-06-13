@@ -129,8 +129,8 @@ export function ShoppingPage(){
 
         //check if the total is zero or not 
         //console.log(bazarTotal)
-        if(bazarTotal != 0){
-          //console.log('if(bazarTotal != 0){')
+        if(bazarTotal !== 0){
+
           setTotalPrice(bazarTotal)
         }
         
@@ -192,6 +192,11 @@ export function ShoppingPage(){
     dispatch(setSelectEvent(event))
   }
 
+  //decrease from the total
+  const updateTheTotal = (dicrease) => {
+    setTotalPrice(totalPrice - dicrease)
+  }
+
   
   return (
     <>
@@ -228,6 +233,7 @@ export function ShoppingPage(){
                   changeTheList={addToListOfProduct}
                   isClickMain={isTrue}
                   quntatyMain={quantity}
+                  funcToRemovePrice = {updateTheTotal}
                 />
               );
             })}
