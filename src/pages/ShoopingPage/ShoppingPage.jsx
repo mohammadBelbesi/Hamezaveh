@@ -13,8 +13,8 @@ import HomeFooter from "../../components/homePage/Footer";
 
 //import from Firebase
 import { database ,storage } from '../../firebase'
-import { getDoc ,getDocs, collection  } from 'firebase/firestore'
-import { async } from '@firebase/util'
+import { getDocs, collection  } from 'firebase/firestore'
+// import { async } from '@firebase/util'
 import { ref , listAll ,getDownloadURL } from 'firebase/storage'
 
 
@@ -35,6 +35,7 @@ export function ShoppingPage(){
   const [eventDate , setEventDate] = useState([])
   const [selectedEvent, setSelectedEvent] = useState({});
   const [listOfImg, setListOfImg] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   //collection reference 
   const eventsCollectionRef = collection(database , "events")
@@ -137,7 +138,7 @@ export function ShoppingPage(){
       }catch(err){
         console.error(err)
       }
-
+      setIsLoading(false)
     }
 
     if (dataFetchedRef.current) return
@@ -203,50 +204,57 @@ export function ShoppingPage(){
       <Header />
       {isLogin ? (
         <>
-          <Dropdown
-            events={eventDate.map((obj) => {
-              return { date: obj.date.split('T')[0], id: obj.id };
-            })}
-            setSelectedOption={selectEvent}
-            selectedOption={selectedEvent}
-          />
-          <div className='ContainerOfCard'>
-            {productsForSelectionEvent.map((product, index) => {
-              let isTrue = false;
-              let quantity = 0;
-              if (bazarProduct.length > 0){
-                let check = bazarProduct.findIndex((item) => item.idProduct === product['id']);
-                if (check !== -1){
-                  isTrue = true;
-                  quantity = bazarProduct[check]['QuantityOfProduct'] / 100;
-                }
-              }
-              return (
-                <Card
-                  id={product['id']}
-                  key={product['id']}
-                  imageUrl={func(product)}
-                  title={product['name']}
-                  price={product['price']}
-                  howMuchToIncrease={100}
-                  typeOfProduct='גרם'
-                  changeTheList={addToListOfProduct}
-                  isClickMain={isTrue}
-                  quntatyMain={quantity}
-                  funcToRemovePrice = {updateTheTotal}
-                />
-              );
-            })}
-          </div>
-          <Footer getPrice={totalPrice} />
+          {isLoading ? (
+            <div className='center'>טוען...</div>
+          ) : (
+            <>
+              <Dropdown
+                events={eventDate.map((obj) => {
+                  return { date: obj.date.split('T')[0], id: obj.id };
+                })}
+                setSelectedOption={selectEvent}
+                selectedOption={selectedEvent}
+              />
+              <div className='ContainerOfCard'>
+                {productsForSelectionEvent.map((product, index) => {
+                  let isTrue = false;
+                  let quantity = 0;
+                  if (bazarProduct.length > 0){
+                    let check = bazarProduct.findIndex((item) => item.idProduct === product['id']);
+                    if (check !== -1){
+                      isTrue = true;
+                      quantity = bazarProduct[check]['QuantityOfProduct'] / 100;
+                    }
+                  }
+                  return (
+                    <Card
+                      id={product['id']}
+                      key={product['id']}
+                      imageUrl={func(product)}
+                      title={product['name']}
+                      price={product['price']}
+                      howMuchToIncrease={100}
+                      typeOfProduct='גרם'
+                      changeTheList={addToListOfProduct}
+                      isClickMain={isTrue}
+                      quntatyMain={quantity}
+                      funcToRemovePrice={updateTheTotal}
+                    />
+                  );
+                })}
+              </div>
+              <Footer getPrice={totalPrice} />
+            </>
+          )}
         </>
       ) : (
         <>
-        <div className='flex flex-col items-center mx-auto' style={{ border: 'none', outline: 'none', width: '100%', minHeight: '200px', marginBottom: '145px' }}>
-          <p className='text-3xl mt-4 font-medium text-red-500'>אתה צריך להיכנס לחשבונך כדי לראות את החנות</p>
-        </div>
-        <HomeFooter />
+          <div className='flex flex-col items-center mx-auto' style={{ border: 'none', outline: 'none', width: '100%', minHeight: '200px', marginBottom: '145px' }}>
+            <p className='text-3xl mt-4 font-medium text-red-500'>אתה צריך להיכנס לחשבונך כדי לראות את החנות</p>
+          </div>
+          <HomeFooter />
         </>
       )}
     </>
-  );}  
+  );
+  ;}  
