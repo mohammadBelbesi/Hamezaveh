@@ -51,9 +51,12 @@ export const bazarSlice = createSlice({
             }
           },
           deleteItem: (state, action) => {
-            state.productData = state.productData.filter(
-              (item) => item.idProduct !== action.payload
-            );
+            const itemId = action.payload;
+            const deletedItem = state.productData.find((item) => item.idProduct === itemId);
+            if (deletedItem) {
+              state.total -= deletedItem.PriceProduct * (deletedItem.QuantityOfProduct/100);
+            }
+            state.productData = state.productData.filter((item) => item.idProduct !== itemId);
           },
           resetCart: (state) => {
             state.productData = [];
