@@ -6,7 +6,13 @@ import { useUserAuth } from "../../context/UserAuthContext";
 import { database } from "../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import "../../loginAboutUs.css";
-import { setEmailf, setMember, setLogin, resetCart } from "../../redux/bazarSlice";
+import {
+  setEmailf,
+  setMember,
+  setLogin,
+  resetCart,
+  setAdmin,
+} from "../../redux/bazarSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -54,9 +60,11 @@ const Login = () => {
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
         if (userData.isAdmin) {
+          dispatch(setAdmin(true));
           //console.log(email);
-          navigate("/admin/qowiuepr%&$qwej82309148zcmxv-nczxvnjkla&d%&$as&djkd-naosd879-23nmNFJ-AKSDL-FNFND-JASLFN%&$ALNF-U983$24732-47%&$67NKA-NSM%&$$ASFD-ASDFAD%&$$F883-283877KK$KLMV%&$NDG$HYKE9/");
+          navigate("/admin/");
         } else {
+          dispatch(setAdmin(false));
           navigate("/home");
           dispatch(setLogin(true));
           //console.log(email);
@@ -111,17 +119,21 @@ const Login = () => {
         )}
         <hr />
         <div className="flex gap-2">
-          אין לך חשבון ?<Link to="/signup" style={{ color: "black" }} className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500">
-            <div className="text-red-500">
-              הרשמה 
-            </div>
-            
+          אין לך חשבון ?
+          <Link
+            to="/signup"
+            style={{ color: "black" }}
+            className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500"
+          >
+            <div className="text-red-500">הרשמה</div>
           </Link>{" "}
           או{" "}
-          <Link to="/forgotpassword" style={{ color: "black" }} className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500" >
-            <div className="text-red-500">
-              שכחתי סיסמה
-            </div>
+          <Link
+            to="/forgotpassword"
+            style={{ color: "black" }}
+            className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500"
+          >
+            <div className="text-red-500">שכחתי סיסמה</div>
           </Link>
         </div>
       </div>

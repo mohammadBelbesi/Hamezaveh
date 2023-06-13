@@ -20,6 +20,8 @@ import {
   Route,
 } from "react-router-dom";
 import Complete from "./pages/Complete";
+import { useSelector } from "react-redux";
+import AdminChecker from "./pages/AdminChecker";
 
 const Layout = () => {
   return (
@@ -100,8 +102,8 @@ const router = createBrowserRouter([
         element: <Complete />,
       },
       {
-        path: "/admin/qowiuepr%&$qwej82309148zcmxv-nczxvnjkla&d%&$as&djkd-naosd879-23nmNFJ-AKSDL-FNFND-JASLFN%&$ALNF-U983$24732-47%&$67NKA-NSM%&$$ASFD-ASDFAD%&$$F883-283877KK$KLMV%&$NDG$HYKE9/*",
-        element: <Admin />,
+        path: "/admin/*",
+        element: <AdminChecker />,
       },
     ],
   },
