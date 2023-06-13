@@ -154,7 +154,7 @@ const Cart = () => {
         // console.log(data);
         const redirectUrl = data.Data.RedirectURL;
         //console.log(redirectUrl);
-        window.open(redirectUrl, "http://localhost:3000/home");
+        window.open(redirectUrl);
         // dispatch(resetCart()); // Dispatch resetCart action
       })
       .catch((error) => {
