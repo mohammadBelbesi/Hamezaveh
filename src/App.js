@@ -19,6 +19,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import Complete from "./pages/Complete";
 
 const Layout = () => {
   return (
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <AboutPage />,
+      },
+      {
+        path: "/complete",
+        element: <Complete />,
       },
       {
         path: "/admin/qowiuepr%&$qwej82309148zcmxv-nczxvnjkla&d%&$as&djkd-naosd879-23nmNFJ-AKSDL-FNFND-JASLFN%&$ALNF-U983$24732-47%&$67NKA-NSM%&$$ASFD-ASDFAD%&$$F883-283877KK$KLMV%&$NDG$HYKE9/*",

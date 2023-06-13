@@ -63,7 +63,8 @@ export const Static = () => {
 
     setIsLoading(false);
     reciepts.forEach((elem, ind) => {
-      let dateTemp = elem["eventDate"].split("T")[0];
+      // let dateTemp = elem["eventDate"].split("T")[0];
+      let dateTemp = elem["eventDate"];
 
       if (statics[dateTemp] == undefined) {
         let newStatics = statics;
@@ -177,7 +178,7 @@ export const Static = () => {
   };
 
   const generatePDF = () => {
-    const element = document.getElementById('pdf-content'); // Capture the entire page by selecting the body element
+    const element = document.getElementById("pdf-content"); // Capture the entire page by selecting the body element
 
     html2canvas(element).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");

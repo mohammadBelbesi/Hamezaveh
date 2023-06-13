@@ -1,78 +1,82 @@
 //css import
-import './ShoopingPage.css'
+import "./ShoopingPage.css";
 
-//import function 
-import {Dropdown} from '../../components/shopPage/dropDownMenue/Dropdown'
-import {Card} from '../../components/shopPage/card/card'
-import {Footer} from '../../components/shopPage/footer/footer'
-import { useEffect, useState ,useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { addToCart , deleteItem , resetCart , setSelectEvent , setPrice } from '../../redux/bazarSlice';
+//import function
+import { Dropdown } from "../../components/shopPage/dropDownMenue/Dropdown";
+import { Card } from "../../components/shopPage/card/card";
+import { Footer } from "../../components/shopPage/footer/footer";
+import { useEffect, useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  deleteItem,
+  resetCart,
+  setSelectEvent,
+  setPrice,
+} from "../../redux/bazarSlice";
 import Header from "../../components/homePage/Header";
 import HomeFooter from "../../components/homePage/Footer";
 
 //import from Firebase
-import { database ,storage } from '../../firebase'
-import { getDocs, collection  } from 'firebase/firestore'
+import { database, storage } from "../../firebase";
+import { getDocs, collection } from "firebase/firestore";
 // import { async } from '@firebase/util'
-import { ref , listAll ,getDownloadURL } from 'firebase/storage'
-
+import { ref, listAll, getDownloadURL } from "firebase/storage";
 
 //export the component
-export function ShoppingPage(){
+export function ShoppingPage() {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.bazar.isLogin); // Access isLogin from the bazar slice
   const dataFetchedRef = useRef(false);
 
-  let bazarProduct = useSelector((state) => state.bazar.productData)
-  let bazarTotal = useSelector((state) => state.bazar.total)
+  let bazarProduct = useSelector((state) => state.bazar.productData);
+  let bazarTotal = useSelector((state) => state.bazar.total);
 
-  //init useState 
-  const [totalPrice , setTotalPrice ] = useState(0)
-  const [listOfProduct , setListOfProduct] = useState([])
-  const [products , setProducts] = useState([])
-  const [productsForSelectionEvent , setProductsForSelectionEvent] = useState([])
-  const [eventDate , setEventDate] = useState([])
+  //init useState
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [listOfProduct, setListOfProduct] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [productsForSelectionEvent, setProductsForSelectionEvent] = useState(
+    []
+  );
+  const [eventDate, setEventDate] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState({});
   const [listOfImg, setListOfImg] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  //collection reference 
-  const eventsCollectionRef = collection(database , "events")
-  const productsCollectionRef = collection(database , "products")
-  const imgRefrence = ref(storage , "productImages/")
+  //collection reference
+  const eventsCollectionRef = collection(database, "events");
+  const productsCollectionRef = collection(database, "products");
+  const imgRefrence = ref(storage, "productImages/");
 
-  //function to put the product of selected item 
+  //function to put the product of selected item
   const getTheProduct = () => {
-
-    if(eventDate.length > 0){
-      let ourProducts = []
-      eventDate[selectedEvent['index']]['products'].forEach(function(element){
-        products.forEach(function(elem){
-
+    if (eventDate.length > 0) {
+      let ourProducts = [];
+      eventDate[selectedEvent["index"]]["products"].forEach(function (element) {
+        products.forEach(function (elem) {
           // element == elem['id'] ? ourProducts = [...ourProducts , elem] : ''
-          if(element === elem['id']){
-            ourProducts = [...ourProducts , elem]
+          if (element === elem["id"]) {
+            ourProducts = [...ourProducts, elem];
           }
-        })
-      })
-      setProductsForSelectionEvent(ourProducts)
+        });
+      });
+      setProductsForSelectionEvent(ourProducts);
     }
-  }  
+  };
 
   //update the product when the eventDateChange
-  useEffect( () => {
-    getTheProduct()
-  },[selectedEvent])
+  useEffect(() => {
+    getTheProduct();
+  }, [selectedEvent]);
 
-
-  let bazarSelectEvent = useSelector((state) => state.bazar.selectEvent)
+  let bazarSelectEvent = useSelector((state) => state.bazar.selectEvent);
 
   //function to check if the date valid or not :)
   const isDateInPresent = (date) => {
     const currentDate = new Date();
     const inputDate = new Date(date);
-  
+
     // Set hours, minutes, seconds, and milliseconds to 0 for both dates
     currentDate.setHours(0, 0, 0, 0);
     inputDate.setHours(0, 0, 0, 0);
@@ -87,154 +91,196 @@ export function ShoppingPage(){
       // The input date is the same as the current date
       return true;
     }
-  }
+  };
 
   //get the data from the firestore
-  useEffect( () => {
+  useEffect(() => {
     //get from the firbase the relevent data only on the first rendering the page
     const getEventList = async () => {
-        
-      try{
+      try {
         //get the events from the firebase
-        const events = await getDocs(eventsCollectionRef)
-        const filterEvents = events.docs.map( (doc) =>  { if(isDateInPresent(doc.data()['date'])){return {...doc.data() ,id: doc.id}}} ).filter((obj) => obj !== undefined);
+        const events = await getDocs(eventsCollectionRef);
+        const filterEvents = events.docs
+          .map((doc) => {
+            if (isDateInPresent(doc.data()["date"])) {
+              return { ...doc.data(), id: doc.id };
+            }
+          })
+          .filter((obj) => obj !== undefined);
         //sort the events
-        filterEvents.sort( (a , b) =>  new Date(a['date'].split('T')[0]) - new Date(b['date'].split('T')[0])  )
+        filterEvents.sort(
+          (a, b) =>
+            new Date(a["date"].split("T")[0]) -
+            new Date(b["date"].split("T")[0])
+        );
 
         //get the products from the firebase
-        const products = await getDocs(productsCollectionRef)
-        const filterProducts = products.docs.map( (doc) => { return ({...doc.data() ,id: doc.id}  )} )
-        
-        setProducts(filterProducts)
-        
+        const products = await getDocs(productsCollectionRef);
+        const filterProducts = products.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        });
+
+        setProducts(filterProducts);
+
         //send to the componant dropDown the Events
-        let listOfEvents = filterEvents.map( (obj) => { return{ 'date': obj.date.split('T')[0], 'id': obj.id } }  )
+        let listOfEvents = filterEvents.map((obj) => {
+          return {
+            date: obj.date.split("T")[0],
+            // location: obj.location,
+            id: obj.id,
+          };
+        });
+
+        console.log(listOfEvents);
 
         if (Object.keys(bazarSelectEvent).length === 0) {
-          setSelectedEvent({ 'date' :listOfEvents[0]['date'] , 'id':listOfEvents[0]['id'] ,'index':0})
-          dispatch(setSelectEvent({ 'date' :listOfEvents[0]['date'] , 'id':listOfEvents[0]['id'] ,'index':0}))
+          setSelectedEvent({
+            date: listOfEvents[0]["date"],
+            // location: listOfEvents[0]["location"],
+            test: "test",
+            id: listOfEvents[0]["id"],
+            index: 0,
+          });
+          dispatch(
+            setSelectEvent({
+              date: listOfEvents[0]["date"],
+              // location: listOfEvents[0]["location"],
+              test: "test",
+              id: listOfEvents[0]["id"],
+              index: 0,
+            })
+          );
         } else {
-          setSelectedEvent(bazarSelectEvent)
+          setSelectedEvent(bazarSelectEvent);
         }
 
-        setEventDate(filterEvents)
+        setEventDate(filterEvents);
 
         //get the images from the dataBase
         listAll(imgRefrence).then((response) => {
           response.items.forEach((img) => {
-            getDownloadURL(img).then((url) =>{
-              setListOfImg( (prev) => [...prev , {'img':url , 'path': img['_location']['path_'] } ] )
-            })
-          })
-        })
+            getDownloadURL(img).then((url) => {
+              setListOfImg((prev) => [
+                ...prev,
+                { img: url, path: img["_location"]["path_"] },
+              ]);
+            });
+          });
+        });
 
-        //check if the total is zero or not 
+        //check if the total is zero or not
         //console.log(bazarTotal)
-        if(bazarTotal !== 0){
-
-          setTotalPrice(bazarTotal)
+        if (bazarTotal !== 0) {
+          setTotalPrice(bazarTotal);
         }
-        
-      }catch(err){
-        console.error(err)
+      } catch (err) {
+        console.error(err);
       }
-      setIsLoading(false)
-    }
+      setIsLoading(false);
+    };
 
-    if (dataFetchedRef.current) return
-    dataFetchedRef.current = true
-    getEventList()
-  } ,[])
+    if (dataFetchedRef.current) return;
+    dataFetchedRef.current = true;
+    getEventList();
+  }, []);
 
   //function to add to the list the product that we choise and update the totalPrice
-  const addToListOfProduct = (selectProduct , addProduct) => {
+  const addToListOfProduct = (selectProduct, addProduct) => {
+    //if the situation is to add
+    if (addProduct) {
+      setTotalPrice(totalPrice + selectProduct.totalPrice);
+      dispatch(setPrice(totalPrice + selectProduct.totalPrice));
 
-    //if the situation is to add 
-    if(addProduct){
-      setTotalPrice( totalPrice + selectProduct.totalPrice)
-      dispatch(setPrice(totalPrice + selectProduct.totalPrice))
+      setListOfProduct((addListOfProduct) => {
+        return [...addListOfProduct, selectProduct];
+      });
 
-      setListOfProduct( (addListOfProduct) => {
-        return [...addListOfProduct , selectProduct]
-      } )
+      dispatch(addToCart(selectProduct));
+    } else {
+      //the situation is to unselect the product
+      let index = listOfProduct.findIndex(
+        (element) => element.idProduct === selectProduct
+      );
 
-      dispatch(addToCart(selectProduct))
+      if (index !== -1) {
+        //if the id in the listOfProduct then remove it
 
-    }else{//the situation is to unselect the product 
-      let index = listOfProduct.findIndex( (element)=> element.idProduct === selectProduct )
+        setTotalPrice(totalPrice - listOfProduct[index].totalPrice);
+        dispatch(setPrice(totalPrice - listOfProduct[index].totalPrice));
 
-      if(index !== -1){//if the id in the listOfProduct then remove it 
+        setListOfProduct((addListOfProduct) => {
+          return addListOfProduct.filter(
+            (obj) => obj.idProduct !== selectProduct
+          );
+        });
 
-        setTotalPrice( totalPrice - listOfProduct[index].totalPrice)
-        dispatch(setPrice(totalPrice - listOfProduct[index].totalPrice))
-
-        setListOfProduct( (addListOfProduct) => {
-          return addListOfProduct.filter( obj => obj.idProduct !== selectProduct)
-        } )
-
-        dispatch(deleteItem(selectProduct))
+        dispatch(deleteItem(selectProduct));
       }
     }
+  };
 
-  }
-
-  const func = ( product ) => {
-    for(let i = 0 ; i < listOfImg.length ; i++){
-      if ( ( 'productImages/' + product['id'] ) === listOfImg[i]['path'] ){
-        return listOfImg[i]['img']
+  const func = (product) => {
+    for (let i = 0; i < listOfImg.length; i++) {
+      if ("productImages/" + product["id"] === listOfImg[i]["path"]) {
+        return listOfImg[i]["img"];
       }
     }
-  }
+  };
 
   //Choice The enent
-  const selectEvent = (event) =>{
-    setSelectedEvent(event)
-    dispatch(resetCart())
-    dispatch(setSelectEvent(event))
-  }
+  const selectEvent = (event) => {
+    setSelectedEvent(event);
+    dispatch(resetCart());
+    dispatch(setSelectEvent(event));
+  };
 
   //decrease from the total
   const updateTheTotal = (dicrease) => {
-    setTotalPrice(totalPrice - dicrease)
-  }
+    setTotalPrice(totalPrice - dicrease);
+  };
 
-  
   return (
     <>
       <Header />
       {isLogin ? (
         <>
           {isLoading ? (
-            <div className='center'>טוען...</div>
+            <div className="center">טוען...</div>
           ) : (
             <>
               <Dropdown
                 events={eventDate.map((obj) => {
-                  return { date: obj.date.split('T')[0], id: obj.id };
+                  return {
+                    date: obj.date.split("T")[0],
+                    id: obj.id,
+                    // location: obj.location,
+                  };
                 })}
                 setSelectedOption={selectEvent}
                 selectedOption={selectedEvent}
               />
-              <div className='ContainerOfCard'>
+              <div className="ContainerOfCard">
                 {productsForSelectionEvent.map((product, index) => {
                   let isTrue = false;
                   let quantity = 0;
-                  if (bazarProduct.length > 0){
-                    let check = bazarProduct.findIndex((item) => item.idProduct === product['id']);
-                    if (check !== -1){
+                  if (bazarProduct.length > 0) {
+                    let check = bazarProduct.findIndex(
+                      (item) => item.idProduct === product["id"]
+                    );
+                    if (check !== -1) {
                       isTrue = true;
-                      quantity = bazarProduct[check]['QuantityOfProduct'] / 100;
+                      quantity = bazarProduct[check]["QuantityOfProduct"] / 100;
                     }
                   }
                   return (
                     <Card
-                      id={product['id']}
-                      key={product['id']}
+                      id={product["id"]}
+                      key={product["id"]}
                       imageUrl={func(product)}
-                      title={product['name']}
-                      price={product['price']}
+                      title={product["name"]}
+                      price={product["price"]}
                       howMuchToIncrease={100}
-                      typeOfProduct='גרם'
+                      typeOfProduct="גרם"
                       changeTheList={addToListOfProduct}
                       isClickMain={isTrue}
                       quntatyMain={quantity}
@@ -249,12 +295,23 @@ export function ShoppingPage(){
         </>
       ) : (
         <>
-          <div className='flex flex-col items-center mx-auto' style={{ border: 'none', outline: 'none', width: '100%', minHeight: '200px', marginBottom: '145px' }}>
-            <p className='text-3xl mt-4 font-medium text-red-500'>אתה צריך להיכנס לחשבונך כדי לראות את החנות</p>
+          <div
+            className="flex flex-col items-center mx-auto"
+            style={{
+              border: "none",
+              outline: "none",
+              width: "100%",
+              minHeight: "200px",
+              marginBottom: "145px",
+            }}
+          >
+            <p className="text-3xl mt-4 font-medium text-red-500">
+              אתה צריך להיכנס לחשבונך כדי לראות את החנות
+            </p>
           </div>
           <HomeFooter />
         </>
       )}
     </>
   );
-  ;}  
+}

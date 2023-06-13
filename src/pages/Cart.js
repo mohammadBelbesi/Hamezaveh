@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { cartCover } from '../assets/assetsindex';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { cartCover } from "../assets/assetsindex";
 import Header from "../components/homePage/Header";
 import Footer from "../components/homePage/Footer";
-import CartItem from '../components/CartItem';
+import CartItem from "../components/CartItem";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import { resetCart ,setLogin} from '../redux/bazarSlice';
-import { auth, database } from '../firebase';
+import { resetCart, setLogin } from "../redux/bazarSlice";
+import { auth, database } from "../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
-
-
-
+import domain from "../constants/domain";
 
 const Cart = () => {
   const productData = useSelector((state) => state.bazar.productData);
@@ -50,7 +48,7 @@ const Cart = () => {
   useEffect(() => {
     setLogin(login);
     //console.log(login);
-  
+
     if (login && userEmail) {
       const fetchUserName = async () => {
         const usersCollectionRef = collection(database, "users");
@@ -63,7 +61,7 @@ const Cart = () => {
           setPhone(userData.phone);
         }
       };
-  
+
       fetchUserName();
     }
   }, [login, userEmail]);
@@ -85,82 +83,82 @@ const Cart = () => {
     const finalTotalAmt = isMember ? totalAmt - totalAmt * 0.3 : totalAmt;
     const url = "https://app.sumit.co.il/billing/payments/beginredirect/";
     const body = {
-      "Customer": {
-        "ExternalIdentifier": null,
-        "NoVAT": null,
-        "SearchMode": 0,
-        "Name": userName,
-        "Phone": Phone,
-        "EmailAddress": userEmail,
-        "City": null,
-        "Address": null,
-        "ZipCode": null,
-        "CompanyNumber": null,
-        "ID": null,
-        "Folder": null
+      Customer: {
+        ExternalIdentifier: null,
+        NoVAT: null,
+        SearchMode: 0,
+        Name: userName,
+        Phone: Phone,
+        EmailAddress: userEmail,
+        City: null,
+        Address: null,
+        ZipCode: null,
+        CompanyNumber: null,
+        ID: null,
+        Folder: null,
       },
-      "Items": [
+      Items: [
         {
-          "Item": {
-            "ID": null,
-            "Name": null,
-            "Description": null,
-            "Price": null,
-            "Currency": null,
-            "Cost": null,
-            "ExternalIdentifier": null,
-            "SKU": null,
-            "SearchMode": null
+          Item: {
+            ID: null,
+            Name: null,
+            Description: null,
+            Price: null,
+            Currency: null,
+            Cost: null,
+            ExternalIdentifier: null,
+            SKU: null,
+            SearchMode: null,
           },
-          "Quantity": 1,
-          "UnitPrice": finalTotalAmt,
-          "Total": null,
-          "Currency": null,
-          "Description": null
-        }
+          Quantity: 1,
+          UnitPrice: finalTotalAmt,
+          Total: null,
+          Currency: null,
+          Description: null,
+        },
       ],
-      "VATIncluded": true,
-      "DocumentType": null,
-      "RedirectURL": "http://localhost:3000/home",
-      "CancelRedirectURL": null,
-      "ExternalIdentifier": null,
-      "MaximumPayments": null,
-      "SendUpdateByEmailAddress": null,
-      "ExpirationHours": null,
-      "Theme": null,
-      "Language": null,
-      "Header": null,
-      "UpdateOrganizationOnSuccess": null,
-      "UpdateOrganizationOnFailure": null,
-      "UpdateCustomerOnSuccess": null,
-      "DocumentDescription": null,
-      "DraftDocument": null,
-      "AutomaticallyRedirectToProviderPaymentPage": null,
-      "IPNURL": null,
-      "Credentials": {
-        "CompanyID": 61294932,
-        "APIKey": "Gy2gopJM25FoBIRImOQCyUgJO5gp6ONTNwskd4TynjKPjKkTTb"
+      VATIncluded: true,
+      DocumentType: null,
+      RedirectURL: "http://localhost:3000/complete",
+      CancelRedirectURL: null,
+      ExternalIdentifier: null,
+      MaximumPayments: null,
+      SendUpdateByEmailAddress: null,
+      ExpirationHours: null,
+      Theme: null,
+      Language: null,
+      Header: null,
+      UpdateOrganizationOnSuccess: null,
+      UpdateOrganizationOnFailure: null,
+      UpdateCustomerOnSuccess: null,
+      DocumentDescription: null,
+      DraftDocument: null,
+      AutomaticallyRedirectToProviderPaymentPage: null,
+      IPNURL: null,
+      Credentials: {
+        CompanyID: 61294932,
+        APIKey: "Gy2gopJM25FoBIRImOQCyUgJO5gp6ONTNwskd4TynjKPjKkTTb",
       },
-      "ResponseLanguage": null
+      ResponseLanguage: null,
     };
 
     fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         // console.log(data);
         const redirectUrl = data.Data.RedirectURL;
         //console.log(redirectUrl);
         window.open(redirectUrl, "http://localhost:3000/home");
-        dispatch(resetCart()); // Dispatch resetCart action
+        // dispatch(resetCart()); // Dispatch resetCart action
       })
-      .catch(error => {
-        console.error('Error:', error);
+      .catch((error) => {
+        console.error("Error:", error);
       });
   }
 
@@ -169,47 +167,64 @@ const Cart = () => {
       <Header />
       {isLogin ? (
         <div>
-          <img className='w-screen h-cartPage object-cover' src={cartCover} alt='cartCover' />
-          <div className='max-w-screen-xl mx-auto py-10 flex'>
+          <img
+            className="w-screen h-cartPage object-cover"
+            src={cartCover}
+            alt="cartCover"
+          />
+          <div className="max-w-screen-xl mx-auto py-10 flex">
             {!isCartEmpty ? (
               <>
                 <CartItem />
-                <div className='w-1/3 bg-[#fafafa] py-6 px-4'>
-                  <div className='flex flex-col gap-6 border-b-[1px] border-b-gray-400 pb-6'>
-                    <h2 className='text-2xl font-medium'>סכום העגלה</h2>
-                    <p className='flex items-center gap-4 text-base'>
-                      סכום{' '}
-                      <span className='font-titleFont font-bold text-lg'>
+                <div className="w-1/3 bg-[#fafafa] py-6 px-4">
+                  <div className="flex flex-col gap-6 border-b-[1px] border-b-gray-400 pb-6">
+                    <h2 className="text-2xl font-medium">סכום העגלה</h2>
+                    <p className="flex items-center gap-4 text-base">
+                      סכום{" "}
+                      <span className="font-titleFont font-bold text-lg">
                         {totalAmt} ₪
                       </span>
                     </p>
                   </div>
-                  <p className='font-titleFont font-semibold flex justify-between mt-6'>
-                    {isMember && 
-                      <span className='text-lg'>
-                        הנחת חבר מעודון 30%
-                      </span>
-                    }
+                  <p className="font-titleFont font-semibold flex justify-between mt-6">
+                    {isMember && (
+                      <span className="text-lg">הנחת חבר מעודון 30%</span>
+                    )}
                   </p>
-                  <p className='font-titleFont font-semibold flex justify-between mt-6'>
-                    הסכום הסופי{' '}
-                    <span className='text-xl font-bold'>
-                      {isMember ? (totalAmt - totalAmt * 0.3).toFixed(2) : totalAmt.toFixed(2)} ₪
+                  <p className="font-titleFont font-semibold flex justify-between mt-6">
+                    הסכום הסופי{" "}
+                    <span className="text-xl font-bold">
+                      {isMember
+                        ? (totalAmt - totalAmt * 0.3).toFixed(2)
+                        : totalAmt.toFixed(2)}{" "}
+                      ₪
                     </span>
                   </p>
-                  <p className='font-titleFont font-semibold flex justify-between mt-6 text-red-500'>הערה: בלחיצה על עבור לתשלום , אתם מועברים לאתר חיצוני שהתשלום באחריותם.</p>
-                  <button onClick={() => pay(totalAmt)} className='text-base bg-red-500 text-white w-full py-3 mt-6 hover:bg-red-800 duration-300'>
+                  <p className="font-titleFont font-semibold flex justify-between mt-6 text-red-500">
+                    הערה: בלחיצה על עבור לתשלום , אתם מועברים לאתר חיצוני
+                    שהתשלום באחריותם.
+                  </p>
+                  <button
+                    onClick={() => pay(totalAmt)}
+                    className="text-base bg-red-500 text-white w-full py-3 mt-6 hover:bg-red-800 duration-300"
+                  >
                     עבור לתשלום
                   </button>
                 </div>
               </>
             ) : (
               <>
-                <div className='flex flex-col items-center mx-auto'>
-                  <div className='w-full text-center'>
-                  <p className='text-3xl mt-4 font-medium text-white' >העגלה שלך ריקה!!</p>
-                  <p className='text-3xl mt-4 font-medium text-white' style={{ padding: '15px' }}>ניתן להוסיף מוצרים מהחנות לעגלה ולהמשיך לתהליך הרכישה.</p>
-
+                <div className="flex flex-col items-center mx-auto">
+                  <div className="w-full text-center">
+                    <p className="text-3xl mt-4 font-medium text-white">
+                      העגלה שלך ריקה!!
+                    </p>
+                    <p
+                      className="text-3xl mt-4 font-medium text-white"
+                      style={{ padding: "15px" }}
+                    >
+                      ניתן להוסיף מוצרים מהחנות לעגלה ולהמשיך לתהליך הרכישה.
+                    </p>
                   </div>
                   <div>
                     <Link to="/shop">
@@ -227,14 +242,24 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className='flex flex-col items-center mx-auto' style={{ border: 'none', outline: 'none', width: '100%', minHeight: '200px', marginBottom: '145px' }}>
-          <p className='text-3xl mt-4 font-medium text-red-500'>אתה צריך להיכנס לחשבונך כדי לראות את סל הקניות</p>
+        <div
+          className="flex flex-col items-center mx-auto"
+          style={{
+            border: "none",
+            outline: "none",
+            width: "100%",
+            minHeight: "200px",
+            marginBottom: "145px",
+          }}
+        >
+          <p className="text-3xl mt-4 font-medium text-red-500">
+            אתה צריך להיכנס לחשבונך כדי לראות את סל הקניות
+          </p>
         </div>
       )}
       <Footer />
     </>
   );
-  
 };
 
 export default Cart;
