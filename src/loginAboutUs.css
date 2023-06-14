@@ -109,33 +109,60 @@ body {
   
   .con {
     display: flex;
-
     flex-direction: row;
-    align-Items: center; 
+    align-items: center;
     border-radius: 10px;
     box-shadow: 1px 10px 3px rgba(0, 0, 0, 0.2);
     text-align: center;
     font-size: 18px;
-    margin-right: 24%;
     line-height: 1.6;
     background-color: #f9f3f3;
     width: 700px;
-    height:max-content;
+    height: max-content;
     padding: 2%;
-  
+    margin: 20px auto; /* Center horizontally with top and bottom margin of 20px */
   }
+  
+  @media screen and (max-width: 768px) {
+    .con {
+      width: 90%;
+      margin-right: auto; /* Reset right margin to auto for centering */
+      margin-left: auto; /* Reset left margin to auto for centering */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .con {
+      width: 95%;
+    }
+  }
+  
   
   .intro {
     text-align: center;
     font-size: 18px;
     line-height: 1.6;
     width: 700px;
-    height:max-content;
+    height: max-content;
     padding: 2%;
     font-size: 20px;
-    margin-top: 20px;
-    margin-right: 350px;
+    margin: 20px auto; /* Center horizontally with top and bottom margin of 20px */
   }
+  
+  @media screen and (max-width: 768px) {
+    .intro {
+      width: 90%;
+      margin-right: auto; /* Reset right margin to auto for centering */
+      margin-left: auto; /* Reset left margin to auto for centering */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .intro {
+      width: 95%;
+    }
+  }
+  
  
   
   .profile-picture {
@@ -144,6 +171,12 @@ body {
     margin: 20px;
     width: 300px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .profile-picture {
+      width: 200px; /* Set the desired width for phones */
+    }
   }
   
   .highlight {
