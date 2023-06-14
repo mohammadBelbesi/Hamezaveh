@@ -47,9 +47,26 @@ const About = () => {
           אנחנו זה אתם/ן!
           פעילות המזווה מבוססת על מתנדבים ומתנדבות שביחד מפעילות את הקולטקטיב.
           מוזמנים/ות להיות חלק: לקנות יבשים / לתנדב באירועים / להיות חלק מהקהילה 💜
+          <br /><br />
+          <strong> על העמותות שמפעילות את המזווה</strong>
+            <br/>
+          <a  href="https://jsy.org.il/" target="_blank" rel="noopener noreferrer"   className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500">
+            הישיבה החילונית
+          </a>
+          <br />
+          <a   href="https://www.tevaivri.org.il/" target="_blank" rel="noopener noreferrer"   className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500 ">
+          טבע עברי- בר קיימא
+          </a>
         </p>
-      
+        
       </div>
+      <style>
+        {`
+        .underline-on-hover:hover {
+          text-decoration: underline;
+        }
+        `}
+      </style>
       <br/>
       {/* <div className="button-container">
         <div className="d-grid gap-2">
