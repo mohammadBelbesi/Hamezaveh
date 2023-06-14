@@ -25,14 +25,14 @@ const Home = () => {
       <Header onEventsClick={handleScrollToSurpriseSection} />
       <Banner />
       <div id="surpriseSection">
-        <br></br>
-        <br></br>
+        {/* <p className="hebrewTexts text-center">שום דבר אינו יכול לעמעם את האור שזורח מבפנים "מאיה אנג'לו"</p> */}
+        <p className="hebrewTexts text-center max-w-[700] text-gray-600 text-s">&#x2661;לא יהיה ניצחון של האור על החושך כל עוד לא נעמוד על האמת הפשוטה, שבמקום להילחם בחושך, עלינו להגביר את האור (א. ד. גורדון)&#x2661;</p>
         <h1 className="hebrewTexts text-center">הפתעה!!</h1>
       </div>
       <ClosestEvent />
       <br></br>
       <div id="moreEventsSection">
-        <h1 className="hebrewTexts text-center">עוד אירועים קרובים</h1>
+        <h1 className="hebrewTexts text-center ">עוד אירועים קרובים</h1>
         <Events />
       </div>
       <br></br>
