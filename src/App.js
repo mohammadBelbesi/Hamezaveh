@@ -98,7 +98,7 @@ const router = createBrowserRouter([
         element: <AboutPage />,
       },
       {
-        path: "/complete",
+        path: "/complete/:OGCustomerID/:OGPaymentID/:OGExternalIdentifier",
         element: <Complete />,
       },
       {
