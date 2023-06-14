@@ -20,7 +20,7 @@ const Products = () => {
       <div className='productsCards grid grid-cols-3 gap-8'>
         {products.map((product, index) => (
           <div className='productCard ' key={index}>
-            <img src={product.image} alt={product.name} className='productImage' style={{ width: '1000px', height: '500px', objectFit: 'cover' }}/>
+            <img src={product.image} alt={product.name} className='productImage productsCardsPhone' style={{ width: '1000px', height: '500px', objectFit: 'cover' }}/>
             <p className='productName hebrewTexts text-center'>{product.name}</p>
           </div>
         ))}

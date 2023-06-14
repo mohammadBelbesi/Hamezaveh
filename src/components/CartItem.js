@@ -119,13 +119,13 @@ const CartItem = () => {
       <div className="flex justify-center mt-4">
         <button
           onClick={confirmResetCart}
-          className="bg-red-500 text-white px-4 py-2 mr-4"
+          className="bg-red-500 hover:bg-gray-400 text-white px-4 py-2 mr-4"
         >
           כן
         </button>
         <button
           onClick={cancelResetCart}
-          className="bg-gray-300 text-gray-700 px-4 py-2"
+          className="bg-green-500 hover:bg-gray-400 text-gray-700 px-4 py-2"
         >
           לא
         </button>

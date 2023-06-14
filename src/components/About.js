@@ -50,11 +50,11 @@ const About = () => {
           <br /><br />
           <strong> על העמותות שמפעילות את המזווה</strong>
             <br/>
-          <a  href="https://jsy.org.il/" target="_blank" rel="noopener noreferrer"   className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500">
+          <a  href="https://jsy.org.il/" target="_blank" rel="noopener noreferrer"   className="link-text rounded-sm group hover:text-black hover:no-underline underline-offset-2 decoration-[1px] cursor-pointer duration-500 underline">
             הישיבה החילונית
           </a>
           <br />
-          <a   href="https://www.tevaivri.org.il/" target="_blank" rel="noopener noreferrer"   className="link-text rounded-sm group hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-500 ">
+          <a   href="https://www.tevaivri.org.il/" target="_blank" rel="noopener noreferrer"   className="link-text rounded-sm group hover:text-black hover:no-underline underline-offset-2 decoration-[1px] cursor-pointer duration-500 underline">
           טבע עברי- בר קיימא
           </a>
         </p>

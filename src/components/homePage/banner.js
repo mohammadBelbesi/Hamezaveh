@@ -40,7 +40,7 @@ const Banner = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="w-screen relative h-[650px]">
+      <div className="bannerPicForPhones w-screen relative h-[650px]">
         <div className="bannerImages object-cover flex flex-shrink-0 mx-auto overflow-x-hidden">
           {/* transition-transform duration-1000 */}
           {data[currentSlide].map((item, index) => (
