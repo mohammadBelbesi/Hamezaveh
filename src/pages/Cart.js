@@ -206,7 +206,7 @@ const Cart = () => {
                   </p>
                   <button
                     onClick={() => pay(totalAmt)}
-                    className="text-base bg-red-500 text-white w-full py-3 mt-6 hover:bg-red-800 duration-300"
+                    className="text-base bg-red-500 text-white w-full py-3 mt-6 hover:bg-green-500 duration-300"
                   >
                     עבור לתשלום
                   </button>
