@@ -1,28 +1,41 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { resetCart } from "../redux/bazarSlice";
 import { database } from "../firebase";
 
 export default function Complete() {
-  let created = false;
   const productData = useSelector((state) => state.bazar.productData);
   const event = useSelector((state) => state.bazar.selectEvent);
-
+  const total = useSelector((state) => state.bazar.total);
+  const isMember = useSelector((state) => state.bazar.isMember);
+  // const { OGCustomerID, OGPaymentID, OGExternalIdentifier } = useParams();
+  const orderId = useSelector((state) => state.bazar.orderId);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const OGCustomerID = searchParams.get('OG-CustomerID');
+  const OGPaymentID = searchParams.get('OG-PaymentID');
 
   useEffect(() => {
     dispatch(resetCart()); // Dispatch resetCart action
     handleComplete(); // Call handleComplete within useEffect
-  }, [created, dispatch]);
+  }, [dispatch]);
+
+  if (!OGCustomerID || !OGPaymentID) {
+    navigate("/cart");
+    return;
+  }
 
   const createOrder = async (newOrder) => {
-    console.log(newOrder);
-    const orderCollection = collection(database, "orders");
-    await addDoc(orderCollection, newOrder);
-    created = false;
+  console.log(newOrder);
+  const orderCollection = collection(database, "orders");
+  // const docRef = await addDoc(orderCollection, { ...newOrder, id: OGPaymentID });
+  const docRef = doc(orderCollection, orderId); // Specify the document ID as "123"
+  await setDoc(docRef,newOrder); // Use setDoc to add the order with the specified ID
+  console.log("Document ID:", docRef.id);
   };
 
   const handleComplete = async () => {
@@ -32,7 +45,7 @@ export default function Complete() {
       productName: prod.nameOfProduct,
     }));
 
-    const order = { products, eventDate: event.date };
+    const order = { products, eventDate: event.date, totalPaid: isMember? (total*0.7) : total};
 
     await createOrder(order); // Wait for order creation to complete
 
