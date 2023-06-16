@@ -9,6 +9,7 @@ const initialState = {
   isLogin: false,
   selectEvent: {},
   userInfo: null,
+  orderId: 0,
 };
 
 export const bazarSlice = createSlice({
@@ -87,6 +88,9 @@ export const bazarSlice = createSlice({
     setPrice: (state, action) => {
       state.total = action.payload;
     },
+    setOrderId: (state, action) => {
+      state.orderId = action.payload;
+    },
     decrementTotal: (state, action) => {
       state.total -= action.payload;
     },
@@ -106,6 +110,7 @@ export const {
   setPrice,
   decrementTotal,
   setAdmin,
+  setOrderId,
   //addUser,
   //removeUser,
 } = bazarSlice.actions;
