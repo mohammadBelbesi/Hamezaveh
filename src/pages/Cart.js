@@ -6,7 +6,7 @@ import Footer from "../components/homePage/Footer";
 import CartItem from "../components/CartItem";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import { resetCart, setLogin } from "../redux/bazarSlice";
+import { resetCart, setLogin, setOrderId } from "../redux/bazarSlice";
 import { auth, database } from "../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import domain from "../constants/domain";
@@ -22,8 +22,35 @@ const Cart = () => {
   let login = useSelector((state) => state.bazar.isLogin);
   let member = useSelector((state) => state.bazar.isMember);
   const isLogin = useSelector((state) => state.bazar.isLogin); // Access isLogin from the bazar slice
+  const [orderId,setOrderId1] = useState("");
+
+
   const dispatch = useDispatch();
 
+  function generateUniqueString() {
+    const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const length = 10;
+    let uniqueString = '';
+  
+    while (uniqueString === '') { //|| isStringRepeated(uniqueString)
+      uniqueString = '';
+  
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        uniqueString += characters.charAt(randomIndex);
+      }
+    }
+    return uniqueString;
+  }
+  
+  function isStringRepeated(str) {
+    // Check if the generated string is repeated in your logic or storage mechanism
+    // For example, you could check against a list of existing strings or compare with previously generated strings
+    // Return true if the string is repeated, false otherwise
+    // Modify this function based on your specific requirements
+    return false;
+  }
+  
   useEffect(() => {
     setLogin(login);
     //console.log(login);
@@ -77,6 +104,13 @@ const Cart = () => {
   useEffect(() => {
     setIsMember(member);
   }, [member]);
+
+  useEffect(() => {
+    let generate = generateUniqueString() 
+    dispatch(setOrderId(generate));
+    setOrderId1(generate)
+  }, []);
+  
   // console.log(userName)
   // console.log({userName})
   function pay(a) {
@@ -101,7 +135,7 @@ const Cart = () => {
         {
           Item: {
             ID: null,
-            Name: null,
+            Name: ("מספר הזמנה: "+orderId),
             Description: null,
             Price: null,
             Currency: null,
