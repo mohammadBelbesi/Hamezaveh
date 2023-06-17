@@ -52,7 +52,7 @@ export const ViewStaticAll = ( {data,time , isReady} ) => {
             
         });
         totalPayment = average
-        return (average/numOfReciept)
+        return (average / numOfReciept).toFixed(2);
     }
 
     const getThOrders = () => {
@@ -74,7 +74,7 @@ export const ViewStaticAll = ( {data,time , isReady} ) => {
             }
         });
 
-        return (average)
+        return average.toFixed(2);
     }
 
     const bestEvent = () =>{
@@ -90,7 +90,7 @@ export const ViewStaticAll = ( {data,time , isReady} ) => {
             }
         });
 
-        return [bestEvent , payment]
+        return [bestEvent, payment.toFixed(2)];
     }
 
     //function to get the product 
@@ -166,7 +166,7 @@ return<>
                 <h3> <ChevronLeftIcon/> ממוצע קניות: {getTheAveragePay()} ₪  </h3>
                 <h3> <ChevronLeftIcon/> במוצע מספר המוצריים שלקוח קונה: {getThAveragePerCustomer()} {getThAveragePerCustomer() > 1 ? 'מוצריים' : 'מוצר'}  </h3>
                 <h3> <ChevronLeftIcon/> מספר ההזמנות: {getThOrders()} {getThOrders() > 1 ? 'הזמנות' : 'הזמנה'} </h3>
-                <h3> <ChevronLeftIcon/> סכום המכירות לתוקפה הנבחרה: {totalPayment} ₪ </h3>
+                <h3> <ChevronLeftIcon/> סכום המכירות לתוקפה הנבחרה: {totalPayment.toFixed(2)} ₪ </h3>
             </div>
 
             <div className="eventStatic">
