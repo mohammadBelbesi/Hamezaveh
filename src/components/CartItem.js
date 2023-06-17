@@ -38,68 +38,68 @@ const CartItem = () => {
         <div>
           <div>
             {productData.map((item) => (
-  <div
-    key={item.idProduct}
-    className="flex items-center justify-between gap-6 mt-6"
-  >
-    <div className="flex items-center gap-1">
-      <AiOutlineCloseSquare
-        onClick={() =>
-          dispatch(deleteItem(item.idProduct)) 
-        }
-        className="text-xxl text-white hover:text-red-600 cursor-pointer duration-300"
-      />
-      <img
-        className="w-32 h-32 object-cover"
-        src={item.imagePath}
-        alt="productImg"
-      />
-    </div>
-    <h2 className="w-40">{item.nameOfProduct}</h2>
-    <p className="w-10">₪{item.PriceProduct}</p>
-    <div className="w-52 flex items-center justify-between text-white gap-4 border p-3">
-      <p className="text-sm ">כַּמוּת ב- גרמים</p>
-      <div className="flex items-center gap-4 text-sm font-semibold">
-        <span
-          onClick={() =>
-            dispatch(
-              decrementQuantity({
-                idProduct: item.idProduct,
-                nameOfProduct: item.nameOfProduct,
-                imagePath: item.imagePath,
-                price: item.PriceProduct,
-                QuantityOfProduct: 100,
-              })
-            )
-          }
-          className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
-        >
-          -
-        </span>
-        {item.QuantityOfProduct}
-        <span
-          onClick={() =>
-            dispatch(
-              increamentQuantity({
-                idProduct: item.idProduct,
-                nameOfProduct: item.nameOfProduct,
-                imagePath: item.imagePath,
-                PriceProduct: item.PriceProduct,
-                QuantityOfProductantity: 100,
-              })
-            )
-          }
-          className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
-        >
-          +
-        </span>
-      </div>
-    </div>
-    <p className="w-18 ">₪{(item.QuantityOfProduct * item.PriceProduct)/100}</p>
-  </div>
-)
-              // Render the list of items
-            )}
+              <div
+                key={item.idProduct}
+                className="flex flex-col md:flex-row items-center justify-between gap-6 mt-6"
+              >
+                <div className="flex items-center gap-1">
+                  <AiOutlineCloseSquare
+                    onClick={() =>
+                      dispatch(deleteItem(item.idProduct))
+                    }
+                    className="text-xxl text-white hover:text-red-600 cursor-pointer duration-300"
+                  />
+                  <img
+                    className="w-32 h-32 object-cover"
+                    src={item.imagePath}
+                    alt="productImg"
+                  />
+                </div>
+                <h2 className="w-40">{item.nameOfProduct}</h2>
+                <p className="w-10">₪{item.PriceProduct}</p>
+                <div className="w-52 flex items-center justify-between text-white gap-4 border p-3">
+                  <p className="text-sm ">כַּמוּת ב- גרמים</p>
+                  <div className="flex items-center gap-4 text-sm font-semibold">
+                    <span
+                      onClick={() =>
+                        dispatch(
+                          decrementQuantity({
+                            idProduct: item.idProduct,
+                            nameOfProduct: item.nameOfProduct,
+                            imagePath: item.imagePath,
+                            price: item.PriceProduct,
+                            QuantityOfProduct: 100,
+                          })
+                        )
+                      }
+                      className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
+                    >
+                      -
+                    </span>
+                    {item.QuantityOfProduct}
+                    <span
+                      onClick={() =>
+                        dispatch(
+                          increamentQuantity({
+                            idProduct: item.idProduct,
+                            nameOfProduct: item.nameOfProduct,
+                            imagePath: item.imagePath,
+                            PriceProduct: item.PriceProduct,
+                            QuantityOfProductantity: 100,
+                          })
+                        )
+                      }
+                      className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
+                    >
+                      +
+                    </span>
+                  </div>
+                </div>
+                <p className="w-18">
+                  ₪{(item.QuantityOfProduct * item.PriceProduct) / 100}
+                </p>
+              </div>
+            ))}
           </div>
           <button
             onClick={handleResetCart}
@@ -111,30 +111,28 @@ const CartItem = () => {
       </div>
 
       {showConfirmation && (
-  <div className="fixed inset-0 flex items-center justify-center">
-    <div className="bg-gray-200 border border-black w-96 p-6 overflow-y-auto">
-      <p className="text-center">
-        האם אתה בטוח שברצונך לרוקן את סל הקניות?
-      </p>
-      <div className="flex justify-center mt-4">
-        <button
-          onClick={confirmResetCart}
-          className="bg-red-500 hover:bg-gray-400 text-white px-4 py-2 mr-4"
-        >
-          כן
-        </button>
-        <button
-          onClick={cancelResetCart}
-          className="bg-green-500 hover:bg-gray-400 text-gray-700 px-4 py-2"
-        >
-          לא
-        </button>
-      </div>
-    </div>
-  </div>
-)}
-
-
+        <div className="fixed inset-0 flex items-center justify-center">
+          <div className="bg-gray-200 border border-black w-96 p-6 overflow-y-auto">
+            <p className="text-center">
+              האם אתה בטוח שברצונך לרוקן את סל הקניות?
+            </p>
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={confirmResetCart}
+                className="bg-red-500 hover:bg-gray-400 text-white px-4 py-2 mr-4"
+              >
+                כן
+              </button>
+              <button
+                onClick={cancelResetCart}
+                className="bg-green-500 hover:bg-gray-400 text-gray-700 px-4 py-2"
+              >
+                לא
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Link to="/shop">
         <button className="mt-8 ml-7 flex items-center gap-1 text-black hover:bg-red-500 duration-300 text-2xl">
@@ -149,9 +147,3 @@ const CartItem = () => {
 };
 
 export default CartItem;
-
-
-
-
-
-
