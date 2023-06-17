@@ -16,7 +16,13 @@ const Events = () => {
   };
 
   useEffect(() => {
-    setSelectedEvent(events[0]);
+    if (events.length > 1) {
+      setSelectedEvent(events[1]); // Set the second event as the default selected event
+      setSelectedDateIndex(1); // Update the selected date index
+    } else if (events.length === 1) {
+      setSelectedEvent(events[0]); // Set the only event as the default selected event
+      setSelectedDateIndex(0); // Update the selected date index
+    }
   }, [events]);
 
   useEffect(() => {
@@ -104,9 +110,21 @@ const Events = () => {
       </div>
     );
   } else {
-    return <div className='loadingPage' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '50px', fontWeight: 'bold' }}>
-    טוען את הנתונים...
-  </div>;  
+    return (
+      <div
+        className="loadingPage"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          fontSize: "50px",
+          fontWeight: "bold",
+        }}
+      >
+        טוען את הנתונים...
+      </div>
+    );
   }
 };
 
