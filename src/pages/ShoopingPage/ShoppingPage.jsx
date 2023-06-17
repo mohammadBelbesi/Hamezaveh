@@ -131,7 +131,7 @@ export function ShoppingPage() {
           };
         });
 
-        console.log(listOfEvents);
+        //console.log(listOfEvents);
 
         if (Object.keys(bazarSelectEvent).length === 0) {
           setSelectedEvent({

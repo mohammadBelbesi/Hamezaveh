@@ -45,11 +45,11 @@ export default function Complete() {
   };
 
   const createOrder = async (newOrder) => {
-    console.log(newOrder);
+    // console.log(newOrder);
     const orderCollection = collection(database, "orders");
     const docRef = doc(orderCollection, orderId); // Specify the document ID as "123"
     await setDoc(docRef, newOrder); // Use setDoc to add the order with the specified ID
-    console.log("Document ID:", docRef.id);
+    // console.log("Document ID:", docRef.id);
   };
 
   return null; // or render a loading/spinner component
