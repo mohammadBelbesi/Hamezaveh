@@ -12,11 +12,11 @@ const Events = () => {
 
   const handleEventClick = (event, index) => {
     setSelectedEvent(event);
-    setSelectedDateIndex(index); // Update the selected date index
+    setSelectedDateIndex(index); // Adjust the index to match the filtered events array
   };
 
   useEffect(() => {
-    setSelectedEvent(events[0]);
+    setSelectedEvent(events[1]);
   }, [events]);
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const Events = () => {
                   className={`hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-1000 border border-gray-300 px-4 py-2 ${
                     selectedDateIndex === index ? "my-pink-color" : ""
                   }`}
-                  onClick={() => handleEventClick(events[index], index)} // Adjust the index to match the filtered events array
+                  onClick={() => handleEventClick(events[index+1], index)} // Adjust the index to match the filtered events array
                 >
                   <div className="table-text text-2xl">בתאריך: {event.date}</div>
                   <div className="table-text text-2xl">בשעה: {event.time}</div>
