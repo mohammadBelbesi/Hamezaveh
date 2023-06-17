@@ -68,7 +68,6 @@ function ProductPage() {
 
   return (
     <div className={styles.container}>
-      manasrah
       <div className={styles.header}>
         <NewProductBanner notifyNewProduct={newProduct} />
         {/* <h1>Products</h1> */}

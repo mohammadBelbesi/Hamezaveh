@@ -2,7 +2,7 @@
 
 .sidenav {
   width: 250px;
-  background-color: rgb(87, 121, 91, 0.959);
+  background-color: rgba(87, 121, 91, 0.961);
   font-family: "Poppins";
   display: flex;
   flex-direction: column;
@@ -13,20 +13,26 @@
 .sidenav-item {
   padding-inline: 32px;
   padding-block: 16px;
+  align-items: center;
   color: white;
   font-size: 20px;
   display: flex;
   gap: 16px;
   transition: 0.2s ease-in-out;
   user-select: none;
-  position: sticky;
+  /* position: sticky; */
 }
 .selected {
   background-color: rgb(10, 25, 41);
 }
 
 .sidenav-item:hover {
-  /* background-color: rgb(10, 25, 41); */
+  background-color: #455f48;
   cursor: pointer;
-  padding-left: 48px;
+}
+
+.logout {
+  margin-top: auto;
+  padding-bottom: 24px;
+  padding-top: 24px;
 }
