@@ -190,6 +190,7 @@ const Cart = () => {
         //console.log(redirectUrl);
         window.open(redirectUrl);
         // dispatch(resetCart()); // Dispatch resetCart action
+        window.close(); // Close the current tab
       })
       .catch((error) => {
         console.error("Error:", error);
