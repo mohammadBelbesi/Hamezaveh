@@ -21,22 +21,14 @@ export default function Complete() {
 
   useEffect(() => {
     dispatch(resetCart()); // Dispatch resetCart action
+
+    if (!OGCustomerID || !OGPaymentID) {
+      navigate("/cart");
+      return;
+    }
+
     handleComplete(); // Call handleComplete within useEffect
   }, [dispatch]);
-
-  if (!OGCustomerID || !OGPaymentID) {
-    navigate("/cart");
-    return;
-  }
-
-  const createOrder = async (newOrder) => {
-  console.log(newOrder);
-  const orderCollection = collection(database, "orders");
-  // const docRef = await addDoc(orderCollection, { ...newOrder, id: OGPaymentID });
-  const docRef = doc(orderCollection, orderId); // Specify the document ID as "123"
-  await setDoc(docRef,newOrder); // Use setDoc to add the order with the specified ID
-  console.log("Document ID:", docRef.id);
-  };
 
   const handleComplete = async () => {
     const products = productData.map((prod) => ({
@@ -45,11 +37,19 @@ export default function Complete() {
       productName: prod.nameOfProduct,
     }));
 
-    const order = { products, eventDate: event.date, totalPaid: isMember? (total*0.7) : total};
+    const order = { products, eventDate: event.date, totalPaid: isMember ? (total * 0.7) : total ,isMember};
 
     await createOrder(order); // Wait for order creation to complete
 
     navigate("/home");
+  };
+
+  const createOrder = async (newOrder) => {
+    console.log(newOrder);
+    const orderCollection = collection(database, "orders");
+    const docRef = doc(orderCollection, orderId); // Specify the document ID as "123"
+    await setDoc(docRef, newOrder); // Use setDoc to add the order with the specified ID
+    console.log("Document ID:", docRef.id);
   };
 
   return null; // or render a loading/spinner component
@@ -77,11 +77,8 @@ function sendSMS(a) {
   })
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data);
       const redirectUrl = data.Data.RedirectURL;
-      //console.log(redirectUrl);
       window.open(redirectUrl, "http://localhost:3000/home");
-      // dispatch(resetCart()); // Dispatch resetCart action
     })
     .catch((error) => {
       console.error("Error:", error);
