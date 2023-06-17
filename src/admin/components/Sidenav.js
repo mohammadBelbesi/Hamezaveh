@@ -1,9 +1,9 @@
-import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+// import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import { navData } from "../data/navData";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./Sidenav.css";
 import { useState } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useDispatch } from "react-redux";
@@ -11,7 +11,7 @@ import { resetCart, setAdmin, setLogin } from "../../redux/bazarSlice";
 
 function Sidenav() {
   const dispatch = useDispatch();
-  const location = useLocation();
+  // const location = useLocation();
 
   const [selectedItem, setSelectedItem] = useState("Events");
   const navigate = useNavigate();

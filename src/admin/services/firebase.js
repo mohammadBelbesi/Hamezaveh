@@ -3,7 +3,7 @@ import {
   collection,
   addDoc,
   doc,
-  deleteDoc,
+  // deleteDoc,
   updateDoc,
 } from "firebase/firestore";
 import { database as db, storage } from "../../firebase";

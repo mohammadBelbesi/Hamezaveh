@@ -6,10 +6,9 @@ import Footer from "../components/homePage/Footer";
 import CartItem from "../components/CartItem";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import { resetCart, setLogin, setOrderId } from "../redux/bazarSlice";
-import { auth, database } from "../firebase";
+import { setLogin, setOrderId } from "../redux/bazarSlice";
+import { database } from "../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import domain from "../constants/domain";
 
 const Cart = () => {
   const productData = useSelector((state) => state.bazar.productData);

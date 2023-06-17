@@ -2,14 +2,11 @@ import React from "react";
 import SignupPage from "./pages/SignupPage";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
 import Home from "./pages/Home";
-import Footer from "./components/homePage/Footer";
-import Header from "./components/homePage/Header";
 import Cart from "./pages/Cart";
 import AboutPage from "./pages/AboutUs";
 import ForgotPage from "./pages/ForgotPage";
 import LoginPage from "./pages/LoginPage";
 import { ShoppingPage } from "./pages/ShoopingPage/ShoppingPage";
-import Admin from "./admin/Admin";
 
 import {
   createBrowserRouter,
@@ -20,7 +17,6 @@ import {
   Route,
 } from "react-router-dom";
 import Complete from "./pages/Complete";
-import { useSelector } from "react-redux";
 import AdminChecker from "./pages/AdminChecker";
 
 const Layout = () => {

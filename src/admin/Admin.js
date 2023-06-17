@@ -1,33 +1,33 @@
 import "./App.css";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Sidenav from "./components/Sidenav";
 import AdminPage from "./pages/AdminPage";
 import ProductPage from "./pages/ProductPage";
 import {
-  eventsColumns,
-  flattenedOrdersColumns,
-  ordersColumns,
-  productsColumns,
+  // eventsColumns,
+  // flattenedOrdersColumns,
+  // ordersColumns,
+  // productsColumns,
   usersColumns,
 } from "./data/tableData";
 import {
-  getEvents,
-  getFlattenedOrders,
-  getOrders,
-  getProducts,
+  // getEvents,
+  // getFlattenedOrders,
+  // getOrders,
+  // getProducts,
   getUsers,
-  updateEvent,
-  updateOrder,
-  updateProduct,
+  // updateEvent,
+  // updateOrder,
+  // updateProduct,
   updateUser,
 } from "./services/firebase";
-import {
-  getDummyEvents,
-  getDummyOrders,
-  getDummyProducts,
-  getDummyUsers,
-} from "./services/dummyFirebase";
+// import {
+//   getDummyEvents,
+//   getDummyOrders,
+//   getDummyProducts,
+//   getDummyUsers,
+// } from "./services/dummyFirebase";
 import EventPage from "./pages/EventPage";
 import Dashboard from "./pages/Dashboard";
 import { Static } from "./pages/static/static";

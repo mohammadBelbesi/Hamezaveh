@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ImageDrop from "../ImageDrop";
 import CheckBox from "../CheckBox";
 import Input from "../Input";

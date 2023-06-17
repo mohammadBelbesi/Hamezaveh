@@ -1,5 +1,4 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import Banner from "../components/homePage/banner";
 import Events from "../components/homePage/Events";
 import ClosestEvent from "../components/homePage/ClosestEvent";
@@ -9,8 +8,6 @@ import Header from "../components/homePage/Header";
 import Footer from "../components/homePage/Footer";
 
 const Home = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
 
   const handleScrollToSurpriseSection = () => {
     const surpriseSection = document.getElementById("surpriseSection");

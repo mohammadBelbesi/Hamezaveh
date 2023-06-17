@@ -3,7 +3,7 @@ import Table from "../components/Table";
 import useOrders from "../hooks/useOrders";
 import { ordersColumns } from "../data/tableData";
 import DropDown from "../components/DropDown";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { updateOrder } from "../services/firebase";
 
 export default function Dashboard() {
