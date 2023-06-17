@@ -16,13 +16,7 @@ const Events = () => {
   };
 
   useEffect(() => {
-    if (events.length > 1) {
-      setSelectedEvent(events[1]); // Set the second event as the default selected event
-      setSelectedDateIndex(1); // Update the selected date index
-    } else if (events.length === 1) {
-      setSelectedEvent(events[0]); // Set the only event as the default selected event
-      setSelectedDateIndex(0); // Update the selected date index
-    }
+    setSelectedEvent(events[0]);
   }, [events]);
 
   useEffect(() => {
@@ -51,7 +45,8 @@ const Events = () => {
   }, [selectedEvent]);
 
   if (!loading) {
-    const formattedEvents = events.map((event) => {
+    const filteredEvents = events.filter((event, index) => index !== 0); // Exclude the first event
+    const formattedEvents = filteredEvents.map((event) => {
       const date = event.date.split("T")[0];
       const time = event.date.split("T")[1];
       const location = event.location;
@@ -69,9 +64,9 @@ const Events = () => {
                 <th
                   key={index}
                   className={`hover:text-black hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-1000 border border-gray-300 px-4 py-2 ${
-                    selectedDateIndex === index ? "my-pink-color" : ""}`
-                  }
-                  onClick={() => handleEventClick(events[index], index)}
+                    selectedDateIndex === index ? "my-pink-color" : ""
+                  }`}
+                  onClick={() => handleEventClick(events[index], index)} // Adjust the index to match the filtered events array
                 >
                   <div className="table-text text-2xl">בתאריך: {event.date}</div>
                   <div className="table-text text-2xl">בשעה: {event.time}</div>
@@ -91,10 +86,8 @@ const Events = () => {
                   <div>
                     <p>האירוע שואף לאפס פסולת, מחכים לכם ולצנצנות שלכם &#128522;</p>
                     <p>
-                    מיקום: {selectedEvent.location}
-                      {location && (
-                        <img src={location} alt="Event Logo" className="event-logo" />
-                      )}
+                      מיקום: {selectedEvent.location}
+                      {location && <img src={location} alt="Event Logo" className="event-logo" />}
                     </p>
                     {eventProducts.length > 0 && (
                       <div>
