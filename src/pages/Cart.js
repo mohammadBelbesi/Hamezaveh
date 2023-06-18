@@ -222,7 +222,7 @@ const Cart = () => {
                   </div>
                   <p className="font-titleFont font-semibold flex justify-between mt-6">
                     {isMember && (
-                      <span className="text-lg">הנחת חבר מעודון 30%</span>
+                      <span className="text-lg">הנחת חבר מועדון 30%</span>
                     )}
                   </p>
                   <p className="font-titleFont font-semibold flex justify-between mt-6">

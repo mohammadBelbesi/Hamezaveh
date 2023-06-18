@@ -11,7 +11,7 @@ const Products = () => {
     { name: 'אורז', image: rice },
     { name: 'אגוז מלך', image: walnut },
     { name: 'שעועית לבנה', image: whiteBeans },
-    { name: 'קאגו', image: kajo },
+    { name: 'קשיו', image: kajo },
     // Add more products as needed
   ];
 
