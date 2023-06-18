@@ -85,7 +85,7 @@ function ProductPage() {
         </option>
         {events.map((event) => (
           <option className={styles.optionclass} value={event.id}>
-            {event.location}
+            {event.date.split("T")[0]}
           </option>
         ))}
       </select>
