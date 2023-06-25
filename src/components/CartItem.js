@@ -8,6 +8,8 @@ import {
   deleteItem,
   increamentQuantity,
   resetCart,
+  incrementTotal,
+  decrementTotal
 } from "../redux/bazarSlice";
 
 const CartItem = () => {
@@ -62,7 +64,7 @@ const CartItem = () => {
                   <div className="flex items-center gap-4 text-sm font-semibold">
                     <span
                       onClick={() =>
-                        dispatch(
+                        {dispatch(
                           decrementQuantity({
                             idProduct: item.idProduct,
                             nameOfProduct: item.nameOfProduct,
@@ -70,7 +72,9 @@ const CartItem = () => {
                             price: item.PriceProduct,
                             QuantityOfProduct: 100,
                           })
-                        )
+                        );
+                        dispatch(decrementQuantity(item.PriceProduct) );
+                      }
                       }
                       className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
                     >
@@ -79,7 +83,7 @@ const CartItem = () => {
                     {item.QuantityOfProduct}
                     <span
                       onClick={() =>
-                        dispatch(
+                        {dispatch(
                           increamentQuantity({
                             idProduct: item.idProduct,
                             nameOfProduct: item.nameOfProduct,
@@ -87,7 +91,11 @@ const CartItem = () => {
                             PriceProduct: item.PriceProduct,
                             QuantityOfProductantity: 100,
                           })
-                        )
+                        );
+                        console.log(item.PriceProduct);
+                        dispatch(incrementTotal(item.PriceProduct) );
+
+                      }
                       }
                       className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
                     >

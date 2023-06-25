@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { type } from "@testing-library/user-event/dist/type";
 
 const initialState = {
   productData: [],
@@ -92,7 +93,11 @@ export const bazarSlice = createSlice({
       state.orderId = action.payload;
     },
     decrementTotal: (state, action) => {
-      state.total -= action.payload;
+      state.total -= parseInt(action.payload);
+    },
+    incrementTotal: (state, action) => {
+
+      state.total += parseInt(action.payload);
     },
   },
 });
@@ -111,6 +116,7 @@ export const {
   decrementTotal,
   setAdmin,
   setOrderId,
+  incrementTotal,
   //addUser,
   //removeUser,
 } = bazarSlice.actions;
