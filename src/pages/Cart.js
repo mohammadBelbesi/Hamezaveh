@@ -61,8 +61,6 @@ const Cart = () => {
         const filterEvents = orders.docs.map((doc) => {
             return doc.id ;
           })
-          console.log(filterEvents.includes(str))
-          console.log(str)
 
         return filterEvents.includes(str)
 
