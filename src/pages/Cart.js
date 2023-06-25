@@ -7,8 +7,8 @@ import CartItem from "../components/CartItem";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { setLogin, setOrderId } from "../redux/bazarSlice";
-import { database } from "../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { database } from "../firebase";
 
 const Cart = () => {
   const productData = useSelector((state) => state.bazar.productData);
@@ -26,29 +26,61 @@ const Cart = () => {
 
   const dispatch = useDispatch();
 
-  function generateUniqueString() {
-    const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    const length = 10;
-    let uniqueString = '';
-  
-    while (uniqueString === '') { //|| isStringRepeated(uniqueString)
-      uniqueString = '';
-  
-      for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * characters.length);
-        uniqueString += characters.charAt(randomIndex);
+  const ordersCollectionRef = collection(database, "orders");
+
+   //get the data from the firestore
+  useEffect(() => {
+
+    const generateUniqueString = async () => {
+      const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      const length = 10;
+      let uniqueString = '';
+    
+      while (uniqueString === '') { 
+        uniqueString = '';
+    
+        for (let i = 0; i < length; i++) {
+          const randomIndex = Math.floor(Math.random() * characters.length);
+          uniqueString += characters.charAt(randomIndex);
+        }
+      }
+
+      const isRepeated = await isStringRepeated(uniqueString);
+      if (isRepeated) {
+        generateUniqueString();
+      } else {
+        dispatch(setOrderId(uniqueString));
+        setOrderId1(uniqueString);
       }
     }
-    return uniqueString;
-  }
+
+    const isStringRepeated = async (str) => {
+      try {
+
+        const orders = await getDocs(ordersCollectionRef);
+        const filterEvents = orders.docs.map((doc) => {
+            return doc.id ;
+          })
+          console.log(filterEvents.includes(str))
+          console.log(str)
+
+        return filterEvents.includes(str)
+
+
+      } catch (error) {
+        console.error('Error checking string uniqueness:', error);
+        return false;
+      }
+    }
+
+    generateUniqueString();
+    
+  }, []);
+
   
-  function isStringRepeated(str) {
-    // Check if the generated string is repeated in your logic or storage mechanism
-    // For example, you could check against a list of existing strings or compare with previously generated strings
-    // Return true if the string is repeated, false otherwise
-    // Modify this function based on your specific requirements
-    return false;
-  }
+
+  
+
   
   useEffect(() => {
     setLogin(login);
@@ -104,11 +136,7 @@ const Cart = () => {
     setIsMember(member);
   }, [member]);
 
-  useEffect(() => {
-    let generate = generateUniqueString() 
-    dispatch(setOrderId(generate));
-    setOrderId1(generate)
-  }, []);
+
   
   // console.log(userName)
   // console.log({userName})
