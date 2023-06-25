@@ -80,7 +80,7 @@ useEffect(() => {//when the is clicked changed we are here
       <div className="card-content">
         <h2 className="card-title">{title} </h2>
         <div className='card-qunataty-container'>
-          <p className='card-increment' onClick={ ()=> { isClicked || isTrue  ? setQuntaty(quntaty) : setQuntaty((quntaty+1))}}>+</p>
+          <p className='card-increment' onClick={ ()=> { quntaty < 50 && isClicked===false && isTrue === false   ? setQuntaty((quntaty+1)) : setQuntaty((quntaty))}}>+</p>
           <h2 className="card-title-quantaty">{quntaty * howMuchToIncrease}</h2>
           <p className='card-decrease' onClick={ ()=> { (quntaty>0 && isClicked===false && isTrue === false ) ? setQuntaty((quntaty-1)) : setQuntaty(quntaty) }}>-</p>
         </div>

@@ -164,7 +164,7 @@ return<>
             <div className="mainStatic">
                 <h2>כללי:</h2>
                 <h3> <ChevronLeftIcon/> ממוצע קניות: {getTheAveragePay()} ₪  </h3>
-                <h3> <ChevronLeftIcon/> במוצע מספר המוצריים שלקוח קונה: {getThAveragePerCustomer()} {getThAveragePerCustomer() > 1 ? 'מוצריים' : 'מוצר'}  </h3>
+                <h3> <ChevronLeftIcon/> בממוצע מספר המוצריים שלקוח קונה: {getThAveragePerCustomer()} {getThAveragePerCustomer() > 1 ? 'מוצריים' : 'מוצר'}  </h3>
                 <h3> <ChevronLeftIcon/> מספר ההזמנות: {getThOrders()} {getThOrders() > 1 ? 'הזמנות' : 'הזמנה'} </h3>
                 <h3> <ChevronLeftIcon/> סכום המכירות לתוקפה הנבחרה: {totalPayment} ₪ </h3>
             </div>

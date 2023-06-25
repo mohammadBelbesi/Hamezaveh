@@ -100,8 +100,7 @@ export function ShoppingPage() {
       try {
         //get the events from the firebase
         const events = await getDocs(eventsCollectionRef);
-        const filterEvents = events.docs
-          .map((doc) => {
+        const filterEvents = events.docs.map((doc) => {
             if (isDateInPresent(doc.data()["date"])) {
               return { ...doc.data(), id: doc.id };
             }
