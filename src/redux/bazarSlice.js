@@ -93,10 +93,12 @@ export const bazarSlice = createSlice({
       state.orderId = action.payload;
     },
     decrementTotal: (state, action) => {
-      state.total -= parseInt(action.payload);
+
+      if(state.total - parseInt(action.payload) > 0 ){
+        state.total -= parseInt(action.payload);
+      }
     },
     incrementTotal: (state, action) => {
-
       state.total += parseInt(action.payload);
     },
   },
