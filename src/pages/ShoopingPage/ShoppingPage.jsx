@@ -50,7 +50,7 @@ export function ShoppingPage() {
   const imgRefrence = ref(storage, "productImages/");
 
   //function to put the product of selected item
-  const getTheProduct = () => {
+  const getTheProduct = async() => {
     if (eventDate.length > 0) {
       let ourProducts = [];
       eventDate[selectedEvent["index"]]["products"].forEach(function (element) {
