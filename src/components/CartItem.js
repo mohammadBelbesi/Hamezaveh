@@ -9,7 +9,7 @@ import {
   increamentQuantity,
   resetCart,
   incrementTotal,
-  decrementTotal
+  decrementTotal,
 } from "../redux/bazarSlice";
 
 const CartItem = () => {
@@ -19,18 +19,18 @@ const CartItem = () => {
 
   const handleResetCart = () => {
     setShowConfirmation(true);
-    document.body.classList.add("overflow-hidden"); // Add overflow-hidden class to the body element
+    document.body.classList.add("overflow-hidden");
   };
 
   const confirmResetCart = () => {
     dispatch(resetCart());
     setShowConfirmation(false);
-    document.body.classList.remove("overflow-hidden"); // Remove overflow-hidden class from the body element
+    document.body.classList.remove("overflow-hidden");
   };
 
   const cancelResetCart = () => {
     setShowConfirmation(false);
-    document.body.classList.remove("overflow-hidden"); // Remove overflow-hidden class from the body element
+    document.body.classList.remove("overflow-hidden");
   };
 
   return (
@@ -46,9 +46,7 @@ const CartItem = () => {
               >
                 <div className="flex items-center gap-1">
                   <AiOutlineCloseSquare
-                    onClick={() =>
-                      dispatch(deleteItem(item.idProduct))
-                    }
+                    onClick={() => dispatch(deleteItem(item.idProduct))}
                     className="text-xxl text-white hover:text-red-600 cursor-pointer duration-300"
                   />
                   <img
@@ -63,8 +61,8 @@ const CartItem = () => {
                   <p className="text-sm ">כַּמוּת ב- גרמים</p>
                   <div className="flex items-center gap-4 text-sm font-semibold">
                     <span
-                      onClick={() =>
-                        {dispatch(
+                      onClick={() => {
+                        dispatch(
                           decrementQuantity({
                             idProduct: item.idProduct,
                             nameOfProduct: item.nameOfProduct,
@@ -73,13 +71,12 @@ const CartItem = () => {
                             QuantityOfProduct: 100,
                           })
                         );
-                        dispatch(decrementQuantity(item.PriceProduct) );
-                      }
-                      }
+                        dispatch(decrementTotal(item.PriceProduct));
+                      }}
                       className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
                     >
                       -
-                    </span>
+                      </span>
                     {item.QuantityOfProduct}
                     <span
                       onClick={() =>
