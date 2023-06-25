@@ -8,8 +8,6 @@ import {
   deleteItem,
   increamentQuantity,
   resetCart,
-  incrementTotal,
-  decrementTotal,
 } from "../redux/bazarSlice";
 
 const CartItem = () => {
