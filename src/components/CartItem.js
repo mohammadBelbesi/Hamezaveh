@@ -71,7 +71,6 @@ const CartItem = () => {
                             QuantityOfProduct: 100,
                           })
                         );
-                        dispatch(decrementTotal(item.PriceProduct));
                       }
                       }
                       className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
@@ -90,8 +89,6 @@ const CartItem = () => {
                             QuantityOfProductantity: 100,
                           })
                         );
-                        dispatch(incrementTotal(item.PriceProduct) );
-
                       }
                       }
                       className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"

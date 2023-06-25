@@ -32,6 +32,8 @@ export const bazarSlice = createSlice({
       );
       if (item && item.QuantityOfProduct < 5000) {
         item.QuantityOfProduct += 100;
+        console.log(typeof(action.payload.PriceProduct))
+        state.total += parseInt(action.payload.PriceProduct)
       }
     },
     decrementQuantity: (state, action) => {
@@ -43,6 +45,8 @@ export const bazarSlice = createSlice({
           item.QuantityOfProduct = 100;
         } else {
           item.QuantityOfProduct -= 100;
+          console.log(typeof(action.payload.PriceProduct))
+          state.total -= parseInt(action.payload.price)
         }
       }
     },
