@@ -89,7 +89,6 @@ const CartItem = () => {
                             QuantityOfProductantity: 100,
                           })
                         );
-                        console.log(item.PriceProduct);
                         dispatch(incrementTotal(item.PriceProduct) );
 
                       }
