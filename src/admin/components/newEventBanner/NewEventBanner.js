@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./NewEventBanner.module.css";
 import { useState } from "react";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 import DropDown from "../DropDown";
 import useLocations from "../../hooks/useLocations";
 import LoadingDropDown from "../LoadingDropDown";

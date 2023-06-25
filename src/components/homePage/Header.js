@@ -1,9 +1,8 @@
-import { cart, loginBlack, loginPerson, logo } from "../../assets/assetsindex";
+import { cart, loginPerson, logo } from "../../assets/assetsindex";
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState, useRef } from "react";
-import { useUserAuth } from "../../context/UserAuthContext";
 import { resetCart, setLogin } from '../../redux/bazarSlice';
 import { signOut } from "firebase/auth";
 import { auth, database } from '../../firebase';
@@ -19,12 +18,10 @@ const Header = () => {
   let login = useSelector((state) => state.bazar.isLogin);
   const productData = useSelector((state) => state.bazar.productData);
   const userEmail = useSelector((state) => state.bazar.email);
-  const eventsRef = useRef(null); // Add a ref to the events section
 
   const handleEventsClick1 = () => {
     const surpriseSection = document.getElementById("surpriseSection");
     const moreEventsSection = document.getElementById("moreEventsSection");
-    const productsPics = document.getElementById("productsPics");
 
     if (location.pathname !== "/home") {
       navigate("/home");

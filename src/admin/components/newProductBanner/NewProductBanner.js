@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./NewProductBanner.module.css";
 import { useState } from "react";
-import DropDown from "../DropDown";
-import useLocations from "../../hooks/useLocations";
-import LoadingDropDown from "../LoadingDropDown";
-import { createLocation, createProduct } from "../../services/firebase";
-import { createEvent } from "../../services/firebase";
+// import DropDown from "../DropDown";
+// import useLocations from "../../hooks/useLocations";
+// import LoadingDropDown from "../LoadingDropDown";
+import { createProduct } from "../../services/firebase";
+// import { createEvent } from "../../services/firebase";
 
 function NewProductBanner({ notifyNewProduct }) {
   const [isCreateLoading, setIsCreateLoading] = useState(false);

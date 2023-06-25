@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { location } from "../../assets/assetsindex";
 import useEvents from "../../hooks/events";
-import { getDocs, collection, doc, getDoc } from "firebase/firestore";
+import {collection, doc, getDoc } from "firebase/firestore";
 import { database } from "../../firebase";
 
 const Events = () => {

@@ -6,10 +6,9 @@ import Footer from "../components/homePage/Footer";
 import CartItem from "../components/CartItem";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import { resetCart, setLogin, setOrderId } from "../redux/bazarSlice";
-import { auth, database } from "../firebase";
+import { setLogin, setOrderId } from "../redux/bazarSlice";
+import { database } from "../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import domain from "../constants/domain";
 
 const Cart = () => {
   const productData = useSelector((state) => state.bazar.productData);
@@ -214,7 +213,7 @@ const Cart = () => {
                 <div className="w-1/3 bg-[#fafafa] py-6 px-4">
                   <div className="flex flex-col gap-6 border-b-[1px] border-b-gray-400 pb-6">
                     <h2 className="text-2xl font-medium">סכום העגלה</h2>
-                    <p className="flex items-center gap-4 text-base">
+                    <p className="flex items-center gap-4 text-base font-bold">
                       סכום{" "}
                       <span className="font-titleFont font-bold text-lg">
                         {totalAmt} ₪
@@ -223,7 +222,7 @@ const Cart = () => {
                   </div>
                   <p className="font-titleFont font-semibold flex justify-between mt-6">
                     {isMember && (
-                      <span className="text-lg">הנחת חבר מעודון 30%</span>
+                      <span className="text-lg">הנחת חבר מועדון 30%</span>
                     )}
                   </p>
                   <p className="font-titleFont font-semibold flex justify-between mt-6">

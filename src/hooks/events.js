@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getEvents } from "../firebaseServices";
 
-function useEvents(maxEvents = 4) {
+function useEvents(maxEvents = 5) {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

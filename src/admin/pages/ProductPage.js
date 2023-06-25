@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { productsColumns } from "../data/tableData";
 import SelectableTable from "../components/SelectableTable";
 import Table from "../components/Table";
-import { getProducts, updateEvent, updateProduct } from "../services/firebase";
+import { updateEvent, updateProduct } from "../services/firebase";
 import styles from "./ProductPage.module.css";
 import useProducts from "../hooks/useProducts";
 import useEvents from "../hooks/useEvents";
@@ -13,7 +13,7 @@ function ProductPage() {
   let {
     products,
     loading: productsLoading,
-    error: productsError,
+    // error: productsError,
   } = useProducts();
 
   useEffect(() => {
@@ -85,7 +85,7 @@ function ProductPage() {
         </option>
         {events.map((event) => (
           <option className={styles.optionclass} value={event.id}>
-            {event.location}
+            {event.date.split("T")[0]}
           </option>
         ))}
       </select>

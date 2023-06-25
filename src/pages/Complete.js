@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { useLocation, useNavigate } from "react-router-dom";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { resetCart } from "../redux/bazarSlice";
 import { database } from "../firebase";
 
@@ -55,32 +55,32 @@ export default function Complete() {
   return null; // or render a loading/spinner component
 }
 
-function sendSMS(a) {
-  const url = "https://app.sumit.co.il/sms/sms/send/";
-  const body = {
-    Credentials: {
-      CompanyID: 61294932,
-      APIKey: "Gy2gopJM25FoBIRImOQCyUgJO5gp6ONTNwskd4TynjKPjKkTTb",
-    },
-    Recipient: "string",
-    Text: "string",
-    SaveDraft: true,
-    Sender: "string",
-  };
+// function sendSMS(a) {
+//   const url = "https://app.sumit.co.il/sms/sms/send/";
+//   const body = {
+//     Credentials: {
+//       CompanyID: 61294932,
+//       APIKey: "Gy2gopJM25FoBIRImOQCyUgJO5gp6ONTNwskd4TynjKPjKkTTb",
+//     },
+//     Recipient: "string",
+//     Text: "string",
+//     SaveDraft: true,
+//     Sender: "string",
+//   };
 
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      const redirectUrl = data.Data.RedirectURL;
-      window.open(redirectUrl, "http://localhost:3000/home");
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
+//   fetch(url, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(body),
+//   })
+//     .then((response) => response.json())
+//     .then((data) => {
+//       const redirectUrl = data.Data.RedirectURL;
+//       window.open(redirectUrl, "http://localhost:3000/home");
+//     })
+//     .catch((error) => {
+//       console.error("Error:", error);
+//     });
+// }

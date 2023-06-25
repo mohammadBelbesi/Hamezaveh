@@ -3,7 +3,7 @@ import React from 'react';
 import './card.css'
 import { useState, useEffect} from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {  deleteItem , decrementTotal } from '../../../redux/bazarSlice';
 
 //maine componant to export
