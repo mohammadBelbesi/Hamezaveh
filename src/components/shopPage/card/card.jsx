@@ -59,7 +59,6 @@ useEffect(() => {//when the is clicked changed we are here
       if(isTrue){
         setIsTrue(false)
         dispatch(deleteItem(id)) 
-        dispatch(decrementTotal( quntaty * price ))
         funcToRemovePrice(quntaty * price) 
       }else{
         setIsClicked(!isClicked)
