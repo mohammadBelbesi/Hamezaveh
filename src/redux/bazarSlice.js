@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { type } from "@testing-library/user-event/dist/type";
 
 const initialState = {
   productData: [],
   total: 0,
   isMember: false,
-  email: "", // Add the email state
+  email: "",
   isAdmin: false,
   isLogin: false,
   selectEvent: {},
@@ -17,12 +16,6 @@ export const bazarSlice = createSlice({
   name: "bazar",
   initialState,
   reducers: {
-    //   addToCart: (state, action) => {
-    //     state.productData.push(action.payload);
-    //     // state.total.push(action.payload);
-    //     // state.isMember.push(action.payload);
-    //     // state.userInfo.push(action.payload);
-    //   },
     addToCart: (state, action) => {
       const item = state.productData.find(
         (item) => item.idProduct === action.payload.idProduct
@@ -37,7 +30,7 @@ export const bazarSlice = createSlice({
       const item = state.productData.find(
         (item) => item.idProduct === action.payload.idProduct
       );
-      if (item) {
+      if (item && item.QuantityOfProduct < 5000) {
         item.QuantityOfProduct += 100;
       }
     },
@@ -83,7 +76,6 @@ export const bazarSlice = createSlice({
       state.selectEvent = action.payload;
     },
     setEmailf: (state, action) => {
-      // Add the setEmail reducer
       state.email = action.payload;
     },
     setPrice: (state, action) => {
@@ -119,10 +111,6 @@ export const {
   setAdmin,
   setOrderId,
   incrementTotal,
-  //addUser,
-  //removeUser,
 } = bazarSlice.actions;
 
 export default bazarSlice.reducer;
-// export const {addToCart} = bazarSlice.actions;
-// export default bazarSlice.reducer;
